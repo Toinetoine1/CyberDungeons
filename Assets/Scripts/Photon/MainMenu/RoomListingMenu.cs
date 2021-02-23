@@ -9,16 +9,33 @@ namespace Photon.MainMenu
     {
         [SerializeField] private Transform content;
         [SerializeField] private RoomListing roomListing;
+
+        private List<RoomListing> listings = new List<RoomListing>();
         
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
             foreach (RoomInfo info in roomList)
             {
-                RoomListing listing = Instantiate(roomListing, content);
-                if (listing != null)
+                //Remove from rooms list
+                if (info.RemovedFromList)
                 {
-                    listing.SetRoomInfo(info);
-                    Debug.Log("okkkk");
+                    int index = listings.FindIndex(x => x.RoomInfo.Name == info.Name);
+                    if (index != -1)
+                    {
+                        Destroy(listings[index].gameObject);
+                        listings.RemoveAt(index);
+                    }
+                }
+                //Added to rooms list
+                else
+                {
+                    RoomListing listing = Instantiate(roomListing, content);
+
+                    if (listing != null)
+                    {
+                        listing.SetRoomInfo(info);
+                        listings.Add(listing);
+                    }
                 }
             }
         }
