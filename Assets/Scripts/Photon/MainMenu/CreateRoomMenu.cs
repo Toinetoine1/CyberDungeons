@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using Photon.MainMenu;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,14 @@ namespace Photon.Rooms
 
         [SerializeField] private Text roomName;
 
+        private RoomsCanvases roomsCanvases;
+        
+        public void FirstInitialize(RoomsCanvases canvases)
+        {
+            roomsCanvases = canvases;
+        }
+
+        
         public void onClickCreateRoom()
         {
             Debug.Log("okkk");
@@ -32,6 +41,7 @@ namespace Photon.Rooms
         public override void OnCreatedRoom()
         {
             Debug.Log("Created room successfully.");
+            roomsCanvases.CurrentRoomCanvas.Show();
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)
