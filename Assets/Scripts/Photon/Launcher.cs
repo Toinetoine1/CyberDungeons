@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace Photon
 {
-    public class TestConnect : MonoBehaviourPunCallbacks
+    public class Launcher : MonoBehaviourPunCallbacks
     {
-        private void Start()
+        private string gameVersion = "1";
+        
+        public void Connect()
         {
             Debug.Log("Connecting to server...");
-            PhotonNetwork.GameVersion = "0.0.1";
+            PhotonNetwork.GameVersion = gameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
 
