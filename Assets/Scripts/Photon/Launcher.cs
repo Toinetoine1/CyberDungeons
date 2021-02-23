@@ -19,6 +19,8 @@ namespace Photon
         public override void OnConnectedToMaster()
         {
             Debug.Log("Connected to server !");
+
+            PhotonNetwork.JoinLobby();
         }
 
         public override void OnDisconnected(DisconnectCause cause)
