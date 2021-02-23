@@ -9,7 +9,7 @@ namespace Photon
     {
         private string gameVersion = "1";
         
-        public void Connect()
+        private void Start()
         {
             Debug.Log("Connecting to server...");
             PhotonNetwork.GameVersion = gameVersion;
