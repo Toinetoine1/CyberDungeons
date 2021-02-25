@@ -13,17 +13,17 @@ namespace Photon.MainMenu
 
         private List<PlayerListing> listings = new List<PlayerListing>();
 
-        private void Awake()
-        {
-            GetCurrentRoomPlayers();
-        }
-
         private void GetCurrentRoomPlayers()
         {
-            foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+            if (PhotonNetwork.CurrentRoom == null)
             {
-                AddPlayerListing(playerInfo.Value);
+                Debug.Log("not in a room !");
             }
+            else
+                foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+                {
+                    AddPlayerListing(playerInfo.Value);
+                }
         }
 
         private void AddPlayerListing(Player player)
@@ -36,7 +36,7 @@ namespace Photon.MainMenu
                 listings.Add(listing);
             }
         }
-        
+
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             AddPlayerListing(newPlayer);
