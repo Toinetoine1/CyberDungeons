@@ -43,6 +43,7 @@ namespace Photon.Rooms
             Debug.Log("Created room successfully.");
             roomsCanvases.CurrentRoomCanvas.Show();
             _playerListingsMenu.GetCurrentRoomPlayers();
+            gameObject.SetActive(false);
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)
