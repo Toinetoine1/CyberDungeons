@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Photon
 {
-    public class Launcher : MonoBehaviourPunCallbacks
+    public class NetworkConnection : MonoBehaviourPunCallbacks
     {
         private string gameVersion = "1";
         
