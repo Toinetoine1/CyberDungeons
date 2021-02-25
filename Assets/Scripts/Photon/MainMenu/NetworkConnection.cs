@@ -2,19 +2,20 @@
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Photon
 {
     public class NetworkConnection : MonoBehaviourPunCallbacks
     {
+        [SerializeField] private Text username;
         private string gameVersion = "1";
         
         private void Start()
         {
             Debug.Log("Connecting to server...");
-            int ran = Random.Range(0, 999);
-            PhotonNetwork.NickName = "Test"+ran;
+            PhotonNetwork.NickName = username.text;
             PhotonNetwork.GameVersion = gameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
