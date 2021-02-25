@@ -12,7 +12,7 @@ namespace Photon
         [SerializeField] private Text username;
         private string gameVersion = "1";
         
-        private void Start()
+        public void Connect()
         {
             Debug.Log("Connecting to server...");
             PhotonNetwork.NickName = username.text;
