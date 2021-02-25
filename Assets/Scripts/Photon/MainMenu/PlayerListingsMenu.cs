@@ -13,17 +13,12 @@ namespace Photon.MainMenu
 
         private List<PlayerListing> listings = new List<PlayerListing>();
 
-        private void GetCurrentRoomPlayers()
+        public void GetCurrentRoomPlayers()
         {
-            if (PhotonNetwork.CurrentRoom == null)
+            foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
             {
-                Debug.Log("not in a room !");
+                AddPlayerListing(playerInfo.Value);
             }
-            else
-                foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
-                {
-                    AddPlayerListing(playerInfo.Value);
-                }
         }
 
         private void AddPlayerListing(Player player)

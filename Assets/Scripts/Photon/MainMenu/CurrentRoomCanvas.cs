@@ -14,6 +14,7 @@ namespace Photon.MainMenu
         public void Show()
         {
             gameObject.SetActive(true);
+            Debug.Log("bonsoir a tous !");
         }
 
         private void Hide()

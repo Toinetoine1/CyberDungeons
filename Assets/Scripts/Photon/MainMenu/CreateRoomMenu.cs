@@ -9,6 +9,7 @@ namespace Photon.Rooms
     public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
 
+        [SerializeField] private PlayerListingsMenu _playerListingsMenu;
         [SerializeField] private Text roomName;
 
         private RoomsCanvases roomsCanvases;
@@ -21,7 +22,6 @@ namespace Photon.Rooms
         
         public void onClickCreateRoom()
         {
-            Debug.Log("okkk");
             if (!PhotonNetwork.IsConnected)
             {
                 Debug.Log("Photon not connected when trying to create a room !");
@@ -42,6 +42,7 @@ namespace Photon.Rooms
         {
             Debug.Log("Created room successfully.");
             roomsCanvases.CurrentRoomCanvas.Show();
+            _playerListingsMenu.GetCurrentRoomPlayers();
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)
