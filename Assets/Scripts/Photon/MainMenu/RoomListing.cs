@@ -7,7 +7,6 @@ namespace Photon.MainMenu
 {
     public class RoomListing : MonoBehaviour
     {
-        [SerializeField] private CreateOrJoinRoomCanvas _createOrJoinRoomCanvas;
         [SerializeField] private Text text;
         public RoomInfo RoomInfo { get; private set;}
 
@@ -20,7 +19,6 @@ namespace Photon.MainMenu
         public void onClickButton()
         {
             PhotonNetwork.JoinRoom(RoomInfo.Name);
-            _createOrJoinRoomCanvas.gameObject.SetActive(false);
         }
 
     }

@@ -13,6 +13,7 @@ namespace Photon.MainMenu
 
         public void Show()
         {
+            roomsCanvases.CreateOrJoinRoomCanvas.gameObject.SetActive(false);
             gameObject.SetActive(true);
             Debug.Log("bonsoir a tous !");
         }
