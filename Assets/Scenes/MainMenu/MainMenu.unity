@@ -1350,6 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9023356415712d34f9ee9679f819b54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerListingsMenu: {fileID: 1087919077}
 --- !u!114 &352781836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6487,7 +6488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf88fd42d2da094e85d88b69edf1e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerListingsMenu: {fileID: 1087919077}
   roomName: {fileID: 1073001622}
 --- !u!1 &1956845863
 GameObject:

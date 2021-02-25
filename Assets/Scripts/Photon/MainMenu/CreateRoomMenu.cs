@@ -1,15 +1,13 @@
-﻿using Photon.MainMenu;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Photon.Rooms
+namespace Photon.MainMenu
 {
     public class CreateRoomMenu : MonoBehaviourPunCallbacks
     {
-
-        [SerializeField] private PlayerListingsMenu _playerListingsMenu;
+        
         [SerializeField] private Text roomName;
 
         private RoomsCanvases roomsCanvases;
@@ -42,7 +40,6 @@ namespace Photon.Rooms
         {
             Debug.Log("Created room successfully.");
             roomsCanvases.CurrentRoomCanvas.Show();
-            _playerListingsMenu.GetCurrentRoomPlayers();
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)

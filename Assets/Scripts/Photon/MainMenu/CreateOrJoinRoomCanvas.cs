@@ -1,5 +1,4 @@
-﻿using Photon.Rooms;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Photon.MainMenu
 {
