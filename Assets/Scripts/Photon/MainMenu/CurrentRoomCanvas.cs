@@ -22,14 +22,12 @@ namespace Photon.MainMenu
             roomsCanvases.CreateOrJoinRoomCanvas.gameObject.SetActive(false);
             gameObject.SetActive(true);
             Debug.Log("bonsoir a tous !");
-            
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);   
         }
-        
         
     }
 }

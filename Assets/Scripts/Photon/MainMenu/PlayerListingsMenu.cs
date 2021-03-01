@@ -18,7 +18,24 @@ namespace Photon.MainMenu
         {
             _canvases = canvases;
         }
-        
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            GetCurrentRoomPlayers();
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            for (int i = 0; i < listings.Count; i++)
+            {
+                Destroy(listings[i].gameObject);
+            }
+            
+            listings.Clear();
+        }
+
         public void GetCurrentRoomPlayers()
         {
             foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
@@ -27,19 +44,22 @@ namespace Photon.MainMenu
             }
         }
 
-        public override void OnLeftRoom()
-        {
-            content.DestroyChildren();
-        }
-
         private void AddPlayerListing(Player player)
         {
-            PlayerListing listing = Instantiate(playerListing, content);
-
-            if (listing != null)
+            int index = listings.FindIndex(x => x.Player == player);
+            if (index != -1)
             {
-                listing.SetPlayerInfo(player);
-                listings.Add(listing);
+                listings[index].SetPlayerInfo(player);
+            }
+            else
+            {
+                PlayerListing listing = Instantiate(playerListing, content);
+
+                if (listing != null)
+                {
+                    listing.SetPlayerInfo(player);
+                    listings.Add(listing);
+                }
             }
         }
 
