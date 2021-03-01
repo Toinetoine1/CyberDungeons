@@ -30,7 +30,7 @@ namespace Photon.MainMenu
             options.MaxPlayers = 2;
         
             //If a client disconnects, this actor is inactive first and removed after this timeout. In milliseconds.
-            options.PlayerTtl = 60000;
+            options.PlayerTtl = 0;
             options.EmptyRoomTtl = 0;
 
             PhotonNetwork.JoinOrCreateRoom(roomName.text, options, TypedLobby.Default);
