@@ -15,6 +15,9 @@ namespace Photon.MainMenu
 
         public void GetCurrentRoomPlayers()
         {
+            if(!PhotonNetwork.IsConnected || PhotonNetwork.CurrentRoom == null || PhotonNetwork.CurrentRoom.Players == null)
+                return;
+            
             foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
             {
                 AddPlayerListing(playerInfo.Value);
@@ -45,6 +48,11 @@ namespace Photon.MainMenu
                 Destroy(listings[index].gameObject);
                 listings.RemoveAt(index);
             }
+        }
+
+        public void OnClickStartGame()
+        {
+            PhotonNetwork.LoadLevel(1);
         }
     }
 }
