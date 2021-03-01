@@ -10,9 +10,9 @@ namespace Photon.MainMenu
             foreach (Transform transform in t)
             {
                 if(destroyImmediately)
-                    MonoBehaviour.DestroyImmediate(transform);
+                    MonoBehaviour.DestroyImmediate(transform.gameObject);
                 else
-                    MonoBehaviour.Destroy(transform);
+                    MonoBehaviour.Destroy(transform.gameObject);
             }
         }
         

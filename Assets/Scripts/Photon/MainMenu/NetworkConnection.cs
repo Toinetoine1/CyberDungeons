@@ -11,7 +11,7 @@ namespace Photon
     {
         [SerializeField] private Text username;
         private string gameVersion = "1";
-        
+
         public void Connect()
         {
             Debug.Log("Connecting to server...");
@@ -24,12 +24,13 @@ namespace Photon
         {
             Debug.Log("Connected to server !");
 
-            PhotonNetwork.JoinLobby();
+            if (!PhotonNetwork.InLobby)
+                PhotonNetwork.JoinLobby();
         }
 
         public override void OnDisconnected(DisconnectCause cause)
         {
-            Debug.Log("Deconnecting: "+cause);
+            Debug.Log("Deconnecting: " + cause);
         }
     }
 }

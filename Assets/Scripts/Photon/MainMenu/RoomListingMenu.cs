@@ -21,6 +21,8 @@ namespace Photon.MainMenu
         public override void OnJoinedRoom()
         {
             roomsCanvases.CurrentRoomCanvas.Show();
+            content.DestroyChildren();
+            listings.Clear();
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -40,13 +42,22 @@ namespace Photon.MainMenu
                 //Added to rooms list
                 else
                 {
-                    RoomListing listing = Instantiate(roomListing, content);
-
-                    if (listing != null)
+                    int index = listings.FindIndex(x => x.RoomInfo.Name == info.Name);
+                    if (index == -1)
                     {
-                        listing.SetRoomInfo(info);
-                        listings.Add(listing);
+                        RoomListing listing = Instantiate(roomListing, content);
+
+                        if (listing != null)
+                        {
+                            listing.SetRoomInfo(info);
+                            listings.Add(listing);
+                        }    
                     }
+                    else
+                    {
+                        
+                    }
+                    
                 }
             }
         }

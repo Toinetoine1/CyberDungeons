@@ -5,11 +5,15 @@ namespace Photon.MainMenu
     public class CurrentRoomCanvas : MonoBehaviour
     {
         [SerializeField] private PlayerListingsMenu _playerListingsMenu;
+        [SerializeField] private LeaveRoomMenu _leaveRoomMenu;
+        
         private RoomsCanvases roomsCanvases;
         
         public void FirstInitialize(RoomsCanvases canvases)
         {
             roomsCanvases = canvases;
+            _playerListingsMenu.FirstInitialize(canvases);
+            _leaveRoomMenu.FirstInitialize(canvases);
         }
 
         public void Show()
@@ -21,7 +25,7 @@ namespace Photon.MainMenu
             
         }
 
-        private void Hide()
+        public void Hide()
         {
             gameObject.SetActive(false);   
         }

@@ -17,5 +17,10 @@ namespace Photon.MainMenu
             roomListingMenu.FirstInitialize(canvases);
         }
 
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
     }
 }

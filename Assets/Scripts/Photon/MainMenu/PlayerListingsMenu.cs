@@ -12,13 +12,24 @@ namespace Photon.MainMenu
         [SerializeField] private PlayerListing playerListing;
 
         private List<PlayerListing> listings = new List<PlayerListing>();
-
+        private RoomsCanvases _canvases;
+        
+        public void FirstInitialize(RoomsCanvases canvases)
+        {
+            _canvases = canvases;
+        }
+        
         public void GetCurrentRoomPlayers()
         {
             foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
             {
                 AddPlayerListing(playerInfo.Value);
             }
+        }
+
+        public override void OnLeftRoom()
+        {
+            content.DestroyChildren();
         }
 
         private void AddPlayerListing(Player player)
