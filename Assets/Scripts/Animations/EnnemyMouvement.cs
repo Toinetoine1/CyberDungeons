@@ -27,7 +27,8 @@ public class EnnemyMouvement : MonoBehaviour
         SetMovementAnim(direction);
     }
     
-    // Si vous voulez faire bouger le mob avec les touche zqsd enelever les commentaire.
+    
+    // Si vous voulez faire bouger le mob avec les touche zqsd enlever les commentaires.
     
     public void InputKey()
     {
