@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Pathfinding;
 using Photon.Pun;
 using Photon.Realtime;
@@ -10,7 +11,7 @@ namespace AI
     {
         [SerializeField] private PlayerConnect playerConnect;
 
-        private GameObject target;
+        private GameObject target, pl1, pl2;
 
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
@@ -28,7 +29,23 @@ namespace AI
             seeker = GetComponent<Seeker>();
             rb = GetComponent<Rigidbody2D>();
 
+            StartCoroutine(ExecuteAfterTime(0.5f));
             InvokeRepeating("UpdatePath", 0f, .5f);
+        }
+        
+        IEnumerator ExecuteAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            Debug.Log("okkkk");
+            foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                GameObject obj = GameObject.Find(pl.NickName);
+                if (pl1 == null)
+                    pl1 = obj;
+                else
+                    pl2 = obj;
+            }
         }
 
         private void UpdatePath()
@@ -53,7 +70,8 @@ namespace AI
             {
                 if (path == null)
                     return;
-                seeker.CancelCurrentPathRequest();
+                Debug.Log("Changing target");
+                    seeker.CancelCurrentPathRequest();
                 seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
             });
             if (path == null)
@@ -80,9 +98,6 @@ namespace AI
 
         private void UpdateTarget(Action<GameObject> callback)
         {
-            GameObject pl1 = playerConnect.Player1;
-            GameObject pl2 = playerConnect.Player2;
-
             GameObject oldTarget = target;
             
             if (pl1 != null && pl2 == null)
@@ -98,24 +113,20 @@ namespace AI
                 if (distBetweenPl2AndEnemy >= distBetweenPl1AndEnemy)
                 {
                     target = pl1;
+                    Debug.Log("PL1");
                 }
                 else
                 {
                     target = pl2;
+                    Debug.Log("PL2");
                 }
             }
 
-            Debug.Log(oldTarget);
-            Debug.Log(target);
-            
             if (oldTarget != target)
             {
                 callback.Invoke(target);
                 Debug.Log("ok ???");
             }
-            
-            if (target != null)
-                Debug.Log("Targeting " + target.name);
         }
 
         private void OnDrawGizmosSelected()
