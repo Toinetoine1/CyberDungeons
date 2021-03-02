@@ -113,19 +113,16 @@ namespace AI
                 if (distBetweenPl2AndEnemy >= distBetweenPl1AndEnemy)
                 {
                     target = pl1;
-                    Debug.Log("PL1");
                 }
                 else
                 {
                     target = pl2;
-                    Debug.Log("PL2");
                 }
             }
 
             if (oldTarget != target)
             {
                 callback.Invoke(target);
-                Debug.Log("ok ???");
             }
         }
 
