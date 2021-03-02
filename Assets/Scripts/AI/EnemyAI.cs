@@ -33,6 +33,47 @@ namespace AI
 
         private void UpdatePath()
         {
+            if (seeker.IsDone() && target != null)
+                seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
+        }
+
+        private void OnPathComplete(Path p)
+        {
+            if (!p.error)
+            {
+                path = p;
+                currentWaypoint = 0;
+            }
+        }
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            if (path == null)
+                return;
+            UpdateTarget();
+            if (target == null)
+                return;
+
+            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
+            {
+                //TODO Fire a bullet
+                return;
+            }
+
+            transform.position = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
+                speed * Time.deltaTime);
+
+            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+            if (distance < nextWaypointDistance)
+            {
+                currentWaypoint++;
+            }
+        }
+
+        private void UpdateTarget()
+        {
             GameObject pl1 = playerConnect.Player1;
             GameObject pl2 = playerConnect.Player2;
 
@@ -58,43 +99,6 @@ namespace AI
 
             if (target != null)
                 Debug.Log("Targeting " + target.name);
-
-            if (seeker.IsDone() && target != null)
-                seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
-        }
-
-        private void OnPathComplete(Path p)
-        {
-            if (!p.error)
-            {
-                path = p;
-                currentWaypoint = 0;
-            }
-        }
-
-        // Update is called once per frame
-        void FixedUpdate()
-        {
-            if (path == null)
-                return;
-            if (target == null)
-                return;
-
-            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
-            {
-                //TODO Fire a bullet
-                return;
-            }
-
-            transform.position = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
-                speed * Time.deltaTime);
-
-            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-            if (distance < nextWaypointDistance)
-            {
-                currentWaypoint++;
-            }
         }
 
         private void OnDrawGizmosSelected()
