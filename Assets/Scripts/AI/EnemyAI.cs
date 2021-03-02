@@ -92,7 +92,7 @@ namespace AI
             if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
             {
                 //TODO Fire a bullet
-                target.GetComponent<HealthSystem>().damage(damage);
+                target.GetComponent<Health>().healthSystem.damage(damage);
                 Animator.SetBool("Standing", true);
                 return;
             }

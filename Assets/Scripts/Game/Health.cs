@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     public int health;
     public HealthBar healthBar;
-    private HealthSystem healthSystem;
+    public HealthSystem healthSystem;
     
     // Start is called before the first frame update
     void Start()
