@@ -1,33 +1,33 @@
 ﻿
 public class HealthSystem
 {
-    private int health;
-    public int Maxhealth;
+    private float health;
+    public float Maxhealth;
 
-    public HealthSystem(int maxhealth)
+    public HealthSystem(float maxhealth)
     {
         Maxhealth = maxhealth;
         health = maxhealth;
     }
 
-    public int gethealth()
+    public float gethealth()
     {
         return health;
     }
 
     public float getHealthPercentage()
     {
-        return (float) health / Maxhealth;
+        return health / Maxhealth;
     }
 
-    public void damage(int damageCount)
+    public void damage(float damageCount)
     {
         health -= damageCount;
         if (health < 0)
             health = 0;
     }
 
-    public void heal (int healAmount)
+    public void heal (float healAmount)
     {
         health += healAmount;
         if (health > Maxhealth)

@@ -16,7 +16,7 @@ namespace AI
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
         public float lineOfSite = 5;
-        public int damage = 3;
+        public float damage = 0.01f;
 
         private Path path;
         private int currentWaypoint;
