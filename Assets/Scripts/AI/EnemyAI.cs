@@ -1,4 +1,5 @@
-﻿using Pathfinding;
+﻿using System;
+using Pathfinding;
 using UnityEngine;
 
 namespace AI
@@ -9,6 +10,7 @@ namespace AI
 
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
+        public float lineOfSite = 5;
 
         private Path path;
         private int currentWaypoint;
@@ -45,7 +47,14 @@ namespace AI
         {
             if (path == null)
                 return;
-        
+
+            if (Vector2.Distance(transform.position, target.position) <= lineOfSite)
+            {
+                //TODO Fire a bullet
+                Debug.Log("okk !!!");
+                return;
+            }
+            
             transform.position = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                 speed * Time.deltaTime);
 
@@ -55,6 +64,12 @@ namespace AI
             {
                 currentWaypoint++;
             }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            // Gizmos.color = Color.green;
+            // Gizmos.DrawWireSphere(transform.position, lineOfSite);
         }
     }
 }
