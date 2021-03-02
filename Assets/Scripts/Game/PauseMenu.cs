@@ -49,4 +49,9 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Application Quit");
         Application.Quit();
     }
+
+    public void PlaySound()
+    {
+        FindObjectOfType<AudioManager>().Play("MenuButton");
+    }
 }
