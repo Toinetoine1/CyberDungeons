@@ -1,12 +1,16 @@
 ﻿using System;
 using Pathfinding;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 namespace AI
 {
-    public class EnemyAI : MonoBehaviour
+    public class EnemyAI : MonoBehaviourPunCallbacks
     {
-        public Transform target;
+        [SerializeField] private PlayerConnect playerConnect;
+        
+        private Transform target;
 
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
@@ -29,6 +33,29 @@ namespace AI
 
         private void UpdatePath()
         {
+            GameObject pl1 = playerConnect.Player1;
+            GameObject pl2 = playerConnect.Player2;
+
+            if (pl1 != null && pl2 == null)
+                target = pl1.transform;
+            else if (pl2 != null && pl1 == null)
+                target = pl2.transform;
+            else
+            {
+                var position = transform.position;
+                float distBetweenPl1AndEnemy = Vector2.Distance(position, pl1.transform.position);
+                float distBetweenPl2AndEnemy = Vector2.Distance(position, pl2.transform.position);
+
+                if (distBetweenPl2AndEnemy >= distBetweenPl1AndEnemy)
+                {
+                    target = pl1.transform;
+                }
+                else
+                {
+                    target = pl2.transform;
+                }
+            }
+
             if (seeker.IsDone() && target != null)
                 seeker.StartPath(rb.position, target.position, OnPathComplete);
         }

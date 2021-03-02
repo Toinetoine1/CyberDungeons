@@ -220,6 +220,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2934959325574896378, guid: 7e74b58ca8846fb4ab41c8e8248dc54c,
+        type: 3}
+      propertyPath: playerConnect
+      value: 
+      objectReference: {fileID: 1250005573}
     - target: {fileID: 4502381389626040713, guid: 7e74b58ca8846fb4ab41c8e8248dc54c,
         type: 3}
       propertyPath: m_RootOrder
@@ -316,6 +321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0055099c91c80ab4c9d79ad8d1713f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 3185692014074367761, guid: 87e2f14561f2d6d43adcf42e384c93b9,
+    type: 3}
+  Player1: {fileID: 0}
+  Player2: {fileID: 0}
 --- !u!4 &1250005574
 Transform:
   m_ObjectHideFlags: 0
