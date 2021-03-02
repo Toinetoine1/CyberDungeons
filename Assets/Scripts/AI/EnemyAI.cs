@@ -47,7 +47,6 @@ namespace AI
         {
             yield return new WaitForSeconds(time);
 
-            Debug.Log("okkkk");
             foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
             {
                 GameObject obj = GameObject.Find(pl.NickName);
