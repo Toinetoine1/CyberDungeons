@@ -22,15 +22,25 @@ namespace AI
 
         private Seeker seeker;
         private Rigidbody2D rb;
+        
+        private Animator Animator;
 
         // Start is called before the first frame update
         void Start()
         {
             seeker = GetComponent<Seeker>();
             rb = GetComponent<Rigidbody2D>();
+            Animator = GetComponent<Animator>();
 
             StartCoroutine(ExecuteAfterTime(0.5f));
             InvokeRepeating("UpdatePath", 0f, .5f);
+        }
+        
+        private void SetMovementAnim(Vector2 dir)
+        {
+            Animator.SetBool("Standing", false);
+            Animator.SetFloat("xDir", dir.x);
+            Animator.SetFloat("yDir", dir.y);
         }
         
         IEnumerator ExecuteAfterTime(float time)
@@ -82,12 +92,16 @@ namespace AI
             if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
             {
                 //TODO Fire a bullet
+                Animator.SetBool("Standing", true);
                 return;
             }
-
-            transform.position = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
+            
+            Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                 speed * Time.deltaTime);
-
+            SetMovementAnim(nextPos);
+            transform.position = nextPos;
+            
+            
             float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
             if (distance < nextWaypointDistance)
