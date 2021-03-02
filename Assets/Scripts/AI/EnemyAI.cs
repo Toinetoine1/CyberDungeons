@@ -49,9 +49,15 @@ namespace AI
         // Update is called once per frame
         void FixedUpdate()
         {
+            UpdateTarget(o =>
+            {
+                if (path == null)
+                    return;
+                seeker.CancelCurrentPathRequest();
+                seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
+            });
             if (path == null)
                 return;
-            UpdateTarget();
             if (target == null)
                 return;
 
@@ -72,11 +78,13 @@ namespace AI
             }
         }
 
-        private void UpdateTarget()
+        private void UpdateTarget(Action<GameObject> callback)
         {
             GameObject pl1 = playerConnect.Player1;
             GameObject pl2 = playerConnect.Player2;
 
+            GameObject oldTarget = target;
+            
             if (pl1 != null && pl2 == null)
                 target = pl1;
             else if (pl2 != null && pl1 == null)
@@ -97,6 +105,15 @@ namespace AI
                 }
             }
 
+            Debug.Log(oldTarget);
+            Debug.Log(target);
+            
+            if (oldTarget != target)
+            {
+                callback.Invoke(target);
+                Debug.Log("ok ???");
+            }
+            
             if (target != null)
                 Debug.Log("Targeting " + target.name);
         }
@@ -107,4 +124,5 @@ namespace AI
             // Gizmos.DrawWireSphere(transform.position, lineOfSite);
         }
     }
+
 }
