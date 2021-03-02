@@ -5,9 +5,10 @@ using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer;
-    public void SetVolume(float volume)
+    public void PlaySound()
     {
-        audioMixer.SetFloat("volume", volume);
+        FindObjectOfType<AudioManager>().Play("MenuButton");
     }
+    
+    
 }
