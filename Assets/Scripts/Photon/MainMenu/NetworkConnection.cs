@@ -15,6 +15,7 @@ namespace Photon
         public void Connect()
         {
             Debug.Log("Connecting to server...");
+            PhotonNetwork.SendRate = 50;
             PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.NickName = username.text;
             PhotonNetwork.GameVersion = gameVersion;
