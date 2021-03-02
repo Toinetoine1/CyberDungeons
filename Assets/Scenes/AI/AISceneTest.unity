@@ -244,8 +244,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 3185692014074367761, guid: 87e2f14561f2d6d43adcf42e384c93b9,
     type: 3}
-  Player1: {fileID: 0}
-  Player2: {fileID: 0}
 --- !u!4 &1250005574
 Transform:
   m_ObjectHideFlags: 0
@@ -363,12 +361,12 @@ PrefabInstance:
     - target: {fileID: 4502381389626040713, guid: 7e74b58ca8846fb4ab41c8e8248dc54c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.19
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4502381389626040713, guid: 7e74b58ca8846fb4ab41c8e8248dc54c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.72
+      value: -8.4
       objectReference: {fileID: 0}
     - target: {fileID: 4502381389626040713, guid: 7e74b58ca8846fb4ab41c8e8248dc54c,
         type: 3}
@@ -528,8 +526,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1897700060}
   - {fileID: 1897700059}
+  - {fileID: 1897700060}
   viewIdField: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
