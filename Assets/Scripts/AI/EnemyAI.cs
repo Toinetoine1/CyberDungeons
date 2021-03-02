@@ -40,7 +40,7 @@ namespace AI
                 target = pl1.transform;
             else if (pl2 != null && pl1 == null)
                 target = pl2.transform;
-            else
+            else if(pl1 != null && pl2 != null)
             {
                 var position = transform.position;
                 float distBetweenPl1AndEnemy = Vector2.Distance(position, pl1.transform.position);
