@@ -9,8 +9,8 @@ namespace AI
     public class EnemyAI : MonoBehaviourPunCallbacks
     {
         [SerializeField] private PlayerConnect playerConnect;
-        
-        private Transform target;
+
+        private GameObject target;
 
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
@@ -37,10 +37,10 @@ namespace AI
             GameObject pl2 = playerConnect.Player2;
 
             if (pl1 != null && pl2 == null)
-                target = pl1.transform;
+                target = pl1;
             else if (pl2 != null && pl1 == null)
-                target = pl2.transform;
-            else if(pl1 != null && pl2 != null)
+                target = pl2;
+            else if (pl1 != null && pl2 != null)
             {
                 var position = transform.position;
                 float distBetweenPl1AndEnemy = Vector2.Distance(position, pl1.transform.position);
@@ -48,16 +48,19 @@ namespace AI
 
                 if (distBetweenPl2AndEnemy >= distBetweenPl1AndEnemy)
                 {
-                    target = pl1.transform;
+                    target = pl1;
                 }
                 else
                 {
-                    target = pl2.transform;
+                    target = pl2;
                 }
             }
 
+            if (target != null)
+                Debug.Log("Targeting " + target.name);
+
             if (seeker.IsDone() && target != null)
-                seeker.StartPath(rb.position, target.position, OnPathComplete);
+                seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
         }
 
         private void OnPathComplete(Path p)
@@ -76,13 +79,13 @@ namespace AI
                 return;
             if (target == null)
                 return;
-            
-            if (Vector2.Distance(transform.position, target.position) <= lineOfSite)
+
+            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
             {
                 //TODO Fire a bullet
                 return;
             }
-            
+
             transform.position = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                 speed * Time.deltaTime);
 
