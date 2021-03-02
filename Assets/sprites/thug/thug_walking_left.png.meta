@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 3b67883148b3e7b4783baefd81a8effc
+guid: f4a5e918359cad543b8f74b26265a152
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5623194428626525839
-    second: test_0
+      213: 2093168293905904669
+    second: thug_walking_left_0
   - first:
-      213: -2646800685242748869
-    second: test_1
+      213: -3945258516926440595
+    second: thug_walking_left_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -93,13 +93,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_0
+      name: thug_walking_left_0
       rect:
         serializedVersion: 2
-        x: 270
-        y: 36
-        width: 59
-        height: 79
+        x: 49
+        y: 58
+        width: 72
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -107,20 +107,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 171a2cac57666f1b0800000000000000
-      internalID: -5623194428626525839
+      spriteID: d143f55297d6c0d10800000000000000
+      internalID: 2093168293905904669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_1
+      name: thug_walking_left_1
       rect:
         serializedVersion: 2
-        x: 870
-        y: 34
-        width: 59
-        height: 83
+        x: 216
+        y: 58
+        width: 76
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3078d4dccca44bd0800000000000000
-      internalID: -2646800685242748869
+      spriteID: d6bd38f1840af39c0800000000000000
+      internalID: -3945258516926440595
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a4a6efee0dfcc0e41a5025cdd7e3ebc1
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
