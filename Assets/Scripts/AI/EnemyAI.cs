@@ -29,7 +29,7 @@ namespace AI
 
         private void UpdatePath()
         {
-            if (seeker.IsDone())
+            if (seeker.IsDone() && target != null)
                 seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
 
@@ -47,11 +47,12 @@ namespace AI
         {
             if (path == null)
                 return;
-
+            if (target == null)
+                return;
+            
             if (Vector2.Distance(transform.position, target.position) <= lineOfSite)
             {
                 //TODO Fire a bullet
-                Debug.Log("okk !!!");
                 return;
             }
             
