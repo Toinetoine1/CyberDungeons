@@ -143,12 +143,12 @@ namespace AI
             }
         }
 
-        private void OnDrawGizmosSelected()
+
+        private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, lineOfSite);
         }
-
     }
 
 }
