@@ -9,8 +9,6 @@ namespace AI
 {
     public class EnemyAI : MonoBehaviourPunCallbacks
     {
-        [SerializeField] private PlayerConnect playerConnect;
-
         private GameObject target, pl1, pl2;
 
         public float speed = 2f;
@@ -74,14 +72,14 @@ namespace AI
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        void b ()
         {
             UpdateTarget(o =>
             {
                 if (path == null)
                     return;
                 Debug.Log("Changing target");
-                    seeker.CancelCurrentPathRequest();
+                seeker.CancelCurrentPathRequest();
                 seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
             });
             if (path == null)
@@ -89,7 +87,8 @@ namespace AI
             if (target == null)
                 return;
 
-            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
+            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&
+                !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
             {
                 //TODO Fire a bullet
                 target.GetComponent<Health>().healthSystem.damage(damage);
@@ -99,10 +98,10 @@ namespace AI
             
             Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                 speed * Time.deltaTime);
+            
             SetMovementAnim(nextPos);
             transform.position = nextPos;
-            
-            
+
             float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
             if (distance < nextWaypointDistance)
@@ -143,9 +142,10 @@ namespace AI
 
         private void OnDrawGizmosSelected()
         {
-            // Gizmos.color = Color.green;
-            // Gizmos.DrawWireSphere(transform.position, lineOfSite);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, lineOfSite);
         }
+
     }
 
 }
