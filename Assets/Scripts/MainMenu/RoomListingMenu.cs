@@ -7,10 +7,10 @@ namespace Photon.MainMenu
 {
     public class RoomListingMenu : MonoBehaviourPunCallbacks
     {
-        [SerializeField] private Transform content;
-        [SerializeField] private RoomListing roomListing;
+        [SerializeField] public Transform content;
+        [SerializeField] public RoomListing roomListing;
 
-        private List<RoomListing> listings = new List<RoomListing>();
+        public List<RoomListing> listings = new List<RoomListing>();
         private RoomsCanvases roomsCanvases;
         
         public void FirstInitialize(RoomsCanvases canvases)
@@ -25,41 +25,6 @@ namespace Photon.MainMenu
             listings.Clear();
         }
 
-        public override void OnRoomListUpdate(List<RoomInfo> roomList)
-        {
-            foreach (RoomInfo info in roomList)
-            {
-                //Remove from rooms list
-                if (info.RemovedFromList)
-                {
-                    int index = listings.FindIndex(x => x.RoomInfo.Name == info.Name);
-                    if (index != -1)
-                    {
-                        Destroy(listings[index].gameObject);
-                        listings.RemoveAt(index);
-                    }
-                }
-                //Added to rooms list
-                else
-                {
-                    int index = listings.FindIndex(x => x.RoomInfo.Name == info.Name);
-                    if (index == -1)
-                    {
-                        RoomListing listing = Instantiate(roomListing, content);
 
-                        if (listing != null)
-                        {
-                            listing.SetRoomInfo(info);
-                            listings.Add(listing);
-                        }    
-                    }
-                    else
-                    {
-                        
-                    }
-                    
-                }
-            }
-        }
     }
 }
