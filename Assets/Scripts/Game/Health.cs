@@ -27,7 +27,6 @@ public class Health : MonoBehaviour
             healthSystem.damage(1);
         if (Input.GetKey(KeyCode.E))
             healthSystem.heal(1);
-        Debug.Log(healthSystem.gethealth());
         
     }
 }

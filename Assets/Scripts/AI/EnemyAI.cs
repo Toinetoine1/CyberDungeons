@@ -95,18 +95,21 @@ namespace AI
                 Animator.SetBool("Standing", true);
                 return;
             }
-            
-            Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
-                speed * Time.deltaTime);
-            
-            SetMovementAnim(nextPos);
-            transform.position = nextPos;
 
-            float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-            if (distance < nextWaypointDistance)
+            if (currentWaypoint >= 0 && currentWaypoint < path.vectorPath.Count)
             {
-                currentWaypoint++;
+                Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
+                    speed * Time.deltaTime);
+            
+                SetMovementAnim(nextPos);
+                transform.position = nextPos;   
+                
+                float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+                if (distance < nextWaypointDistance)
+                {
+                    currentWaypoint++;
+                }
             }
         }
 
