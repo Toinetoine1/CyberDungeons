@@ -16,6 +16,7 @@ namespace AI
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
         public float lineOfSite = 5;
+        public float damage = 0.01f;
 
         private Path path;
         private int currentWaypoint;
@@ -91,6 +92,7 @@ namespace AI
             if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
             {
                 //TODO Fire a bullet
+                target.GetComponent<Health>().healthSystem.damage(damage);
                 Animator.SetBool("Standing", true);
                 return;
             }

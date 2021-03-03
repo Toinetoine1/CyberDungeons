@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,8 +19,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputKey();
-        Move();
+        if (gameObject.GetComponent<PhotonView>().IsMine)
+        {
+            InputKey();
+            Move();
+        }
     }
 
     private void Move()

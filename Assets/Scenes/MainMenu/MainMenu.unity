@@ -225,7 +225,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 99b667fbf4a370d49a6df045fada28f9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -539,7 +539,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 128467121}
-  - component: {fileID: 128467122}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -571,18 +570,6 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: 9.1}
   m_SizeDelta: {x: 368.16498, y: 418.5395}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &128467122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128467120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6495517801feaef4181344a95d313364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &196444449
 GameObject:
   m_ObjectHideFlags: 0
@@ -6020,7 +6007,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128467122}
+      - m_Target: {fileID: 1826226851}
         m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
@@ -7085,6 +7072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6495517801feaef4181344a95d313364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 7b28aac2a8f9ea94ea8f795b1c6d1404, type: 2}
 --- !u!1 &1826998687
 GameObject:
   m_ObjectHideFlags: 0
