@@ -17,7 +17,6 @@ namespace Photon.MainMenu
             roomsCanvases = canvases;
         }
 
-        
         public void onClickCreateRoom()
         {
             if (!PhotonNetwork.IsConnected)
@@ -25,12 +24,19 @@ namespace Photon.MainMenu
                 Debug.Log("Photon not connected when trying to create a room !");
                 return;
             }
+
+            if (roomName.text == "")
+            {
+                Debug.Log("RoomName not set !");
+                return;
+            }
             
             RoomOptions options = new RoomOptions();
             options.MaxPlayers = 2;
         
-            //If a client disconnects, this actor is inactive first and removed after this timeout. In milliseconds.
+            //If a client disconnects, the player will be inactive first and removed after this timeout. In milliseconds.
             options.PlayerTtl = 0;
+            //If a room is empty, the room will instantly be destroyed
             options.EmptyRoomTtl = 0;
 
             PhotonNetwork.JoinOrCreateRoom(roomName.text, options, TypedLobby.Default);
