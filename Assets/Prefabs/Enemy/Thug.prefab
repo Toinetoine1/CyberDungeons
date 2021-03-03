@@ -197,3 +197,4 @@ MonoBehaviour:
   speed: 2
   nextWaypointDistance: 1.2
   lineOfSite: 5
+  damage: 0.01
