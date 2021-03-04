@@ -28,7 +28,8 @@ namespace AI.Map
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
-            
+            camera.GetComponent<Camera>().transform.position = new Vector3(2, -6.5f, -24.94f);
+
             if (!PhotonNetwork.IsMasterClient)
                 return;
             generate();
@@ -36,50 +37,47 @@ namespace AI.Map
 
         void generate()
         {
-            camera.GetComponent<Camera>().transform.position = new Vector3(2, -6.5f, -24.94f);
-            // PhotonNetwork.Instantiate(availableMaps[_random.Next(availableMaps.Count)].name, new Vector2(0, 0),
-            //     Quaternion.identity);
-            PhotonNetwork.Instantiate(availableMaps[0].name, new Vector2(0, 0),
+            PhotonNetwork.Instantiate(availableMaps[_random.Next(availableMaps.Count)].name, new Vector2(0, 0),
                 Quaternion.identity);
             
-            // List<Vector2> positions = new List<Vector2>();
-            // Vector2 right = new Vector2(sizeX, 0);
-            // Vector2 left = new Vector2(-sizeX, 0);
-            // Vector2 up = new Vector2(0, sizeY);
-            // Vector2 down = new Vector2(0, -sizeY);
-            // positions.Add(right);
-            // positions.Add(left);
-            // positions.Add(up);
-            // positions.Add(down);
-            //
-            // int numberOfMap = 3;
-            // for (int i = 0; i < numberOfMap; i++)
-            // {
-            //     GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
-            //     
-            //     string testPrefab = prefabbGameObject.name;
-            //     Vector2 position = positions[_random.Next(positions.Count)];
-            //
-            //     positions.Remove(position);
-            //     List<Vector2> newVectors = new List<Vector2>();
-            //     newVectors.Add(new Vector2(position.x + sizeX, position.y));
-            //     newVectors.Add(new Vector2(position.x - sizeX, position.y));
-            //     newVectors.Add(new Vector2(sizeX, position.y + sizeY));
-            //     newVectors.Add(new Vector2(sizeX, position.y - sizeY));
-            //
-            //     foreach (Vector2 newVector in newVectors)
-            //     {
-            //         int index = positions.FindIndex(x => x.Equals(newVector));
-            //         if (index == -1)
-            //         {
-            //             if (newVector.x == 0 && newVector.y == 0)
-            //                 continue;
-            //             positions.Add(newVector);
-            //         }
-            //     }
-            //
-            //     PhotonNetwork.Instantiate(testPrefab, position, Quaternion.identity);
-            // }
+            List<Vector2> positions = new List<Vector2>();
+            Vector2 right = new Vector2(sizeX, 0);
+            Vector2 left = new Vector2(-sizeX, 0);
+            Vector2 up = new Vector2(0, sizeY);
+            Vector2 down = new Vector2(0, -sizeY);
+            positions.Add(right);
+            positions.Add(left);
+            positions.Add(up);
+            positions.Add(down);
+            
+            int numberOfMap = 3;
+            for (int i = 0; i < numberOfMap; i++)
+            {
+                GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
+                
+                string testPrefab = prefabbGameObject.name;
+                Vector2 position = positions[_random.Next(positions.Count)];
+            
+                positions.Remove(position);
+                List<Vector2> newVectors = new List<Vector2>();
+                newVectors.Add(new Vector2(position.x + sizeX, position.y));
+                newVectors.Add(new Vector2(position.x - sizeX, position.y));
+                newVectors.Add(new Vector2(sizeX, position.y + sizeY));
+                newVectors.Add(new Vector2(sizeX, position.y - sizeY));
+            
+                foreach (Vector2 newVector in newVectors)
+                {
+                    int index = positions.FindIndex(x => x.Equals(newVector));
+                    if (index == -1)
+                    {
+                        if (newVector.x == 0 && newVector.y == 0)
+                            continue;
+                        positions.Add(newVector);
+                    }
+                }
+            
+                PhotonNetwork.Instantiate(testPrefab, position, Quaternion.identity);
+            }
         }
     }
 }
