@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -20,7 +21,11 @@ namespace AI.Map
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
+            generate();
+        }
 
+        void generate()
+        {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
             foreach (GameObject prefab in availableMaps)
             {
@@ -41,10 +46,12 @@ namespace AI.Map
             positions.Add(up);
             positions.Add(down);
 
-            int numberOfMap = 10;
+            int numberOfMap = 3;
             for (int i = 0; i < numberOfMap; i++)
             {
-                string testPrefab = availableMaps[_random.Next(availableMaps.Count)].name;
+                GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
+                
+                string testPrefab = prefabbGameObject.name;
                 Vector2 position = positions[_random.Next(positions.Count)];
 
                 positions.Remove(position);
@@ -59,9 +66,8 @@ namespace AI.Map
                     int index = positions.FindIndex(x => x.Equals(newVector));
                     if (index == -1)
                     {
-                        if(newVector.x == 0 && newVector.y == 0)
+                        if (newVector.x == 0 && newVector.y == 0)
                             continue;
-                        Debug.Log("add newVector");
                         positions.Add(newVector);
                     }
                 }

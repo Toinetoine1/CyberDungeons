@@ -327,11 +327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableMaps:
   - {fileID: 3657158547166710651, guid: 0aa428c316f01f4458b968e84825e97c, type: 3}
-  - {fileID: 7335986364488977391, guid: 73778f07f0fcafa4696bdaa037848e09, type: 3}
-  - {fileID: 4011573725410458779, guid: fbefdfb40bd11aa4c9b264f0f00bf553, type: 3}
-  - {fileID: 860356223661606647, guid: bc95c035ad8c4b249b3e32996285c793, type: 3}
-  - {fileID: 3578136042587356877, guid: 38e1f7b793d8edc458830647be468588, type: 3}
-  - {fileID: 2717340407554400013, guid: 23f1b250b2fb1364f85d9ef8bfd35bc2, type: 3}
   camera: {fileID: 583486432}
 --- !u!4 &1734071054
 Transform:
