@@ -23,19 +23,19 @@ namespace AI.Map
 
         void Start()
         {
-            if (!PhotonNetwork.IsMasterClient)
-                return;
-            generate();
-        }
-
-        void generate()
-        {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
             foreach (GameObject prefab in availableMaps)
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
+            //
+            // if (!PhotonNetwork.IsMasterClient)
+            //     return;
+            generate();
+        }
 
+        void generate()
+        {
             camera.GetComponent<Camera>().transform.position = new Vector3(2, -6.5f, -24.94f);
             // PhotonNetwork.Instantiate(availableMaps[_random.Next(availableMaps.Count)].name, new Vector2(0, 0),
             //     Quaternion.identity);
