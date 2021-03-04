@@ -28,9 +28,9 @@ namespace AI.Map
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
-            //
-            // if (!PhotonNetwork.IsMasterClient)
-            //     return;
+            
+            if (!PhotonNetwork.IsMasterClient)
+                return;
             generate();
         }
 
