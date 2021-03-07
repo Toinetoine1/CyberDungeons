@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class KeyBinding : MonoBehaviour
 {
     
-    [SerializeField] public List<string> Names;
-    [SerializeField] public List<KeyCode> KeyCodes;
+    public List<string> Names;
+    public List<KeyCode> KeyCodes;
 
     private void Awake()
     {
@@ -30,6 +31,8 @@ public class KeyBinding : MonoBehaviour
 
     public void saveBindings()
     {
+        Debug.Log(JsonUtility.ToJson(Names));
+        Debug.Log(JsonUtility.ToJson(KeyCodes));
         PlayerPrefs.SetString("Key", JsonUtility.ToJson(Names));
         PlayerPrefs.SetString("KeyCodes", JsonUtility.ToJson(KeyCodes));
         PlayerPrefs.Save();
@@ -61,8 +64,18 @@ public class KeyBinding : MonoBehaviour
         setKey("USE", KeyCode.E);
     }
 
-    public int getKeyCodeIndex(string key)
+    public KeyCode getKeyCode(string key)
     {
-        return Names.IndexOf(key);
+        int tmp = Names.IndexOf(key);
+        return KeyCodes[tmp];
+    }
+
+    private string namesToString()
+    {
+        string output = "";
+        foreach (var Key in Names)
+        {
+            
+        }
     }
 }

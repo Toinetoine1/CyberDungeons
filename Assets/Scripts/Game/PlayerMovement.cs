@@ -10,9 +10,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
 
     private Animator Animator;
+    private KeyBinding KeyBinding;
 
     private void Start()
     {
+        KeyBinding = GetComponent<KeyBinding>();
         Animator = GetComponent<Animator>();
     }
 
@@ -32,20 +34,21 @@ public class PlayerMovement : MonoBehaviour
         SetMovementAnim(direction);
     }
 
+    //Si vous avez besoin d'ajouter un control, mettez le en majuscule.
     public void InputKey()
     {
         direction = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyBinding.getKeyCode("UP")))
             direction += Vector2.up;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyBinding.getKeyCode("RIGHT")))
             direction += Vector2.right;
             
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyBinding.getKeyCode("LEFT")))
             direction += Vector2.left;
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyBinding.getKeyCode("DOWN")))
             direction += Vector2.down;
     }
 
