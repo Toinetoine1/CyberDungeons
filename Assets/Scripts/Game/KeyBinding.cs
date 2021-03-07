@@ -6,53 +6,47 @@ using UnityEngine;
 [Serializable]
 public class KeyBinding : MonoBehaviour
 {
-    
-    public List<string> Names;
-    public List<KeyCode> KeyCodes;
+
+    public Dictionary<string, KeyCode> KeyCodes;
 
     private void Awake()
     {
+        KeyCodes = new Dictionary<string, KeyCode>();
         RetrieveBindings();
     }
 
     public void setKey(string key, KeyCode code)
     {
-        if (Names.Contains(key))
+        if (KeyCodes.ContainsKey(key))
         {
-            int indexKey = Names.IndexOf(key);
-            KeyCodes[indexKey] = code;
+            KeyCodes[key] = code;
         }
         else
         {
-            Names.Add(key);
-            KeyCodes.Add(code);            
+            KeyCodes.Add(key, code);         
         }
     }
 
     public void saveBindings()
     {
-        Debug.Log(JsonUtility.ToJson(Names));
-        Debug.Log(JsonUtility.ToJson(KeyCodes));
-        PlayerPrefs.SetString("Key", JsonUtility.ToJson(Names));
-        PlayerPrefs.SetString("KeyCodes", JsonUtility.ToJson(KeyCodes));
+        foreach (var kvp in KeyCodes)
+        {
+            PlayerPrefs.SetString(kvp.Key, kvp.Value.ToString());
+            Debug.Log("Bind " + kvp.Key + " to " + kvp.Value);
+        }
+        
         PlayerPrefs.Save();
     }
 
     public void RetrieveBindings()
     {
-        if (PlayerPrefs.HasKey("Key"))
-        {
-            Names.Clear();
-            KeyCodes.Clear();
-            string KeyJson = PlayerPrefs.GetString("Key");
-            string KeyCodesJson = PlayerPrefs.GetString("KeyCodes");
-            Names = JsonUtility.FromJson<List<string>>(KeyJson);
-            KeyCodes = JsonUtility.FromJson<List<KeyCode>>(KeyCodesJson);
-        }
-        else
-        {
-            setDefaultBind();
-        }
+    
+        setKey("UP", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UP", "Z")));
+        setKey("DOWN", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DOWN", "S")));
+        setKey("RIGHT", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RIGHT", "D")));
+        setKey("LEFT", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LEFT", "Q")));
+        setKey("USE", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("USE", "E")));
+        Debug.Log("Bindings retrieved !");
     }
 
     public void setDefaultBind()
@@ -63,19 +57,5 @@ public class KeyBinding : MonoBehaviour
         setKey("RIGHT", KeyCode.D);
         setKey("USE", KeyCode.E);
     }
-
-    public KeyCode getKeyCode(string key)
-    {
-        int tmp = Names.IndexOf(key);
-        return KeyCodes[tmp];
-    }
-
-    private string namesToString()
-    {
-        string output = "";
-        foreach (var Key in Names)
-        {
-            
-        }
-    }
+    
 }

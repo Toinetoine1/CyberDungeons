@@ -21,7 +21,7 @@ public class KeyBindingsMenu : MonoBehaviour
         {
             string name = button.name;
             Text tmp = button.GetComponentInChildren<Text>();
-            tmp.text = _keyBinding.getKeyCode(name).ToString();
+            tmp.text = _keyBinding.KeyCodes[name].ToString();
         }
     }
 

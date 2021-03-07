@@ -39,16 +39,16 @@ public class PlayerMovement : MonoBehaviour
     {
         direction = Vector2.zero;
 
-        if (Input.GetKey(KeyBinding.getKeyCode("UP")))
+        if (Input.GetKey(KeyBinding.KeyCodes["UP"]))
             direction += Vector2.up;
 
-        if (Input.GetKey(KeyBinding.getKeyCode("RIGHT")))
+        if (Input.GetKey(KeyBinding.KeyCodes["RIGHT"]))
             direction += Vector2.right;
             
-        if (Input.GetKey(KeyBinding.getKeyCode("LEFT")))
+        if (Input.GetKey(KeyBinding.KeyCodes["LEFT"]))
             direction += Vector2.left;
 
-        if (Input.GetKey(KeyBinding.getKeyCode("DOWN")))
+        if (Input.GetKey(KeyBinding.KeyCodes["DOWN"]))
             direction += Vector2.down;
     }
 
