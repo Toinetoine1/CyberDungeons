@@ -8,12 +8,17 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     private Vector2 direction;
+    private float slideSpeed;
+    private float slideCooldown;
 
     private Animator Animator;
     private KeyBinding KeyBinding;
 
+    private State mouvementState;
+
     private void Start()
     {
+        mouvementState = State.Walking;
         KeyBinding = GetComponent<KeyBinding>();
         Animator = GetComponent<Animator>();
     }
@@ -23,15 +28,50 @@ public class PlayerMovement : MonoBehaviour
     {
         if (gameObject.GetComponent<PhotonView>().IsMine)
         {
-            InputKey();
-            Move();
+            if (mouvementState == State.Walking)
+            {                     
+                InputKey();                    
+                Move();                                         
+            }
+            else
+                DodgeRoll();
         }
+        Debug.Log(Time.deltaTime);
+    }
+    
+    private enum State
+    {
+        Walking,
+        Rolling
     }
 
     private void Move()
     {
         transform.Translate(Time.deltaTime * speed * direction);
         SetMovementAnim(direction);
+        if (slideCooldown > 0)
+        {
+            slideCooldown -= Time.deltaTime;
+        }
+    }
+
+    private bool tryDodge()
+    {
+        return Physics.Raycast(transform.position, direction, 10);
+    }
+
+    private void DodgeRoll()
+    {
+        transform.Translate(Time.deltaTime * slideSpeed * direction);
+        slideSpeed -= slideSpeed * 2f * Time.deltaTime;
+        if (slideSpeed <= 15 || tryDodge())
+        {
+            mouvementState = State.Walking;
+            Animator.SetBool("Dodge", false);
+            slideCooldown = 1f;
+            Debug.Log("Walking");
+        }
+        Debug.Log("Rolling");
     }
 
     //Si vous avez besoin d'ajouter un control, mettez le en majuscule.
@@ -50,6 +90,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyBinding.KeyCodes["DOWN"]))
             direction += Vector2.down;
+
+        if (Input.GetKey(KeyBinding.KeyCodes["DODGE"]) && slideCooldown <= 0)
+        {
+            mouvementState = State.Rolling;
+            slideSpeed = 25f;
+            Animator.SetBool("Dodge", true);
+        }
     }
 
     private void SetMovementAnim(Vector2 dir)

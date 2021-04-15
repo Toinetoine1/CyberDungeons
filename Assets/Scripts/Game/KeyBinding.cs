@@ -40,12 +40,13 @@ public class KeyBinding : MonoBehaviour
 
     public void RetrieveBindings()
     {
-    
+        
         setKey("UP", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UP", "Z")));
         setKey("DOWN", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DOWN", "S")));
         setKey("RIGHT", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RIGHT", "D")));
         setKey("LEFT", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LEFT", "Q")));
         setKey("USE", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("USE", "E")));
+        setKey("DODGE", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DODGE", "Space")));
         Debug.Log("Bindings retrieved !");
     }
 
