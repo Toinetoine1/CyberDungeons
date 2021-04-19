@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
             else
                 DodgeRoll();
         }
-        Debug.Log(Time.deltaTime);
     }
     
     private enum State
@@ -57,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool tryDodge()
     {
-        return Physics.Raycast(transform.position, direction, 10);
+        return Physics.Raycast(transform.position, direction, 10, 8);
     }
 
     private void DodgeRoll()
@@ -69,9 +68,7 @@ public class PlayerMovement : MonoBehaviour
             mouvementState = State.Walking;
             Animator.SetBool("Dodge", false);
             slideCooldown = 1f;
-            Debug.Log("Walking");
         }
-        Debug.Log("Rolling");
     }
 
     //Si vous avez besoin d'ajouter un control, mettez le en majuscule.
