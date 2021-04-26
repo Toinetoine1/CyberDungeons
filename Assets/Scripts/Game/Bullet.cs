@@ -7,12 +7,6 @@ public class Bullet : MonoBehaviour
     private Vector2 BulletDir;
     private float Speed;
     private int Damage;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        BulletDir = Input.mousePosition.normalized;
-    }
 
     // Update is called once per frame
     void Update()
@@ -22,26 +16,16 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    public void setSpeed(int speed)
+    public void Setup(float speed, int dmg, Vector2 dir)
     {
         Speed = speed;
-    }
-
-    public void setDamage(int damage)
-    {
-        Damage = damage;
+        Damage = dmg;
+        BulletDir = dir;
     }
 
     private bool WallDetector(Vector2 pos)
     {
         return Physics.Raycast(pos, BulletDir, 10f, 8);
     }
-
-    /*private int fetchDamage()
-    {
-        GameObject player = GameObject.Find("Player");
-        Component curr = player.GetComponent("WeaponManagement");
-        return curr.
-        
-    }*/
+    
 }

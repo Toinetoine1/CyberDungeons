@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,12 @@ public class Inventory : MonoBehaviour
     private int onHandWeapon;
     public GameObject currentWeapon;
 
-    public Inventory()
+    private void Awake()
     {
         WeaponList = new List<GameObject>();
+        addWeapon(GameObject.Find("The Gun"));
+        onHandWeapon = 0;
+        currentWeapon = WeaponList[onHandWeapon];
     }
 
     private void setCurrentWeapon()
@@ -33,7 +37,5 @@ public class Inventory : MonoBehaviour
     public void addWeapon(GameObject Weapon)
     {
         WeaponList.Add(Weapon);
-        if (onHandWeapon == null)
-            onHandWeapon = 0;
     }
 }
