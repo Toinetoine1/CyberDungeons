@@ -17,6 +17,7 @@ namespace Game
         private bool reloading;
         private float timeRemaining;
         
+        
 
         private void Start()
         {
@@ -41,9 +42,11 @@ namespace Game
             if (currAmmo > 0)
             {
                 Transform test = Instantiate(pfBullet, transform.position, Quaternion.identity);
-                Vector2 BulletDir = transform.position - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 
-                    Input.mousePosition.y, -cam.transform.position.z)).normalized;
-                test.GetComponent<Bullet>().Setup(speed,Damage,);
+                Camera cam = Camera.main;
+                Vector2 BulletDir = (cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+                    Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
+                Debug.Log(BulletDir);
+                test.GetComponent<Bullet>().Setup(speed,Damage,BulletDir);
             }
             else
                 Reload();

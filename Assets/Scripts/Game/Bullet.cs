@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Vector2 BulletDir;
+    private Vector2 BulletDir;
     private float Speed;
     private int Damage;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -33,12 +27,5 @@ public class Bullet : MonoBehaviour
     {
         return Physics.Raycast(pos, BulletDir, 10f, 8);
     }
-
-    /*private int fetchDamage()
-    {
-        GameObject player = GameObject.Find("Player");
-        Component curr = player.GetComponent("WeaponManagement");
-        return curr.
-        
-    }*/
+    
 }
