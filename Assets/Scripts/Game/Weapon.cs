@@ -6,9 +6,10 @@ namespace Game
 {
     public class Weapon : MonoBehaviour
     {
-        public GameObject Bullet;
+        [SerializeField] private Transform pfBullet;
         
         public int Damage;
+        public float speed;
         private int currAmmo;
         public int maxAmmo;
         public float reloadTime;
@@ -38,7 +39,12 @@ namespace Game
         public void fire()
         {
             if (currAmmo > 0)
-                GameObject.Instantiate(Bullet);
+            {
+                Transform test = Instantiate(pfBullet, transform.position, Quaternion.identity);
+                Vector2 BulletDir = transform.position - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 
+                    Input.mousePosition.y, -cam.transform.position.z)).normalized;
+                test.GetComponent<Bullet>().Setup(speed,Damage,);
+            }
             else
                 Reload();
         }

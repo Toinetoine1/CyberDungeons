@@ -724,6 +724,12 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5530192887730328401, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
+        type: 3}
+      propertyPath: pfBullet
+      value: 
+      objectReference: {fileID: 8197102722887706065, guid: 6b13355352b067d4abab3237be04b592,
+        type: 3}
     - target: {fileID: 8330700222504712391, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
         type: 3}
       propertyPath: m_SortingOrder

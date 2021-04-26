@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Vector2 BulletDir;
+    public Vector2 BulletDir;
     private float Speed;
     private int Damage;
     
     // Start is called before the first frame update
     void Start()
     {
-        BulletDir = Input.mousePosition.normalized;
+        
     }
 
     // Update is called once per frame
@@ -22,14 +22,11 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    public void setSpeed(int speed)
+    public void Setup(float speed, int dmg, Vector2 dir)
     {
         Speed = speed;
-    }
-
-    public void setDamage(int damage)
-    {
-        Damage = damage;
+        Damage = dmg;
+        BulletDir = dir;
     }
 
     private bool WallDetector(Vector2 pos)

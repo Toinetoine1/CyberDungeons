@@ -10,10 +10,10 @@ public class WeaponManagement : MonoBehaviour
 
     void Update()
     {
-        /*Vector3 dir = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+        /*Camera cam = Camera.main;
+        Vector3 dir = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
             Input.mousePosition.y, -cam.transform.position.z));
-        dir.y = 0;
-        transform.LookAt(dir);*/
+        Debug.Log(dir);*/      
     }
 
     public void fire()
