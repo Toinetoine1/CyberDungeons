@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator Animator;
     private KeyBinding KeyBinding;
+    private WeaponManagement _WeaponManagement;
 
     private State mouvementState;
 
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         mouvementState = State.Walking;
         KeyBinding = GetComponent<KeyBinding>();
         Animator = GetComponent<Animator>();
+        _WeaponManagement = GetComponent<WeaponManagement>();
     }
 
     // Update is called once per frame
@@ -87,6 +89,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyBinding.KeyCodes["DOWN"]))
             direction += Vector2.down;
+        
+        if (Input.GetKeyDown(KeyBinding.KeyCodes["FIRE"]))
+        {
+            _WeaponManagement.fire();
+            Debug.Log("FIRE");
+        }
 
         if (Input.GetKey(KeyBinding.KeyCodes["DODGE"]) && slideCooldown <= 0)
         {

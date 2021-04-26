@@ -13,9 +13,26 @@ namespace Game
         public int maxAmmo;
         public float reloadTime;
 
+        private bool reloading;
+        private float timeRemaining;
+        
+
         private void Start()
         {
             currAmmo = maxAmmo;
+        }
+
+        private void Update()
+        {
+            if (reloading)
+            {
+                timeRemaining -= Time.deltaTime;
+                if (reloadTime <= 0)
+                {
+                    reloading = false;
+                    currAmmo = maxAmmo;
+                }
+            }
         }
 
         public void fire()
@@ -28,7 +45,9 @@ namespace Game
 
         public void Reload()
         {
-               
+            reloading = true;
+            timeRemaining = reloadTime;
         }
+        
     }
 }

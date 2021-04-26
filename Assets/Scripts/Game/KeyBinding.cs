@@ -47,6 +47,7 @@ public class KeyBinding : MonoBehaviour
         setKey("LEFT", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LEFT", "Q")));
         setKey("USE", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("USE", "E")));
         setKey("DODGE", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DODGE", "Space")));
+        setKey("FIRE", (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("FIRE", "Mouse0")));
         Debug.Log("Bindings retrieved !");
     }
 
