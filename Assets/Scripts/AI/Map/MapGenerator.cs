@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using Photon.Pun;
 using UnityEngine;
 using Random = System.Random;
@@ -17,7 +18,8 @@ namespace AI.Map
         
         [SerializeField] 
         public List<GameObject> availableMaps;
-        public GameObject camera;
+        // [SerializeField]
+        // public new GameObject camera;
 
         private Random _random = new Random();
 
@@ -28,7 +30,7 @@ namespace AI.Map
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
-            camera.GetComponent<Camera>().transform.position = new Vector3(2, -6.5f, -24.94f);
+            // camera.GetComponent<Camera>().transform.position = new Vector3(2, -6.5f, -24.94f);
 
             if (!PhotonNetwork.IsMasterClient)
                 return;
@@ -50,20 +52,19 @@ namespace AI.Map
             positions.Add(up);
             positions.Add(down);
             
-            int numberOfMap = 3;
+            int numberOfMap = 10;
             for (int i = 0; i < numberOfMap; i++)
             {
                 GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
                 
-                string testPrefab = prefabbGameObject.name;
                 Vector2 position = positions[_random.Next(positions.Count)];
             
                 positions.Remove(position);
                 List<Vector2> newVectors = new List<Vector2>();
                 newVectors.Add(new Vector2(position.x + sizeX, position.y));
                 newVectors.Add(new Vector2(position.x - sizeX, position.y));
-                newVectors.Add(new Vector2(sizeX, position.y + sizeY));
-                newVectors.Add(new Vector2(sizeX, position.y - sizeY));
+                newVectors.Add(new Vector2(position.x, position.y + sizeY));
+                newVectors.Add(new Vector2(position.x, position.y - sizeY));
             
                 foreach (Vector2 newVector in newVectors)
                 {
@@ -75,8 +76,16 @@ namespace AI.Map
                         positions.Add(newVector);
                     }
                 }
-            
-                PhotonNetwork.Instantiate(testPrefab, position, Quaternion.identity);
+                
+                Debug.Log("New map in: x:"+position.x/sizeX+"  y:"+position.y/sizeY);
+                StringBuilder str = new StringBuilder();
+                foreach (var VARIABLE in positions)
+                {
+                    str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
+                }
+                Debug.Log("Positions: "+str);
+                Debug.Log(prefabbGameObject.name);
+                PhotonNetwork.Instantiate(prefabbGameObject.name, position, Quaternion.identity);
             }
         }
     }
