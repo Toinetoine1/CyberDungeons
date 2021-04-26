@@ -93,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyBinding.KeyCodes["FIRE"]))
         {
             _WeaponManagement.fire();
-            Debug.Log("FIRE");
         }
 
         if (Input.GetKey(KeyBinding.KeyCodes["DODGE"]) && slideCooldown <= 0)

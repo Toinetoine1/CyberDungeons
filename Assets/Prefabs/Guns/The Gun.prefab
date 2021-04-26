@@ -25,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755348413303364497}
-  m_LocalRotation: {x: -0.31848463, y: 0.33520362, z: 0.121548146, w: 0.8783121}
-  m_LocalPosition: {x: -0.093581505, y: 0.3925716, z: -1098.1328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_Sprite: {fileID: 21300000, guid: d9b6e18453733b241a9239ecf572fe0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e54ad7834f403ba2d6e09710a71878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bullet: {fileID: 8197102722887706068, guid: 6b13355352b067d4abab3237be04b592, type: 3}
+  pfBullet: {fileID: 0}
   Damage: 10
+  speed: 80
   maxAmmo: 8
   reloadTime: 1

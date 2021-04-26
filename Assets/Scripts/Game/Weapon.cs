@@ -37,12 +37,11 @@ namespace Game
             }
         }
 
-        public void fire()
+        public void fire(Camera cam)
         {
             if (currAmmo > 0)
             {
                 Transform test = Instantiate(pfBullet, transform.position, Quaternion.identity);
-                Camera cam = Camera.main;
                 Vector2 BulletDir = (cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
                 Debug.Log(BulletDir);
@@ -57,6 +56,8 @@ namespace Game
             reloading = true;
             timeRemaining = reloadTime;
         }
+
+        
         
     }
 }

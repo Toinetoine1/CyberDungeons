@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 
 public class WeaponManagement : MonoBehaviour
 {
     public Inventory _inventory;
+    public Camera CurrentCamera;
     
 
     void Update()
@@ -18,7 +20,8 @@ public class WeaponManagement : MonoBehaviour
 
     public void fire()
     {
-        _inventory.currentWeapon.BroadcastMessage("fire");
+        Weapon test = _inventory.currentWeapon.GetComponent<Weapon>();
+        test.fire(CurrentCamera);
     }
 
     public void nextWeapon()
