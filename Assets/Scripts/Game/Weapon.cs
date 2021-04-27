@@ -32,7 +32,7 @@ namespace Game
             if (reloading)
             {
                 timeRemaining -= Time.deltaTime;
-                if (reloadTime <= 0)
+                if (timeRemaining <= 0)
                 {
                     reloading = false;
                     currAmmo = maxAmmo;
@@ -47,10 +47,10 @@ namespace Game
                 GameObject test = PhotonNetwork.Instantiate(pfBullet.name, transform.position, Quaternion.identity);
                 Vector2 BulletDir = (cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
-                Debug.Log(BulletDir);
                 test.GetComponent<Bullet>().Setup(speed,Damage,BulletDir);
+                currAmmo -= 1;
             }
-            else
+            else if (!reloading)
                 Reload();
         }
 
