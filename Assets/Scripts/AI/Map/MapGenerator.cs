@@ -10,10 +10,10 @@ namespace AI.Map
 {
     public class MapGenerator : MonoBehaviour
     {
-        private const int sizeX = 38;
-        private const int sizeY = 27;
+        private WallGenerator wallGenerator;
 
-        [SerializeField] public GameObject VerticalWall;
+        public const int sizeX = 38;
+        public const int sizeY = 27;
 
         [SerializeField] public List<GameObject> availableMaps;
 
@@ -26,10 +26,10 @@ namespace AI.Map
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
-            pool.ResourceCache.Add(VerticalWall.name, VerticalWall);
 
             if (!PhotonNetwork.IsMasterClient)
                 return;
+            wallGenerator = gameObject.AddComponent<WallGenerator>();
             generate();
         }
         
@@ -51,7 +51,7 @@ namespace AI.Map
             availablePositions.Add(up);
             availablePositions.Add(down);
             
-            int numberOfMap = 50;
+            int numberOfMap = 8;
             for (int i = 0; i < numberOfMap; i++)
             {
                 GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
@@ -95,8 +95,9 @@ namespace AI.Map
                 //
                 // Debug.Log(prefabbGameObject.name);
                 PhotonNetwork.Instantiate(prefabbGameObject.name, position, Quaternion.identity);
-                PhotonNetwork.Instantiate(VerticalWall.name, position, Quaternion.identity);
             }
+            
+            wallGenerator.CreateWall(positions);
         }
     }
 }
