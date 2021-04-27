@@ -13,11 +13,9 @@ namespace AI.Map
         private const int sizeX = 38;
         private const int sizeY = 27;
 
-        [SerializeField] public GameObject PlayerPrefab;
+        [SerializeField] public GameObject VerticalWall;
 
         [SerializeField] public List<GameObject> availableMaps;
-        // [SerializeField]
-        // public new GameObject camera;
 
         private Random _random = new Random();
 
@@ -28,7 +26,7 @@ namespace AI.Map
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
-            // camera.GetComponent<Camera>().transform.position = new Vector3(2, -6.5f, -24.94f);
+            pool.ResourceCache.Add(VerticalWall.name, VerticalWall);
 
             if (!PhotonNetwork.IsMasterClient)
                 return;
@@ -80,23 +78,24 @@ namespace AI.Map
                     }
                 }
                 
-                Debug.Log("New map in: x:"+position.x/sizeX+"  y:"+position.y/sizeY);
-                StringBuilder str = new StringBuilder();
-                foreach (var VARIABLE in availablePositions)
-                {
-                    str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
-                }
-                Debug.Log("AvailablePositions: "+str);
-        
-                str.Length = 0;
-                foreach (var VARIABLE in positions)
-                {
-                    str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
-                }
-                Debug.Log("Positions: "+str);
-        
-                Debug.Log(prefabbGameObject.name);
+                // Debug.Log("New map in: x:"+position.x/sizeX+"  y:"+position.y/sizeY);
+                // StringBuilder str = new StringBuilder();
+                // foreach (var VARIABLE in availablePositions)
+                // {
+                //     str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
+                // }
+                // Debug.Log("AvailablePositions: "+str);
+                //
+                // str.Length = 0;
+                // foreach (var VARIABLE in positions)
+                // {
+                //     str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
+                // }
+                // Debug.Log("Positions: "+str);
+                //
+                // Debug.Log(prefabbGameObject.name);
                 PhotonNetwork.Instantiate(prefabbGameObject.name, position, Quaternion.identity);
+                PhotonNetwork.Instantiate(VerticalWall.name, position, Quaternion.identity);
             }
         }
     }
