@@ -11,6 +11,7 @@ namespace Game
         
         public int Damage;
         public float speed;
+        
         private int currAmmo;
         public int maxAmmo;
         public float reloadTime;
@@ -20,7 +21,7 @@ namespace Game
         
         
 
-        private void Start()
+        private void Awake()
         {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
             pool.ResourceCache.Add(pfBullet.name, pfBullet);
@@ -54,6 +55,7 @@ namespace Game
             else if (!reloading)
                 Reload();
         }
+        
 
         public void Reload()
         {

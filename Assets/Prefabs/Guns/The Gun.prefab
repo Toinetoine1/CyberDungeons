@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109270173740317301}
   - component: {fileID: 8330700222504712391}
-  - component: {fileID: 5530192887730328401}
+  - component: {fileID: 2053103185629110179}
   m_Layer: 0
   m_Name: The Gun
   m_TagString: Untagged
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755348413303364497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.509, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5530192887730328401
+--- !u!114 &2053103185629110179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,6 +97,6 @@ MonoBehaviour:
   pfBullet: {fileID: 8197102722887706068, guid: 6b13355352b067d4abab3237be04b592,
     type: 3}
   Damage: 10
-  speed: 80
+  speed: 40
   maxAmmo: 8
   reloadTime: 1

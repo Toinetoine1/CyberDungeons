@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4116081584198182063}
   m_Layer: 8
   m_Name: WallCollider
-  m_TagString: Untagged
+  m_TagString: WallCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11559,7 +11559,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 12
-      m_TileSpriteIndex: 14
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -13906,17 +13906,17 @@ Tilemap:
   - m_RefCount: 39
     m_Data: {fileID: -2214324459444436669, guid: 5c962ddf35c47644a833744546e3eeb6,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1067297490107771153, guid: 5c962ddf35c47644a833744546e3eeb6,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -5501188175790602637, guid: f77f0121d945550409e82d37ce143cff,
       type: 3}
   - m_RefCount: 36
     m_Data: {fileID: -3972898515368585447, guid: f77f0121d945550409e82d37ce143cff,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1067297490107771153, guid: 5c962ddf35c47644a833744546e3eeb6,
+      type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -3358905428303160743, guid: f77f0121d945550409e82d37ce143cff,
       type: 3}
