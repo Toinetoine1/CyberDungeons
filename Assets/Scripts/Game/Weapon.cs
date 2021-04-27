@@ -60,7 +60,5 @@ namespace Game
             timeRemaining = reloadTime;
         }
 
-        
-        
     }
 }

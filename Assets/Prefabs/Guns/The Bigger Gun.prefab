@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2243470370767575166}
   - component: {fileID: 3697778066026562307}
   - component: {fileID: 4563232905218643802}
+  - component: {fileID: -5617438274702608286}
   m_Layer: 0
   m_Name: The Bigger Gun
   m_TagString: Untagged
@@ -100,3 +101,15 @@ MonoBehaviour:
   speed: 60
   maxAmmo: 6
   reloadTime: 1.5
+--- !u!114 &-5617438274702608286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3611349585992222633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a1c9792d697ba47a14f742a58975e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
