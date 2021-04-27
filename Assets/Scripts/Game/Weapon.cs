@@ -1,4 +1,5 @@
 ﻿using System;
+using Photon.Pun;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Game
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] private Transform pfBullet;
+        [SerializeField] private GameObject pfBullet;
         
         public int Damage;
         public float speed;
@@ -21,6 +22,8 @@ namespace Game
 
         private void Start()
         {
+            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
+            pool.ResourceCache.Add(pfBullet.name, pfBullet);
             currAmmo = maxAmmo;
         }
 
@@ -41,7 +44,7 @@ namespace Game
         {
             if (currAmmo > 0)
             {
-                Transform test = Instantiate(pfBullet, transform.position, Quaternion.identity);
+                GameObject test = PhotonNetwork.Instantiate(pfBullet.name, transform.position, Quaternion.identity);
                 Vector2 BulletDir = (cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
                 Debug.Log(BulletDir);
