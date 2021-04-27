@@ -49,6 +49,7 @@ namespace Game
                     Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
                 test.GetComponent<Bullet>().Setup(speed,Damage,BulletDir);
                 currAmmo -= 1;
+               FindObjectOfType<AudioManager>().Play("PistolAudio");
             }
             else if (!reloading)
                 Reload();
@@ -59,7 +60,7 @@ namespace Game
             reloading = true;
             timeRemaining = reloadTime;
         }
-
+        
         
         
     }

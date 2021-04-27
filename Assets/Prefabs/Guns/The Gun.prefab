@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1109270173740317301}
   - component: {fileID: 8330700222504712391}
   - component: {fileID: 5530192887730328401}
-  - component: {fileID: 5027259067917765603}
   m_Layer: 0
   m_Name: The Gun
   m_TagString: Untagged
@@ -101,15 +100,3 @@ MonoBehaviour:
   speed: 80
   maxAmmo: 8
   reloadTime: 1
---- !u!114 &5027259067917765603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755348413303364497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a1c9792d697ba47a14f742a58975e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
