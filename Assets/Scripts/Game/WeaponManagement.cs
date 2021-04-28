@@ -8,7 +8,6 @@ public class WeaponManagement : MonoBehaviour
 {
     public Inventory _inventory;
     public Camera CurrentCamera;
-    
 
     void Update()
     {
@@ -20,8 +19,8 @@ public class WeaponManagement : MonoBehaviour
 
     public void fire()
     {
-        Weapon test = _inventory.currentWeapon.GetComponent<Weapon>();
-        test.fire(CurrentCamera);
+        Weapon currWeapon = _inventory.currentWeapon.GetComponent<Weapon>();
+        currWeapon.fire(CurrentCamera, transform);
     }
 
     public void nextWeapon()
@@ -37,9 +36,5 @@ public class WeaponManagement : MonoBehaviour
         _inventory.previousWeapon();
         GameObject.Instantiate(_inventory.currentWeapon, transform);
     }
-
-    private Vector3 setRotation()
-    {
-        throw new NotImplementedException();
-    }
+    
 }

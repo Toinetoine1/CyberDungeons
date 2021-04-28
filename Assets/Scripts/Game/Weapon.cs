@@ -40,7 +40,7 @@ namespace Game
             }
         }
 
-        public void fire(Camera cam)
+        public void fire(Camera cam, Transform transform)
         {
             if (currAmmo > 0)
             {
@@ -60,7 +60,5 @@ namespace Game
             timeRemaining = reloadTime;
         }
 
-        
-        
     }
 }

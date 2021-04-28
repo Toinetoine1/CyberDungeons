@@ -6077,7 +6077,7 @@ PrefabInstance:
     - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
         type: 3}
@@ -6086,8 +6086,28 @@ PrefabInstance:
       objectReference: {fileID: 128467120}
     - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1826226851}
+    - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlaySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6506561177013927375, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6506561177257952565, guid: 6cebe40c8844ee84482e31c31c3d4cc2,
         type: 3}
@@ -8736,6 +8756,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1567199227}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1826226851}
+        m_MethodName: PlaySound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
