@@ -1,43 +1,89 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using AI.Map;
+﻿using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class WallGenerator : MonoBehaviour
+namespace AI.Map
 {
-    public GameObject verticalWall;
-    public GameObject horizontalWall;
-
-    private List<Wall> walls;
-    private Vector2[,] array = new Vector2[20, 20];
-    
-    public void CreateWall(List<Vector2> positions)
+    public class WallGenerator : MonoBehaviour
     {
-        DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-        pool.ResourceCache.Add(verticalWall.name, verticalWall);
-        pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
+        private const int Delta = 5;
 
-        foreach (Vector2 pos in positions)
+        private List<Vector2> positions;
+        private List<Wall> walls;
+        private Vector2[,] array = new Vector2[Delta * 2, Delta * 2];
+
+        public void CreateWall(List<Vector2> positions, GameObject verticalWall, GameObject horizontalWall)
         {
-            array[(int) (pos.y / MapGenerator.sizeY), (int) (pos.x / MapGenerator.sizeX)] = pos;
-        }
+            this.positions = positions;
+            walls = new List<Wall>();
 
-        foreach (Vector2 pos in positions)
-        {
-            if (pos == Vector2.zero)
-                continue;
+            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
+            pool.ResourceCache.Add(verticalWall.name, verticalWall);
+            pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
 
-            int y = (int) (pos.y / MapGenerator.sizeY);
-            int x = (int) (pos.x / MapGenerator.sizeX);
-
-
-            if (array[y + 1, x] == Vector2.zero)
+            foreach (Vector2 pos in positions)
             {
-                walls.Add(new Wall(horizontalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), true));
+                int x = (int) (pos.x / MapGenerator.sizeX) + Delta;
+                int y = (int) (pos.y / MapGenerator.sizeY) + Delta;
+                Debug.Log("PUT  y: " + y + "   x:" + x);
+                array[y, x] = pos;
+            }
+
+            PrintArray();
+
+            foreach (Vector2 pos in positions)
+            {
+                if (pos == Vector2.zero && pos.x != 0 && pos.y != 0)
+                    continue;
+
+                int y = (int) (pos.y / MapGenerator.sizeY);
+                int x = (int) (pos.x / MapGenerator.sizeX);
+                Debug.Log("y: " + y + "   x:" + x);
+
+                if (array[y - 1 + Delta, x + Delta] == Vector2.zero)
+                {
+                    Debug.Log("Need wall on the bottom in: x:" + x + "  y:" + y);
+                    walls.Add(new Wall(horizontalWall, new Vector2(pos.x, pos.y - MapGenerator.sizeY / 2), true));
+                } 
+                if (array[y + 1 + Delta, x + Delta] == Vector2.zero)
+                {
+                    Debug.Log("Need wall on the top in: x:" + x + "  y:" + y);
+                    walls.Add(new Wall(horizontalWall, new Vector2(pos.x, pos.y + MapGenerator.sizeY / 2), true));
+                } 
+                if (array[y + Delta, x - 1 + Delta] == Vector2.zero)
+                {
+                    walls.Add(new Wall(verticalWall, new Vector2(pos.x - MapGenerator.sizeX / 2, pos.y), true));
+                }
+                if (array[y + Delta, x + 1 + Delta] == Vector2.zero)
+                {
+                    walls.Add(new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), true));
+                }
             }
         }
-    }
 
+        private void PrintArray()
+        {
+            string str = "";
+            for (int i = 0; i < array.GetLength(0); i++)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    if (array[i, j] == Vector2.zero && i == Delta && j == Delta)
+                    {
+                        str += "M";
+                        continue;
+                    }
+                    
+                    if (array[i, j] == Vector2.zero)
+                        str += "O";
+                    else
+                        str += "X";
+                }
+
+                str += "\n";
+            }
+
+            Debug.Log(str);
+        }
+    }
 }

@@ -16,7 +16,11 @@ namespace AI.Map
         public const int sizeY = 27;
 
         [SerializeField] public List<GameObject> availableMaps;
-
+        [SerializeField]
+        public GameObject verticalWall;
+        [SerializeField]
+        public GameObject horizontalWall;
+        
         private Random _random = new Random();
 
         void Start()
@@ -51,7 +55,7 @@ namespace AI.Map
             availablePositions.Add(up);
             availablePositions.Add(down);
             
-            int numberOfMap = 8;
+            int numberOfMap = 6;
             for (int i = 0; i < numberOfMap; i++)
             {
                 GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
@@ -97,7 +101,7 @@ namespace AI.Map
                 PhotonNetwork.Instantiate(prefabbGameObject.name, position, Quaternion.identity);
             }
             
-            wallGenerator.CreateWall(positions);
+            wallGenerator.CreateWall(positions, verticalWall, horizontalWall);
         }
     }
 }
