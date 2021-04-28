@@ -21,10 +21,11 @@ namespace Game
         
         
 
-        private void Awake()
+        private void Start()
         {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-            pool.ResourceCache.Add(pfBullet.name, pfBullet);
+            if (!pool.ResourceCache.ContainsKey(pfBullet.name))
+                pool.ResourceCache.Add(pfBullet.name, pfBullet);
             currAmmo = maxAmmo;
         }
 
