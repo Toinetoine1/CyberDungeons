@@ -20,9 +20,10 @@ GameObject:
   - component: {fileID: -647806124534806350}
   - component: {fileID: 2282201512324013495}
   - component: {fileID: 6774644405457764989}
+  - component: {fileID: 3263824544392336674}
   m_Layer: 0
   m_Name: Randomator
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,3 +287,15 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &3263824544392336674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174292150250808217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7761eb3954e80344cb9fa3b9774d6e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
