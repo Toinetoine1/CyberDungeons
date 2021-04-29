@@ -15,7 +15,8 @@ public class EnnemyWeapon : MonoBehaviour
     private void Start()
     {
         DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-        pool.ResourceCache.Add(Bullet.name, Bullet);
+        if (!pool.ResourceCache.ContainsKey(Bullet.name))
+            pool.ResourceCache.Add(Bullet.name, Bullet);
     }
 
     private void Update()
