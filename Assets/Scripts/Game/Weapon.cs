@@ -23,7 +23,8 @@ namespace Game
         private void Start()
         {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-            pool.ResourceCache.Add(pfBullet.name, pfBullet);
+            if (!pool.ResourceCache.ContainsKey(pfBullet.name))
+                pool.ResourceCache.Add(pfBullet.name, pfBullet);
             currAmmo = maxAmmo;
         }
 
@@ -47,8 +48,8 @@ namespace Game
                 GameObject test = PhotonNetwork.Instantiate(pfBullet.name, transform.position, Quaternion.identity);
                 Vector2 BulletDir = (cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                     Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
-                Debug.Log(BulletDir);
                 test.GetComponent<Bullet>().Setup(speed,Damage,BulletDir);
+                currAmmo -= 1;
             }
             else
                 Reload();
