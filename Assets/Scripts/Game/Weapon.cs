@@ -33,7 +33,7 @@ namespace Game
             if (reloading)
             {
                 timeRemaining -= Time.deltaTime;
-                if (reloadTime <= 0)
+                if (timeRemaining <= 0)
                 {
                     reloading = false;
                     currAmmo = maxAmmo;
