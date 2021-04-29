@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Game;
 using Pathfinding;
 using Photon.Pun;
 using Photon.Realtime;
@@ -87,11 +88,10 @@ namespace AI
             if (target == null)
                 return;
 
-            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&
+            if (/*Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&*/
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
             {
-                //TODO Fire a bullet
-                target.GetComponent<Health>().healthSystem.damage(damage);
+                GetComponent<EnnemyWeapon>().fire(target.transform);
                 Animator.SetBool("Standing", true);
                 return;
             }
@@ -101,8 +101,8 @@ namespace AI
                 Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                     speed * Time.deltaTime);
             
-                SetMovementAnim(nextPos);
-                transform.position = nextPos;   
+                SetMovementAnim((nextPos - (Vector2)transform.position).normalized);
+                transform.position = nextPos;
                 
                 float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 

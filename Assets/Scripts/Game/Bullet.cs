@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private bool Friendly;
+    
     private Vector2 BulletDir;
+    
     private float Speed;
     private int Damage;
 
@@ -12,8 +16,32 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(Time.deltaTime * Speed * BulletDir);
-        if (WallDetector(transform.position))
-            Destroy(this.gameObject);
+        RaycastHit2D detect = Detection();
+        if (detect.collider != null)
+        {
+            if (Friendly)
+            {
+                if (detect.collider.CompareTag("Enemy"))
+                {
+                    GameObject enemy = detect.collider.gameObject;
+                    enemy.GetComponent<Health>().takeDamage(Damage);
+                    PhotonNetwork.Destroy(gameObject);
+                }
+            }
+            else
+            {
+                if (detect.collider.CompareTag("Player"))
+                {
+                    GameObject player = detect.collider.gameObject;
+                    player.GetComponent<Health>().takeDamage(Damage);
+                    PhotonNetwork.Destroy(gameObject);
+                }
+            }
+            if (detect.collider.CompareTag("WallCollider"))
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
     }
 
     public void Setup(float speed, int dmg, Vector2 dir)
@@ -21,11 +49,20 @@ public class Bullet : MonoBehaviour
         Speed = speed;
         Damage = dmg;
         BulletDir = dir;
+        Friendly = true;
     }
 
-    private bool WallDetector(Vector2 pos)
+    public void EnemiSetup(Transform targetTransform)
     {
-        return Physics.Raycast(pos, BulletDir, 10f, 8);
+        Speed = 15;
+        Damage = 10;
+        BulletDir = (targetTransform.position - transform.position).normalized;
+        Friendly = false;
+    }
+
+    private RaycastHit2D Detection()
+    {
+        return Physics2D.Raycast(transform.position, BulletDir, 0.5f);
     }
     
 }

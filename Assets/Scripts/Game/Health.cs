@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -18,15 +19,15 @@ public class Health : MonoBehaviour
             healthBar.setup(healthSystem);
         }
     }
-    //pour tester la vie d'un mob/joueur, enlever les commentaire dans l'update.
     void Update()
     {
         health = healthSystem.gethealth();
-        
-        if (Input.GetKey(KeyCode.A))
-            healthSystem.damage(1);
-        if (Input.GetKey(KeyCode.E))
-            healthSystem.heal(1);
-        
+        if (health <= 0)
+            PhotonNetwork.Destroy(gameObject);
+    }
+
+    public void takeDamage(int Damage)
+    {
+        healthSystem.damage(Damage);
     }
 }

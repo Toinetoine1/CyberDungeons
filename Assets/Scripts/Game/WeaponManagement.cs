@@ -22,6 +22,12 @@ public class WeaponManagement : MonoBehaviour
         Weapon currWeapon = _inventory.currentWeapon.GetComponent<Weapon>();
         currWeapon.fire(CurrentCamera, transform);
     }
+    
+    public void EnnemyFire()
+    {
+        Weapon currWeapon = _inventory.currentWeapon.GetComponent<Weapon>();
+        currWeapon.fire(CurrentCamera, transform);
+    }
 
     public void nextWeapon()
     {
