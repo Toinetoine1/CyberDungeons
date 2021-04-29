@@ -36,5 +36,6 @@ public class EnnemyWeapon : MonoBehaviour
         }
     }
 
-    
+    ///TODO script pour le sniper
+    /// TODO script pour les bosses
 }
