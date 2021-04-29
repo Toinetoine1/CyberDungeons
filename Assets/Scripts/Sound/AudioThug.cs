@@ -9,7 +9,7 @@ public class AudioThug : MonoBehaviour
 {
      void Start()
     {
-        InvokeRepeating("UpdateSound",0,10);
+        InvokeRepeating("UpdateSound",0,10); // Fonction permettant de repeter
     }
 
      public void UpdateSound()
