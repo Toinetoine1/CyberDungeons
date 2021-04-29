@@ -33,8 +33,11 @@ public class Bullet : MonoBehaviour
                 if (detect.collider.CompareTag("Player"))
                 {
                     GameObject player = detect.collider.gameObject;
-                    player.GetComponent<Health>().takeDamage(Damage);
-                    PhotonNetwork.Destroy(gameObject);
+                    if (player.GetComponent<PlayerMovement>().mouvementState == PlayerMovement.State.Walking)
+                    {
+                        player.GetComponent<Health>().takeDamage(Damage);
+                        PhotonNetwork.Destroy(gameObject);
+                    }
                 }
             }
             if (detect.collider.CompareTag("WallCollider"))

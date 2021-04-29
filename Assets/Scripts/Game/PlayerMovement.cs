@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private KeyBinding KeyBinding;
     private WeaponManagement _WeaponManagement;
 
-    private State mouvementState;
+    public State mouvementState;
 
     private void Start()
     {
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    private enum State
+    public enum State
     {
         Walking,
         Rolling
