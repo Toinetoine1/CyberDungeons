@@ -15,7 +15,8 @@ public class TriggerArea : MonoBehaviour
     private void Start()
     {
         DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-        pool.ResourceCache.Add(Prefab.name, Prefab);
+        if (!pool.ResourceCache.ContainsKey(Prefab.name))
+            pool.ResourceCache.Add(Prefab.name, Prefab);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

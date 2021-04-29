@@ -51,7 +51,7 @@ namespace Game
                 test.GetComponent<Bullet>().Setup(speed,Damage,BulletDir);
                 currAmmo -= 1;
             }
-            else
+            else if (!reloading)
                 Reload();
         }
 
