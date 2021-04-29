@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e54ad7834f403ba2d6e09710a71878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pfBullet: {fileID: 0}
+  pfBullet: {fileID: 8197102722887706068, guid: 6b13355352b067d4abab3237be04b592,
+    type: 3}
   Damage: 15
   speed: 60
   maxAmmo: 30

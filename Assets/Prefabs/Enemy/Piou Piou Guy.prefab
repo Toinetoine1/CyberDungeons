@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5136467017158969405}
   - component: {fileID: 4595395663981754924}
   - component: {fileID: 3623242895648844838}
+  - component: {fileID: 8883613780634675277}
   m_Layer: 0
   m_Name: Piou Piou Guy
   m_TagString: Enemy
@@ -229,6 +230,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
   firingInterval: 0.75
+--- !u!114 &8883613780634675277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939843198778791473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee9bad52b13c872449dda97b8e7d86cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6937246487418364819
 GameObject:
   m_ObjectHideFlags: 0
