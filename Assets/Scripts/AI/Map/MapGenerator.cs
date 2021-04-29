@@ -16,6 +16,7 @@ namespace AI.Map
         public const int sizeY = 27;
 
         [SerializeField] public List<GameObject> availableMaps;
+        [SerializeField] public GameObject spawn;
         [SerializeField]
         public GameObject verticalWall;
         [SerializeField]
@@ -30,6 +31,7 @@ namespace AI.Map
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
+            pool.ResourceCache.Add(spawn.name, spawn);
 
             if (!PhotonNetwork.IsMasterClient)
                 return;
@@ -39,8 +41,7 @@ namespace AI.Map
         
         void generate()
         {
-            PhotonNetwork.Instantiate(availableMaps[_random.Next(availableMaps.Count)].name, new Vector2(0, 0),
-                Quaternion.identity);
+            PhotonNetwork.Instantiate(spawn.name, new Vector2(0, 0), Quaternion.identity);
         
             List<Vector2> positions = new List<Vector2>();
             positions.Add(new Vector2(0,0));
@@ -64,6 +65,7 @@ namespace AI.Map
                 
                 positions.Add(position);
                 availablePositions.Remove(position);
+                
                 List<Vector2> newVectors = new List<Vector2>();
                 newVectors.Add(new Vector2(position.x + sizeX, position.y));
                 newVectors.Add(new Vector2(position.x - sizeX, position.y));

@@ -28,6 +28,7 @@ namespace AI.Map
                 Debug.Log("PUT  y: " + y + "   x:" + x);
                 array[y, x] = pos;
             }
+            array[Delta, Delta] = Vector2.down;
 
             PrintArray();
 
@@ -52,10 +53,12 @@ namespace AI.Map
                 } 
                 if (array[y + Delta, x - 1 + Delta] == Vector2.zero)
                 {
+                    Debug.Log("Need wall on the left in: x:" + x + "  y:" + y);
                     walls.Add(new Wall(verticalWall, new Vector2(pos.x - MapGenerator.sizeX / 2, pos.y), true));
                 }
                 if (array[y + Delta, x + 1 + Delta] == Vector2.zero)
                 {
+                    Debug.Log("Need wall on the right in: x:" + x + "  y:" + y);
                     walls.Add(new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), true));
                 }
             }
@@ -68,11 +71,11 @@ namespace AI.Map
             {
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    if (array[i, j] == Vector2.zero && i == Delta && j == Delta)
-                    {
-                        str += "M";
-                        continue;
-                    }
+                    // if (array[i, j] == Vector2.zero && i == Delta && j == Delta)
+                    // {
+                    //     str += "M";
+                    //     continue;
+                    // }
                     
                     if (array[i, j] == Vector2.zero)
                         str += "O";
