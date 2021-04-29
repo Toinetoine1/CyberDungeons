@@ -62,6 +62,8 @@ namespace AI.Map
                     walls.Add(new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), true));
                 }
             }
+            
+            AstarPath.active.Scan();
         }
 
         private void PrintArray()
