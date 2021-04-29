@@ -88,7 +88,7 @@ namespace AI
             if (target == null)
                 return;
 
-            if (/*Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&*/
+            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
             {
                 GetComponent<EnnemyWeapon>().fire(target.transform);

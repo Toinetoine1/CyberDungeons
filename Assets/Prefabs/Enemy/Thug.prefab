@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -7235926934808293889}
   - component: {fileID: -8042436640579495878}
   - component: {fileID: -3526316184411554959}
+  - component: {fileID: 4144783054433470380}
   m_Layer: 0
   m_Name: Thug
   m_TagString: Untagged
@@ -301,3 +302,17 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &4144783054433470380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502381389626040717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db287651a5af8a4eafe7ad119f33ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
+  firingInterval: 1
