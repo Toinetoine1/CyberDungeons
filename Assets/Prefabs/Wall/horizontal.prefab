@@ -64,7 +64,8 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 4647280298415353068}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -145,7 +146,7 @@ Tilemap:
   m_GameObject: {fileID: 8370391611310938397}
   m_Enabled: 1
   m_Tiles:
-  - first: {x: 0, y: -6, z: 0}
+  - first: {x: 0, y: -7, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 30
@@ -154,7 +155,7 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 1, y: -6, z: 0}
+  - first: {x: 1, y: -7, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 30
