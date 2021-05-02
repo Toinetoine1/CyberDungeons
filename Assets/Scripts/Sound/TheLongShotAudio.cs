@@ -7,7 +7,7 @@ public class TheLongShotAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateSound", 4, 19);// permet la répétition dans un intervalle donnée.
+        InvokeRepeating("UpdateSound", 0, 8);// permet la répétition dans un intervalle donnée.
     }
 
     // Update is called once per frame
