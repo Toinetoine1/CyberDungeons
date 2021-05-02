@@ -21,7 +21,7 @@ public class TriggerArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!haSpawned)
+        if (!haSpawned && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate(Prefab.name, Spawner.transform.position, Quaternion.identity);
             Debug.Log("TOUCHED");
