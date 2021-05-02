@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
                     if (player.GetComponent<PlayerMovement>().mouvementState == PlayerMovement.State.Walking)
                     {
                         player.GetComponent<Health>().takeDamage(Damage);
-                        if (player.GetComponent<PhotonView>().IsMine)
+                        if (gameObject.GetComponent<PhotonView>().IsMine)
                             PhotonNetwork.Destroy(gameObject);
                     }
                 }
