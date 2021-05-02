@@ -6,9 +6,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private bool Friendly;
-    
+
     private Vector2 BulletDir;
-    
+
     private float Speed;
     private int Damage;
 
@@ -25,7 +25,10 @@ public class Bullet : MonoBehaviour
                 {
                     GameObject enemy = detect.collider.gameObject;
                     enemy.GetComponent<Health>().takeDamage(Damage);
-                    PhotonNetwork.Destroy(gameObject);
+                    if (enemy.GetComponent<PhotonView>().IsMine)
+                    {
+                        PhotonNetwork.Destroy(gameObject);
+                    }
                 }
             }
             else
@@ -36,13 +39,16 @@ public class Bullet : MonoBehaviour
                     if (player.GetComponent<PlayerMovement>().mouvementState == PlayerMovement.State.Walking)
                     {
                         player.GetComponent<Health>().takeDamage(Damage);
-                        PhotonNetwork.Destroy(gameObject);
+                        if (player.GetComponent<PhotonView>().IsMine)
+                            PhotonNetwork.Destroy(gameObject);
                     }
                 }
             }
+
             if (detect.collider.CompareTag("WallCollider"))
             {
-                PhotonNetwork.Destroy(gameObject);
+                if (gameObject.GetComponent<PhotonView>().IsMine)
+                    PhotonNetwork.Destroy(gameObject);
             }
         }
     }
@@ -67,5 +73,4 @@ public class Bullet : MonoBehaviour
     {
         return Physics2D.Raycast(transform.position, BulletDir, 0.5f);
     }
-    
 }
