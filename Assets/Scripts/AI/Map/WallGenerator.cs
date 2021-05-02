@@ -14,11 +14,7 @@ namespace AI.Map
         public void CreateWall(List<Vector2> positions, GameObject verticalWall, GameObject horizontalWall)
         {
             walls = new List<Wall>();
-            
-            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-            pool.ResourceCache.Add(verticalWall.name, verticalWall);
-            pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
-            
+
             foreach (Vector2 pos in positions)
             {
                 int x = (int) (pos.x / MapGenerator.sizeX) + Delta;

@@ -32,7 +32,9 @@ namespace AI.Map
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
             pool.ResourceCache.Add(spawn.name, spawn);
-
+            pool.ResourceCache.Add(verticalWall.name, verticalWall);
+            pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
+            
             if (!PhotonNetwork.IsMasterClient)
                 return;
             wallGenerator = gameObject.AddComponent<WallGenerator>();
