@@ -41,31 +41,36 @@ namespace AI.Map
         
         void generate()
         {
+            //On ajoute sur tous les clients une map vide en (0,0)
             PhotonNetwork.Instantiate(spawn.name, new Vector2(0, 0), Quaternion.identity);
-        
+            
+            //Positions de toutes les tilesmap
             List<Vector2> positions = new List<Vector2>();
             positions.Add(new Vector2(0,0));
             
+            //Positions disponibles pour générer la prochaine map
             List<Vector2> availablePositions = new List<Vector2>();
-            Vector2 right = new Vector2(sizeX, 0);
-            Vector2 left = new Vector2(-sizeX, 0);
-            Vector2 up = new Vector2(0, sizeY);
-            Vector2 down = new Vector2(0, -sizeY);
-            availablePositions.Add(right);
-            availablePositions.Add(left);
-            availablePositions.Add(up);
-            availablePositions.Add(down);
             
+            //On ajoute toutes les positions adjacentes
+            availablePositions.Add(new Vector2(sizeX, 0));
+            availablePositions.Add(new Vector2(-sizeX, 0));
+            availablePositions.Add(new Vector2(0, sizeY));
+            availablePositions.Add(new Vector2(0, -sizeY));
+            
+            //Nombre de tilesmap a placer
             int numberOfMap = 6;
             for (int i = 0; i < numberOfMap; i++)
             {
-                GameObject prefabbGameObject = availableMaps[_random.Next(availableMaps.Count)];
+                //On choisit aléatoirement une tilesmap
+                GameObject prefabGameObject = availableMaps[_random.Next(availableMaps.Count)];
                 
+                //On choisit aléatoirement une position
                 Vector2 position = availablePositions[_random.Next(availablePositions.Count)];
                 
                 positions.Add(position);
                 availablePositions.Remove(position);
                 
+                //On crée et ajoute si possible les positions adjacentes
                 List<Vector2> newVectors = new List<Vector2>();
                 newVectors.Add(new Vector2(position.x + sizeX, position.y));
                 newVectors.Add(new Vector2(position.x - sizeX, position.y));
@@ -74,7 +79,6 @@ namespace AI.Map
                 
                 foreach (Vector2 newVector in newVectors)
                 {
-                    // int index = positions.FindIndex(vec => Math.Abs(vec.x - newVector.x) < 0.1 && Math.Abs(vec.y - newVector.y) < 0.1);
                     if (!positions.Contains(newVector) && !availablePositions.Contains(newVector))
                     {
                         if (newVector.x == 0 && newVector.y == 0)
@@ -84,25 +88,11 @@ namespace AI.Map
                     }
                 }
                 
-                // Debug.Log("New map in: x:"+position.x/sizeX+"  y:"+position.y/sizeY);
-                // StringBuilder str = new StringBuilder();
-                // foreach (var VARIABLE in availablePositions)
-                // {
-                //     str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
-                // }
-                // Debug.Log("AvailablePositions: "+str);
-                //
-                // str.Length = 0;
-                // foreach (var VARIABLE in positions)
-                // {
-                //     str.Append("(" + VARIABLE.x / sizeX + "," + VARIABLE.y / sizeY+") ");
-                // }
-                // Debug.Log("Positions: "+str);
-                //
-                // Debug.Log(prefabbGameObject.name);
-                PhotonNetwork.Instantiate(prefabbGameObject.name, position, Quaternion.identity);
+                //On ajoute notre tilesmap sur tous les clients
+                PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
             }
             
+            //On génère les murs
             wallGenerator.CreateWall(positions, verticalWall, horizontalWall);
         }
     }
