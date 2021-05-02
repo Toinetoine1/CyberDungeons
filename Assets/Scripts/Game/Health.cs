@@ -22,8 +22,10 @@ public class Health : MonoBehaviour
     void Update()
     {
         health = healthSystem.gethealth();
-        if (health <= 0)
+        if (health <= 0 && gameObject.GetComponent<PhotonView>().IsMine)
+        {
             PhotonNetwork.Destroy(gameObject);
+        }
     }
 
     public void takeDamage(int Damage)
