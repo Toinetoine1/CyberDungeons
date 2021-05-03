@@ -25,6 +25,7 @@ public class TriggerArea : MonoBehaviour
         {
             PhotonNetwork.Instantiate(Prefab.name, Spawner.transform.position, Quaternion.identity);
             Debug.Log("TOUCHED");
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
             haSpawned = true;
         }
     }
