@@ -15,7 +15,6 @@ namespace AI
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
         public float lineOfSite = 5;
-        public float damage = 0.01f;
 
         private Path path;
         private int currentWaypoint;
@@ -24,6 +23,9 @@ namespace AI
         private Rigidbody2D rb;
         
         private Animator Animator;
+        
+        private EnnemyWeapon ennemyWeapon;
+
 
         // Start is called before the first frame update
         void Start()
@@ -31,6 +33,7 @@ namespace AI
             seeker = GetComponent<Seeker>();
             rb = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
+            ennemyWeapon = GetComponent<EnnemyWeapon>();
 
             StartCoroutine(ExecuteAfterTime(0.5f));
             InvokeRepeating("UpdatePath", 0f, .5f);
@@ -91,13 +94,28 @@ namespace AI
             if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
             {
-                GetComponent<EnnemyWeapon>().fire(target.transform);
+                if (ennemyWeapon is MachineGunnerManagement)
+                {
+                    MachineGunnerManagement gunnerManagement = ennemyWeapon as MachineGunnerManagement;
+                    gunnerManagement.isShooting = true;
+                    gunnerManagement.target = target.transform;
+                }
+                else
+                {
+                    ennemyWeapon.fire(target.transform);
+                }
                 Animator.SetBool("Standing", true);
                 return;
             }
 
             if (currentWaypoint >= 0 && currentWaypoint < path.vectorPath.Count)
             {
+                if (ennemyWeapon is MachineGunnerManagement)
+                {
+                    MachineGunnerManagement gunnerManagement = ennemyWeapon as MachineGunnerManagement;
+                    gunnerManagement.isShooting = false;
+                }
+                
                 Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                     speed * Time.deltaTime);
             

@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class EnnemyWeapon : MonoBehaviour
 {
-    [SerializeField] private GameObject Bullet;
+    [SerializeField] public GameObject Bullet;
 
     public float firingInterval;
-    private float currInterval;
+    public float currInterval;
 
     private void Start()
     {
@@ -31,10 +31,15 @@ public class EnnemyWeapon : MonoBehaviour
     {
         if (currInterval <= 0)
         {
-            GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
-            newBullet.GetComponent<Bullet>().EnemiSetup(Target);
+            fireABullet(Target);
             currInterval = firingInterval;
         }
+    }
+
+    public void fireABullet(Transform Target)
+    {
+        GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
+        newBullet.GetComponent<Bullet>().EnemiSetup(Target);
     }
 
     ///TODO script pour le sniper

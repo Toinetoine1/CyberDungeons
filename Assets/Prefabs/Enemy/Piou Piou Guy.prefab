@@ -16,11 +16,11 @@ GameObject:
   - component: {fileID: 6839538485817310824}
   - component: {fileID: 5136467017158969405}
   - component: {fileID: 4595395663981754924}
-  - component: {fileID: 3623242895648844838}
   - component: {fileID: 885614345689536046}
   - component: {fileID: 7633046130237648081}
   - component: {fileID: 3702525142234363110}
   - component: {fileID: 5305266328591251805}
+  - component: {fileID: 8044403453318099992}
   m_Layer: 0
   m_Name: Piou Piou Guy
   m_TagString: Enemy
@@ -36,7 +36,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5939843198778791473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.01, y: 0.13, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 9199967517340126406}
@@ -204,7 +204,6 @@ MonoBehaviour:
   speed: 2
   nextWaypointDistance: 1
   lineOfSite: 5
-  damage: 0.01
 --- !u!114 &4595395663981754924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,20 +218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   healthBar: {fileID: 0}
---- !u!114 &3623242895648844838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5939843198778791473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db287651a5af8a4eafe7ad119f33ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
-  firingInterval: 0.75
 --- !u!114 &885614345689536046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +303,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9bad52b13c872449dda97b8e7d86cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8044403453318099992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939843198778791473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5623fd3740239994387c498d1fb58596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
+  firingInterval: 1.5
+  currInterval: 0
+  nbBullet: 5
+  isShooting: 0
+  timeBetweenBullet: 0.2
+  target: {fileID: 0}
 --- !u!1 &6937246487418364819
 GameObject:
   m_ObjectHideFlags: 0
