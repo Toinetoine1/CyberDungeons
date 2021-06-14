@@ -9,8 +9,11 @@ public class EnnemyWeapon : MonoBehaviour
 {
     [SerializeField] public GameObject Bullet;
 
-    public float firingInterval;
-    public float currInterval;
+    protected float firingInterval;
+    protected float currInterval;
+    
+    public Transform target;
+
 
     private void Start()
     {
@@ -27,19 +30,22 @@ public class EnnemyWeapon : MonoBehaviour
         }
     }
 
-    public void fire(Transform Target)
+    public void fire()
     {
         if (currInterval <= 0)
         {
-            fireABullet(Target);
+            fireABullet();
             currInterval = firingInterval;
         }
     }
 
-    public void fireABullet(Transform Target)
+    protected void fireABullet()
     {
         GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
-        newBullet.GetComponent<Bullet>().EnemiSetup(Target);
+        if (this is SniperManagement)
+            newBullet.GetComponent<Bullet>().EnemiSniperSetup(target);
+        else
+            newBullet.GetComponent<Bullet>().EnemiSetup(target);
     }
 
     ///TODO script pour le sniper

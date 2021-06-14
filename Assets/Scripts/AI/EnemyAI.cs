@@ -86,11 +86,14 @@ namespace AI
                 seeker.CancelCurrentPathRequest();
                 seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
             });
+            
             if (path == null)
                 return;
             if (target == null)
                 return;
-
+            
+            ennemyWeapon.target = target.transform;
+            
             if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
             {
@@ -98,11 +101,15 @@ namespace AI
                 {
                     MachineGunnerManagement gunnerManagement = ennemyWeapon as MachineGunnerManagement;
                     gunnerManagement.isShooting = true;
-                    gunnerManagement.target = target.transform;
+                }
+                else if (ennemyWeapon is SniperManagement)
+                {
+                    SniperManagement sniperManagement = ennemyWeapon as SniperManagement;
+                    sniperManagement.isAiming = true;
                 }
                 else
                 {
-                    ennemyWeapon.fire(target.transform);
+                    ennemyWeapon.fire();
                 }
                 Animator.SetBool("Standing", true);
                 return;
@@ -114,6 +121,11 @@ namespace AI
                 {
                     MachineGunnerManagement gunnerManagement = ennemyWeapon as MachineGunnerManagement;
                     gunnerManagement.isShooting = false;
+                }
+                else if (ennemyWeapon is SniperManagement)
+                {
+                    SniperManagement sniperManagement = ennemyWeapon as SniperManagement;
+                    sniperManagement.isAiming = false;
                 }
                 
                 Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],

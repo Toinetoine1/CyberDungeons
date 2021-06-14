@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private bool Friendly;
+    protected bool Friendly;
 
-    private Vector2 BulletDir;
+    protected Vector2 BulletDir;
 
-    private float Speed;
-    private int Damage;
+    protected float Speed;
+    protected int Damage;
 
     // Update is called once per frame
     void Update()
@@ -64,6 +64,14 @@ public class Bullet : MonoBehaviour
     public void EnemiSetup(Transform targetTransform)
     {
         Speed = 15;
+        Damage = 10;
+        BulletDir = (targetTransform.position - transform.position).normalized;
+        Friendly = false;
+    }
+    
+    public void EnemiSniperSetup(Transform targetTransform)
+    {
+        Speed = 40;
         Damage = 10;
         BulletDir = (targetTransform.position - transform.position).normalized;
         Friendly = false;

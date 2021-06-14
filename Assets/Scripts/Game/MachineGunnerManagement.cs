@@ -13,7 +13,6 @@ public class MachineGunnerManagement : EnnemyWeapon
     public float timeBetweenBullet;
     private float currTimeBetweenBullet;
 
-    public Transform target;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +40,7 @@ public class MachineGunnerManagement : EnnemyWeapon
 
         if (currNbBullet != 0 && isShooting && currTimeBetweenBullet <= 0 && currInterval <= 0)
         {
-            fireABullet(target);
+            fireABullet();
             currTimeBetweenBullet = timeBetweenBullet;
             currNbBullet -= 1;
             isShooting = currNbBullet != 0;

@@ -316,12 +316,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
-  firingInterval: 1.5
-  currInterval: 0
+  target: {fileID: 0}
   nbBullet: 5
   isShooting: 0
   timeBetweenBullet: 0.2
-  target: {fileID: 0}
 --- !u!1 &6937246487418364819
 GameObject:
   m_ObjectHideFlags: 0
