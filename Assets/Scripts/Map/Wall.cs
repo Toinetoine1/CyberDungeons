@@ -1,9 +1,9 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-namespace AI.Map
+namespace Map
 {
-    public class Wall : MonoBehaviour
+    public class Wall
     {
         private GameObject obj;
         private Vector2 pos;
@@ -24,7 +24,6 @@ namespace AI.Map
             if (!isStatic)
                 PhotonNetwork.Destroy(obj);
         }
-
 
         public Vector2 GetPosition()
         {
