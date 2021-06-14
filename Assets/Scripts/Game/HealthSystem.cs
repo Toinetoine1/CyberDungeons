@@ -1,4 +1,6 @@
 ﻿
+using Photon.Pun;
+
 public class HealthSystem
 {
     private float health;

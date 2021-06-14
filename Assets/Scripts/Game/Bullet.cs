@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
                 if (detect.collider.CompareTag("Enemy"))
                 {
                     GameObject enemy = detect.collider.gameObject;
-                    enemy.GetComponent<Health>().takeDamage(Damage);
+                    enemy.GetComponent<Health>().takeDamageRPC(Damage);
                     if (enemy.GetComponent<PhotonView>().IsMine)
                     {
                         PhotonNetwork.Destroy(gameObject);
@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
                     GameObject player = detect.collider.gameObject;
                     if (player.GetComponent<PlayerMovement>().mouvementState == PlayerMovement.State.Walking)
                     {
-                        player.GetComponent<Health>().takeDamage(Damage);
+                        player.GetComponent<Health>().takeDamageRPC(Damage);
                         if (gameObject.GetComponent<PhotonView>().IsMine)
                             PhotonNetwork.Destroy(gameObject);
                     }

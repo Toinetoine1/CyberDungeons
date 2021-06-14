@@ -6,9 +6,9 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
 
-    private HealthSystem _healthSystem;
+    private Health _healthSystem;
 
-    public void setup(HealthSystem healthSystem)
+    public void setup(Health healthSystem)
     {
         _healthSystem = healthSystem;
     }
