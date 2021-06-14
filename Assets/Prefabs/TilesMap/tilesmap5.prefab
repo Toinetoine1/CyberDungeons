@@ -702,7 +702,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -767,17 +767,17 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: -1422945162868094971, guid: b512c8dfa81ddca49869d6168d1d6464,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 2082484786404838010, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
   - m_RefCount: 31
     m_Data: {fileID: 2840811374852170173, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1422945162868094971, guid: b512c8dfa81ddca49869d6168d1d6464,
+      type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 3528624535752578265, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
@@ -1444,7 +1444,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3179,9 +3179,8 @@ Tilemap:
   - m_RefCount: 144
     m_Data: {fileID: 2444895477348423634, guid: 1cf20117b99fc1e4785ab2916a8b4457,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -350147754172298505, guid: 5acf2eaad0e08724b9eadf922a72f32c,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 34
     m_Data: {fileID: 6939307529365731979, guid: 5acf2eaad0e08724b9eadf922a72f32c,
       type: 3}
@@ -3198,8 +3197,9 @@ Tilemap:
       type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -350147754172298505, guid: 5acf2eaad0e08724b9eadf922a72f32c,
+      type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 2542017750958040277, guid: 5c962ddf35c47644a833744546e3eeb6,
       type: 3}
@@ -13589,6 +13589,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3828588142318004694, guid: 0c90338043d2de84191125c970b531aa,
         type: 3}
+    - target: {fileID: 629894851451929767, guid: 366f84c6aabf3574d86de5669563af9f,
+        type: 3}
+      propertyPath: tilemapCollider2D
+      value: 
+      objectReference: {fileID: 3578136042706802814}
     - target: {fileID: 7663805823866754344, guid: 366f84c6aabf3574d86de5669563af9f,
         type: 3}
       propertyPath: m_RootOrder
