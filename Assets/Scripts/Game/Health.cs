@@ -26,7 +26,6 @@ public class Health : MonoBehaviour
         {
             PhotonNetwork.Destroy(gameObject);
         }
-        Debug.Log(health);
     }
 
     public void takeDamageRPC(int Damage)
