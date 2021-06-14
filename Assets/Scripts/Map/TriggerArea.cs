@@ -7,8 +7,8 @@ using Random = System.Random;
 
 public class TriggerArea : MonoBehaviour
 {
-    private const int distanceToSpawn = 5;
-    private const int delta = 20;
+    private const int distanceToSpawn = 15;
+    private const int delta = 12;
     
     public List<GameObject> mobs;
     public Transform Spawner;
@@ -32,13 +32,12 @@ public class TriggerArea : MonoBehaviour
         {
             Vector3 position = Spawner.position;
             Random random = new Random();
-            // int hasToSpawn = 1;
             int hasToSpawn = random.Next(2, 6);
             
             while (hasToSpawn != 0)
             {
-                float x = position.x + random.Next(-MapGenerator.sizeX + delta, MapGenerator.sizeX - delta);
-                float y = position.y + random.Next(-MapGenerator.sizeY + delta, MapGenerator.sizeY - delta);
+                float x = position.x + random.Next((-MapGenerator.sizeX + delta) / 2, (MapGenerator.sizeX - delta) / 2);
+                float y = position.y + random.Next((-MapGenerator.sizeY + delta) / 2, (MapGenerator.sizeY - delta) / 2);
 
                 bool ok = true;
                 Vector2 transformPosition = new Vector2(x, y);
@@ -48,11 +47,10 @@ public class TriggerArea : MonoBehaviour
                         ok = false;
                 }
 
-                BoxCollider2D boxCollider = (BoxCollider2D) gameObject.AddComponent(typeof(BoxCollider2D));
-                boxCollider.transform.position = transformPosition;
-                
-                if (boxCollider.IsTouching(tilemapCollider2D))
+                Vector2 clone = new Vector2(x + 1, y);
+                if (Physics2D.Linecast(transformPosition, clone, 1 << LayerMask.NameToLayer("WallColider")))
                 {
+                    Debug.Log("touching colliderr");
                     ok = false;
                 }
 
@@ -66,8 +64,6 @@ public class TriggerArea : MonoBehaviour
                     hasSpawned = true;
                     hasToSpawn--;
                 }
-                
-                Destroy(boxCollider);
             }
         }
     }
