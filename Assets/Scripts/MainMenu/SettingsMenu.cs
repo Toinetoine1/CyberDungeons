@@ -10,9 +10,15 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     private Resolution[] _resolutions;
     public Dropdown resolutionDropdown;
+    public Dropdown graphicDropdown;
+
 
     private void Start()
     {
+        graphicDropdown.value = graphicDropdown.options.Count - 1;
+        QualitySettings.SetQualityLevel(graphicDropdown.value);
+        graphicDropdown.RefreshShownValue();
+        
         _resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
