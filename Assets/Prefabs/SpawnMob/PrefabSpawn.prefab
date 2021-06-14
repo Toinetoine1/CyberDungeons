@@ -44,9 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69dbf2097abb484abcd51973b71c525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4502381389626040717, guid: 7e74b58ca8846fb4ab41c8e8248dc54c, type: 3}
+  mobs:
+  - {fileID: 3828588142318004694, guid: 0c90338043d2de84191125c970b531aa, type: 3}
+  - {fileID: 5939843198778791473, guid: d20d223dbb1ae774ea2e8db36234f0ec, type: 3}
+  - {fileID: 3738094868772197125, guid: 3ec3c569a79064c41af64758abf9cb74, type: 3}
+  - {fileID: 2288134581543605728, guid: 23c474c91af2e574898651204a7c25e8, type: 3}
+  - {fileID: 4502381389626040717, guid: 7e74b58ca8846fb4ab41c8e8248dc54c, type: 3}
   Spawner: {fileID: 3300289843575771100}
-  haSpawned: 0
+  hasSpawned: 0
 --- !u!61 &7039310050522005622
 BoxCollider2D:
   m_ObjectHideFlags: 0
