@@ -25,11 +25,7 @@ namespace Game
                     {
                         GameObject enemy = detect.collider.gameObject;
                         enemy.GetComponent<Health>().takeDamageRPC(Damage);
-                        if (enemy.GetComponent<PhotonView>().IsMine)
-                        {
-                            Debug.Log("hit ennemi");
-                            PhotonNetwork.Destroy(gameObject);
-                        }
+                        PhotonNetwork.Destroy(gameObject);
                     }
                 }
                 else
@@ -51,7 +47,6 @@ namespace Game
 
                 if (detect.collider.CompareTag("WallCollider"))
                 {
-                    Debug.Log("hit wall");
                     if (gameObject.GetComponent<PhotonView>().IsMine)
                         PhotonNetwork.Destroy(gameObject);
                 }
