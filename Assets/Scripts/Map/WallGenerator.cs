@@ -7,7 +7,7 @@ namespace AI.Map
 {
     public class WallGenerator : MonoBehaviour
     {
-        private const int Delta = 5;
+        private const int Delta = 12;
 
         private List<Wall> walls;
         private Vector2[,] array = new Vector2[Delta * 2, Delta * 2];

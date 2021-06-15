@@ -17,6 +17,7 @@ namespace Map
 
         [SerializeField] public List<GameObject> availableMaps;
         [SerializeField] public GameObject spawn;
+        [SerializeField] public GameObject bossLvl1;
         [SerializeField]
         public GameObject verticalWall;
         [SerializeField]
@@ -34,6 +35,7 @@ namespace Map
             pool.ResourceCache.Add(spawn.name, spawn);
             pool.ResourceCache.Add(verticalWall.name, verticalWall);
             pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
+            pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
             
             if (!PhotonNetwork.IsMasterClient)
                 return;
@@ -95,6 +97,12 @@ namespace Map
                 PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
                 maps.Add(new Map(false, position, verticalWall, horizontalWall));
             }
+            
+            //On spawn la salle du boss
+            Vector2 bossPos = availablePositions[_random.Next(availablePositions.Count)];
+            positions.Add(bossPos);
+            PhotonNetwork.Instantiate(bossLvl1.name, bossPos, Quaternion.identity);
+            maps.Add(new Map(false, bossPos, verticalWall, horizontalWall));
             
             //On génère les murs
             wallGenerator.CreateWall(positions, verticalWall, horizontalWall);

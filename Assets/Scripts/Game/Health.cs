@@ -30,8 +30,8 @@ namespace Game
         {
             if (health <= 0 && gameObject.GetComponent<PhotonView>().IsMine)
             {
-                TriggerArea.aliveMob--;
-                if (TriggerArea.aliveMob == 0)
+                TriggerEnemyArea.aliveMob--;
+                if (TriggerEnemyArea.aliveMob == 0)
                 {
                     Map.Map map = Map.Map.FindMapByVector(gameObject.transform.position);
                     map.DeleteWall();
