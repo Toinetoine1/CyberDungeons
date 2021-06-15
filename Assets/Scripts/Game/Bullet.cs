@@ -13,7 +13,7 @@ namespace Game
         protected int Damage;
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             transform.Translate(Time.deltaTime * Speed * BulletDir);
             RaycastHit2D detect = Detection();

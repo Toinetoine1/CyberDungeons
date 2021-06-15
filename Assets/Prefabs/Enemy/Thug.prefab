@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
+  m_SynchronizeVelocity: 0
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
@@ -361,11 +361,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
-  firingInterval: 1
-  aimingTime: 0
-  currAimingTime: 0
-  type: 0
-  state: 0
+  firingInterval: 0.75
+  target: {fileID: 0}
 --- !u!1001 &3830985663773738263
 PrefabInstance:
   m_ObjectHideFlags: 0

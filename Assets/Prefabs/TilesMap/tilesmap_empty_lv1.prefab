@@ -11953,7 +11953,7 @@ GameObject:
   - component: {fileID: 151053737676293309}
   - component: {fileID: 8163396318957169743}
   m_Layer: 0
-  m_Name: tilesmap_empty
+  m_Name: tilesmap_empty_lv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
