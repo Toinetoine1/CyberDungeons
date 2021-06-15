@@ -317,11 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
-  firingInterval: 1
-  aimingTime: 0
-  currAimingTime: 0
-  type: 2
-  state: 0
+  target: {fileID: 0}
 --- !u!114 &843156710770126416
 MonoBehaviour:
   m_ObjectHideFlags: 0
