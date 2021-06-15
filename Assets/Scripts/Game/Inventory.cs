@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -17,21 +18,24 @@ public class Inventory : MonoBehaviour
         currentWeapon = WeaponList[onHandWeapon];
     }
 
-    private void setCurrentWeapon()
+    private void setCurrentWeapon(int index)
     {
+        if (index < 0 || index > WeaponList.Count - 1)
+            return;
+        onHandWeapon = index;
         currentWeapon = WeaponList[onHandWeapon];
     }
 
     public void nextWeapon()
     {
         onHandWeapon = (onHandWeapon + 1) % WeaponList.Count;
-        setCurrentWeapon();
+        setCurrentWeapon(onHandWeapon);
     }
     
     public void previousWeapon()
     {
         onHandWeapon = (onHandWeapon - 1) % WeaponList.Count;
-        setCurrentWeapon();
+        setCurrentWeapon(onHandWeapon);
     }
 
     public void addWeapon(GameObject Weapon)
