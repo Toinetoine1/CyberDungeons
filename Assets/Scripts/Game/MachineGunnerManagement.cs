@@ -6,12 +6,12 @@ using Photon.Pun;
 public class MachineGunnerManagement : EnnemyWeapon
 {
     public int nbBullet;
-    private int currNbBullet;
+    protected int currNbBullet;
 
     public bool isShooting;
 
     public float timeBetweenBullet;
-    private float currTimeBetweenBullet;
+    protected float currTimeBetweenBullet;
 
 
     // Start is called before the first frame update
