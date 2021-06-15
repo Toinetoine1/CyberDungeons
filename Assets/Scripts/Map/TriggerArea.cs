@@ -42,14 +42,17 @@ namespace Map
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
 
-                foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                if (PhotonNetwork.MasterClient.NickName == other.name)
                 {
-                    GameObject obj = GameObject.Find(player.NickName);
-                    if(obj.transform.position == other.transform.position)
-                        continue;
-                    obj.transform.position = other.transform.position;
+                    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                    {
+                        GameObject obj = GameObject.Find(player.NickName);
+                        if (obj.transform.position == other.transform.position)
+                            continue;
+                        obj.transform.position = other.transform.position;
+                    }
                 }
-                
+
                 while (hasToSpawn != 0)
                 {
                     float x = position.x +
@@ -84,14 +87,10 @@ namespace Map
                 }
             }
 
-        }
-
-        [PunRPC]
-        public void TPPlayer(Vector3 pos)
-        {
-            Debug.LogWarning("tp !");
-            foreach (GameObject player in PlayerConnect.players)
+            if (PhotonNetwork.MasterClient.NickName != other.name)
             {
+                GameObject obj = GameObject.Find(PhotonNetwork.MasterClient.NickName);
+                obj.transform.position = other.transform.position;
             }
         }
     }
