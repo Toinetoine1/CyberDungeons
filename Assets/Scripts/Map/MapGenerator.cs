@@ -61,7 +61,7 @@ namespace Map
             availablePositions.Add(new Vector2(0, -sizeY));
             
             //Nombre de tilesmap a placer
-            int numberOfMap = 6;
+            int numberOfMap = new Random().Next(6, 12);
             for (int i = 0; i < numberOfMap; i++)
             {
                 //On choisit aléatoirement une tilesmap
