@@ -15,12 +15,12 @@ GameObject:
   - component: {fileID: 7507355798961534434}
   - component: {fileID: 4686290158185542705}
   - component: {fileID: 8273334267538558771}
-  - component: {fileID: 2725582879658275015}
   - component: {fileID: 5117165244073592617}
   - component: {fileID: -647806124534806350}
   - component: {fileID: 2282201512324013495}
   - component: {fileID: 6774644405457764989}
   - component: {fileID: 3263824544392336674}
+  - component: {fileID: 5176874033608924239}
   m_Layer: 0
   m_Name: Randomator
   m_TagString: Enemy
@@ -184,20 +184,6 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &2725582879658275015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8174292150250808217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db287651a5af8a4eafe7ad119f33ca3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
-  firingInterval: 0.75
 --- !u!114 &5117165244073592617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +199,6 @@ MonoBehaviour:
   speed: 2
   nextWaypointDistance: 1
   lineOfSite: 5
-  damage: 0.01
 --- !u!95 &-647806124534806350
 Animator:
   serializedVersion: 3
@@ -299,3 +284,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7761eb3954e80344cb9fa3b9774d6e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5176874033608924239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174292150250808217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d37632206583949b605f72999c492b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
+  firingInterval: 0
+  target: {fileID: 0}
+  nbBullet: 3
+  isShooting: 0
+  timeBetweenBullet: 0.2

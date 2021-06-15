@@ -77,6 +77,14 @@ namespace Game
             Friendly = false;
         }
 
+        public void RandomatorSetup(Transform targetTransform, int damage, float speed)
+        {
+            Speed = speed;
+            Damage = damage;
+            BulletDir = (targetTransform.position - transform.position).normalized;
+            Friendly = false;
+        }
+
         private RaycastHit2D Detection()
         {
             return Physics2D.Raycast(transform.position, BulletDir, 0.5f);
