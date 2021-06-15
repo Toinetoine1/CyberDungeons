@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Game;
 using Pathfinding;
 using Photon.Pun;
@@ -15,6 +16,7 @@ namespace AI
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
         public float lineOfSite = 5;
+        public float distToShot = 5;
 
         private Path path;
         private int currentWaypoint;
@@ -94,7 +96,7 @@ namespace AI
             
             ennemyWeapon.target = target.transform;
             
-            if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite &&
+            if (Vector2.Distance(transform.position, target.transform.position) <= distToShot &&
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
             {
                 if (ennemyWeapon is MachineGunnerManagement)
@@ -112,7 +114,9 @@ namespace AI
                     ennemyWeapon.fire();
                 }
                 Animator.SetBool("Standing", true);
-                return;
+
+                if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)
+                    return;
             }
 
             if (currentWaypoint >= 0 && currentWaypoint < path.vectorPath.Count)
@@ -178,6 +182,9 @@ namespace AI
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, lineOfSite);
+            
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, distToShot);
         }
     }
 

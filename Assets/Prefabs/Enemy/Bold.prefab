@@ -303,7 +303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   nextWaypointDistance: 1
-  lineOfSite: 5
+  lineOfSite: 6.03
+  distToShot: 10.3
 --- !u!114 &3828588142318004689
 MonoBehaviour:
   m_ObjectHideFlags: 0
