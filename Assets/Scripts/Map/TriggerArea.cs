@@ -42,6 +42,14 @@ namespace Map
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
 
+                foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                {
+                    GameObject obj = GameObject.Find(player.NickName);
+                    if(obj.transform.position == other.transform.position)
+                        continue;
+                    obj.transform.position = other.transform.position;
+                }
+                
                 while (hasToSpawn != 0)
                 {
                     float x = position.x +
@@ -76,14 +84,6 @@ namespace Map
                 }
             }
 
-            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
-            {
-                GameObject obj = GameObject.Find(player.NickName);
-                if(obj.transform.position == other.transform.position)
-                    continue;
-                obj.transform.position = other.transform.position;
-            }            
-            
         }
 
         [PunRPC]
