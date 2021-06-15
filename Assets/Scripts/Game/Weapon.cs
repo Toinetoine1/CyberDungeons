@@ -11,7 +11,7 @@ namespace Game
         
         public int Damage;
         public float speed;
-        private int currAmmo;
+        public int currAmmo;
         public int maxAmmo;
         public float reloadTime;
 
