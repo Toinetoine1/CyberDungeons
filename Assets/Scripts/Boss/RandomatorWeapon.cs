@@ -11,7 +11,7 @@ public class RandomatorWeapon : MachineGunnerManagement
 
     private float switchTime;
 
-    private bool typeOfFire; //true -> machinegunner | false -> normal*
+    private bool typeOfFire; //true -> machinegunner | false -> normal
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
         firingInterval = Random.Range(0.75f,1.5f);
-        Damage = Random.Range(1, 2);
+        Damage = Random.Range(1, 2)*10;
         Speed = Random.Range(10f, 20f);
         switchTime = 8;
     }
@@ -31,8 +31,18 @@ public class RandomatorWeapon : MachineGunnerManagement
         {
             switchTime -= Time.deltaTime;
             if (switchTime <= 0)
+            {
                 typeOfFire = !typeOfFire;
+                switchTime = 8;
+            }
         }
+
+        RaycastHit2D raycastHit = Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider"));
+        
+        
+        if (raycastHit.collider == null)
+            isShooting = true;
+        
         
         if (isShooting && currNbBullet == 0)
             currNbBullet = nbBullet;
@@ -47,7 +57,7 @@ public class RandomatorWeapon : MachineGunnerManagement
             if (currTimeBetweenBullet > 0)
                 currTimeBetweenBullet -= Time.deltaTime;
 
-            if (currNbBullet != 0 && isShooting && currTimeBetweenBullet <= 0 && currInterval <= 0)
+            if (currNbBullet != 0 && currTimeBetweenBullet <= 0 && currInterval <= 0)
             {
                 fireABullet();
                 currTimeBetweenBullet = timeBetweenBullet;
@@ -59,7 +69,7 @@ public class RandomatorWeapon : MachineGunnerManagement
                 }
             }
         }
-        else if (Physics2D.Linecast(transform.position, target.position))
+        else if (raycastHit.collider == null)
         {
             if (currInterval <= 0)
             {
@@ -69,7 +79,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         }
     }
 
-    private void fireABullet()
+    private new void fireABullet()
     {
         GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
         newBullet.GetComponent<Bullet>().RandomatorSetup(target, Damage, Speed);
