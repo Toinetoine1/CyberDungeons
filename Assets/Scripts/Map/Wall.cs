@@ -11,11 +11,10 @@ namespace Map
 
         public Wall(GameObject obj, Vector2 pos, bool isStatic)
         {
-            this.obj = obj;
             this.pos = pos;
             this.isStatic = isStatic;
 
-            PhotonNetwork.Instantiate(obj.name, pos, Quaternion.identity);
+            this.obj = PhotonNetwork.Instantiate(obj.name, pos, Quaternion.identity);
             Debug.Log("Spawn wall in x:"+pos.x+"  y:"+pos.y);
         }
 
