@@ -32,7 +32,6 @@ namespace Map
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("123456789123456");
             if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
                 Vector3 position = Spawner.position;
@@ -44,13 +43,8 @@ namespace Map
 
                 if (PhotonNetwork.MasterClient.NickName == other.name)
                 {
-                    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
-                    {
-                        GameObject obj = GameObject.Find(player.NickName);
-                        if (obj.transform.position == other.transform.position)
-                            continue;
-                        obj.transform.position = other.transform.position;
-                    }
+                    Debug.Log("TEST 123456789");
+                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
                 }
 
                 while (hasToSpawn != 0)
@@ -89,8 +83,21 @@ namespace Map
 
             if (PhotonNetwork.MasterClient.NickName != other.name)
             {
+                Debug.Log("JESPERE CA MARCHE");
                 GameObject obj = GameObject.Find(PhotonNetwork.MasterClient.NickName);
                 obj.transform.position = other.transform.position;
+            }
+        }
+
+        [PunRPC]
+        public void TPPlayer(Vector3 pos, string name)
+        {
+            foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                if (pl.NickName == name)
+                    continue;
+
+                GameObject.Find(pl.NickName).transform.position = pos;
             }
         }
     }
