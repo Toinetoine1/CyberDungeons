@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -78,15 +79,18 @@ namespace Map
             Debug.Log("1 2 3");
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("send RPC to all player");
-                Debug.Log(other.transform.position);
-                gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
+                if (PhotonNetwork.MasterClient.NickName == other.name)
+                {
+                    Debug.Log("send RPC to all player");
+                    Debug.Log(other.transform.position);
+                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
+                }
             }
             else
             {
                 foreach (GameObject player in PlayerConnect.players)
                 {
-                    if (player.name == other.name)
+                    if (player.transform.position == other.transform.position)
                         continue;
                     player.transform.position = other.transform.position;
                 }
@@ -97,8 +101,12 @@ namespace Map
         public void TPPlayer(Vector3 pos)
         {
             Debug.LogWarning("tp !");
-            GameObject associateGameObjet = GameObject.Find(PhotonNetwork.LocalPlayer.NickName);
-            associateGameObjet.transform.position = pos;
+            foreach (GameObject player in PlayerConnect.players)
+            {
+                if (player.transform.position == pos)
+                    continue;
+                player.transform.position = pos;
+            }
         }
     }
 }
