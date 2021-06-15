@@ -31,6 +31,7 @@ namespace Map
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("123456789123456");
             if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
                 Vector3 position = Spawner.position;
@@ -74,20 +75,19 @@ namespace Map
                 }
             }
 
-            if (!hasSpawned)
+            Debug.Log("1 2 3");
+            if (PhotonNetwork.IsMasterClient)
             {
-                if (PhotonNetwork.IsMasterClient)
+                Debug.Log("send RPC to all player");
+                gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
+            }
+            else
+            {
+                foreach (GameObject player in PlayerConnect.players)
                 {
-                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
-                }
-                else
-                {
-                    foreach (GameObject player in PlayerConnect.players)
-                    {
-                        if (player.name == other.name)
-                            continue;
-                        player.transform.position = other.transform.position;
-                    }
+                    if (player.name == other.name)
+                        continue;
+                    player.transform.position = other.transform.position;
                 }
             }
         }
