@@ -76,7 +76,13 @@ namespace Map
                 }
             }
 
-            Debug.Log("1 2 3");
+            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                GameObject obj = GameObject.Find(player.NickName);
+                if(obj.transform.position == other.transform.position)
+                    continue;
+                obj.transform.position = other.transform.position;
+            }            
             
         }
 
