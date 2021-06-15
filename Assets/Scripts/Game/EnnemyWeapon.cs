@@ -10,7 +10,7 @@ public class EnnemyWeapon : MonoBehaviour
 {
     [SerializeField] public GameObject Bullet;
 
-    protected float firingInterval;
+    public float firingInterval;
     protected float currInterval;
     
     public Transform target;
