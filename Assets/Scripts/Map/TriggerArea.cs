@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = System.Random;
 
 namespace Map
@@ -37,12 +38,6 @@ namespace Map
                 aliveMob = hasToSpawn;
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
-
-                Collider2D playerToTp = other;
-                foreach (GameObject player in PlayerConnect.players)
-                {
-                    player.transform.position = playerToTp.transform.position;
-                }
                 
                 while (hasToSpawn != 0)
                 {
