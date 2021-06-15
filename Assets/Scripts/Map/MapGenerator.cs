@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using AI.Map;
 using Photon.Pun;
 using UnityEngine;
 using Random = System.Random;
 
-namespace AI.Map
+namespace Map
 {
     public class MapGenerator : MonoBehaviour
     {
+        public static List<Map> maps = new List<Map>();
+        
         private WallGenerator wallGenerator;
 
         public const int sizeX = 38;
@@ -44,11 +44,12 @@ namespace AI.Map
         void generate()
         {
             //On ajoute sur tous les clients une map vide en (0,0)
-            PhotonNetwork.Instantiate(spawn.name, new Vector2(0, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate(spawn.name, Vector2.zero, Quaternion.identity);
+            maps.Add(new Map(true, Vector2.zero, verticalWall, horizontalWall));
             
             //Positions de toutes les tilesmap
             List<Vector2> positions = new List<Vector2>();
-            positions.Add(new Vector2(0,0));
+            positions.Add(Vector2.zero);
             
             //Positions disponibles pour générer la prochaine map
             List<Vector2> availablePositions = new List<Vector2>();
@@ -92,6 +93,7 @@ namespace AI.Map
                 
                 //On ajoute notre tilesmap sur tous les clients
                 PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
+                maps.Add(new Map(false, position, verticalWall, horizontalWall));
             }
             
             //On génère les murs

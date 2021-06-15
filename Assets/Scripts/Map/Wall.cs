@@ -1,9 +1,9 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-namespace AI.Map
+namespace Map
 {
-    public class Wall : MonoBehaviour
+    public class Wall
     {
         private GameObject obj;
         private Vector2 pos;
@@ -11,11 +11,10 @@ namespace AI.Map
 
         public Wall(GameObject obj, Vector2 pos, bool isStatic)
         {
-            this.obj = obj;
             this.pos = pos;
             this.isStatic = isStatic;
 
-            PhotonNetwork.Instantiate(obj.name, pos, Quaternion.identity);
+            this.obj = PhotonNetwork.Instantiate(obj.name, pos, Quaternion.identity);
             Debug.Log("Spawn wall in x:"+pos.x+"  y:"+pos.y);
         }
 
@@ -24,7 +23,6 @@ namespace AI.Map
             if (!isStatic)
                 PhotonNetwork.Destroy(obj);
         }
-
 
         public Vector2 GetPosition()
         {
