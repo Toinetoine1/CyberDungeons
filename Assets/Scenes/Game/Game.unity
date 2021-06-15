@@ -435,6 +435,7 @@ MonoBehaviour:
   - {fileID: 3578136042587356877, guid: 38e1f7b793d8edc458830647be468588, type: 3}
   - {fileID: 2717340407554400013, guid: 23f1b250b2fb1364f85d9ef8bfd35bc2, type: 3}
   spawn: {fileID: 110852631115127665, guid: eafb315d01b6e6c4daad4b17389e64e0, type: 3}
+  bossLvl1: {fileID: 110852631115127665, guid: 86b0f83f4f6595d4184267df61b4558a, type: 3}
   verticalWall: {fileID: 8370391611206959024, guid: c52d73d0c32e5d741ae5411b8ebc2e06,
     type: 3}
   horizontalWall: {fileID: 8370391611206959024, guid: 83f0dedf000da9d4c8385a8cfcd35554,

@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcd1df715c40b44bb25e62141607c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 2.5
   nextWaypointDistance: 1
   lineOfSite: 8.28
   distToShot: 10.17
@@ -319,7 +319,7 @@ MonoBehaviour:
   Bullet: {fileID: 2494192090949200891, guid: 7c431d21bfb495941ba184465a061440, type: 3}
   firingInterval: 1
   target: {fileID: 0}
-  nbBullet: 5
+  nbBullet: 3
   isShooting: 0
   timeBetweenBullet: 0.2
 --- !u!1 &6937246487418364819

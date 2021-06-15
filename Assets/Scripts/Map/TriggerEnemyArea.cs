@@ -3,12 +3,11 @@ using AI;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Random = System.Random;
 
 namespace Map
 {
-    public class TriggerArea : MonoBehaviour
+    public class TriggerEnemyArea : MonoBehaviour
     {
         private const int distanceToSpawn = 15;
         private const int delta = 12;

@@ -129,7 +129,9 @@ namespace AI
                 else if (ennemyWeapon is SniperManagement)
                 {
                     SniperManagement sniperManagement = ennemyWeapon as SniperManagement;
-                    sniperManagement.isAiming = false;
+                    sniperManagement.isAiming = !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider"));
+                    if (sniperManagement.isAiming)
+                        return;
                 }
                 
                 Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
