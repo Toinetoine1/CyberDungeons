@@ -63,7 +63,7 @@ namespace Game
 
         public void EnemiSetup(Transform targetTransform)
         {
-            Speed = 15;
+            Speed = 12;
             Damage = 10;
             BulletDir = (targetTransform.position - transform.position).normalized;
             Friendly = false;

@@ -185,10 +185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcd1df715c40b44bb25e62141607c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 1
   nextWaypointDistance: 1
   lineOfSite: 12.8
-  distToShot: 30.31
+  distToShot: 115.86
 --- !u!114 &5690305016427735956
 MonoBehaviour:
   m_ObjectHideFlags: 0
