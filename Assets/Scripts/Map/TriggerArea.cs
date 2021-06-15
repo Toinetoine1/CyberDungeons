@@ -79,6 +79,7 @@ namespace Map
             if (PhotonNetwork.IsMasterClient)
             {
                 Debug.Log("send RPC to all player");
+                Debug.Log(other.transform.position);
                 gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
             }
             else
@@ -96,11 +97,8 @@ namespace Map
         public void TPPlayer(Vector3 pos)
         {
             Debug.LogWarning("tp !");
-            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
-            {
-                GameObject associateGameObjet = GameObject.Find(player.NickName);
-                associateGameObjet.transform.position = pos;
-            }
+            GameObject associateGameObjet = GameObject.Find(PhotonNetwork.LocalPlayer.NickName);
+            associateGameObjet.transform.position = pos;
         }
     }
 }
