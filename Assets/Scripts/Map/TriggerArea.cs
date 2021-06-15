@@ -77,24 +77,7 @@ namespace Map
             }
 
             Debug.Log("1 2 3");
-            if (PhotonNetwork.IsMasterClient)
-            {
-                if (PhotonNetwork.MasterClient.NickName == other.name)
-                {
-                    Debug.Log("send RPC to all player");
-                    Debug.Log(other.transform.position);
-                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
-                }
-            }
-            else
-            {
-                foreach (GameObject player in PlayerConnect.players)
-                {
-                    if (player.transform.position == other.transform.position)
-                        continue;
-                    player.transform.position = other.transform.position;
-                }
-            }
+            
         }
 
         [PunRPC]
@@ -103,9 +86,6 @@ namespace Map
             Debug.LogWarning("tp !");
             foreach (GameObject player in PlayerConnect.players)
             {
-                if (player.transform.position == pos)
-                    continue;
-                player.transform.position = pos;
             }
         }
     }

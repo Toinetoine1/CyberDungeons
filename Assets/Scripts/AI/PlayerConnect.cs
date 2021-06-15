@@ -23,19 +23,22 @@ namespace AI
                 foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
                 {
                     GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(-4, 0, 0), Quaternion.identity);
+                    string oldName = obj.name;
                     obj.name = pl.NickName;
                     obj.GetComponent<PhotonView>().TransferOwnership(pl);
                     players.Add(obj);
                     
-                    gameObject.GetComponent<PhotonView>().RPC("AddPlayerToList", RpcTarget.Others, obj);
+                    Debug.Log("Changing name: "+oldName +" to "+obj.name);
+                    gameObject.GetComponent<PhotonView>().RPC("ChangeNickName", RpcTarget.Others,oldName, obj.name);
                 }
             }
         }
 
         [PunRPC]
-        public void AddPlayerToList(GameObject obj)
+        public void ChangeNickName(string objectName, string nickname)
         {
-            players.Add(obj);
+            Debug.Log("Changing name ! From "+objectName +" to "+nickname);
+            GameObject.Find(objectName).name = nickname;
         }
     }
 }
