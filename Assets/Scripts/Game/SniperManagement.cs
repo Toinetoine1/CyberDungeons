@@ -47,8 +47,11 @@ public class SniperManagement : EnnemyWeapon
 
     private void DrawLine()
     {
-        _lineRenderer.enabled = true;
-        _lineRenderer.SetPosition(0, transform.position);
-        _lineRenderer.SetPosition(1, target.position);
+        if (transform != null && target != null)
+        {
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(1, target.position);   
+        }
     }
 }
