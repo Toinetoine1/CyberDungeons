@@ -13,7 +13,7 @@ namespace Game
         protected int Damage;
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             transform.Translate(Time.deltaTime * Speed * BulletDir);
             RaycastHit2D detect = Detection();
@@ -27,6 +27,7 @@ namespace Game
                         enemy.GetComponent<Health>().takeDamageRPC(Damage);
                         if (enemy.GetComponent<PhotonView>().IsMine)
                         {
+                            Debug.Log("hit ennemi");
                             PhotonNetwork.Destroy(gameObject);
                         }
                     }
@@ -40,13 +41,17 @@ namespace Game
                         {
                             player.GetComponent<Health>().takeDamageRPC(Damage);
                             if (gameObject.GetComponent<PhotonView>().IsMine)
+                            {
+                                Debug.Log("hit player");
                                 PhotonNetwork.Destroy(gameObject);
+                            }
                         }
                     }
                 }
 
                 if (detect.collider.CompareTag("WallCollider"))
                 {
+                    Debug.Log("hit wall");
                     if (gameObject.GetComponent<PhotonView>().IsMine)
                         PhotonNetwork.Destroy(gameObject);
                 }
