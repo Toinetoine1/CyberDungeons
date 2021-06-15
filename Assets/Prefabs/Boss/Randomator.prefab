@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7dc8cbcfda9f6d4fb8cbe8dc8fb791d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomHealth: 0
-  health: 1000
+  randomHealth: 1
+  health: 0
   healthBar: {fileID: 0}
 --- !u!114 &7691186315548550998
 MonoBehaviour:
@@ -200,6 +200,7 @@ MonoBehaviour:
   speed: 2
   nextWaypointDistance: 1
   lineOfSite: 5
+  distToShot: 5
 --- !u!95 &-647806124534806350
 Animator:
   serializedVersion: 3
