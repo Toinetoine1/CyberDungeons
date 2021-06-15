@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = System.Random;
@@ -10,7 +11,7 @@ namespace Map
     {
         private const int distanceToSpawn = 15;
         private const int delta = 12;
-    
+
         public List<GameObject> mobs;
         public Transform Spawner;
         public bool hasSpawned;
@@ -38,11 +39,13 @@ namespace Map
                 aliveMob = hasToSpawn;
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
-                
+
                 while (hasToSpawn != 0)
                 {
-                    float x = position.x + random.Next((-MapGenerator.sizeX + delta) / 2, (MapGenerator.sizeX - delta) / 2);
-                    float y = position.y + random.Next((-MapGenerator.sizeY + delta) / 2, (MapGenerator.sizeY - delta) / 2);
+                    float x = position.x +
+                              random.Next((-MapGenerator.sizeX + delta) / 2, (MapGenerator.sizeX - delta) / 2);
+                    float y = position.y +
+                              random.Next((-MapGenerator.sizeY + delta) / 2, (MapGenerator.sizeY - delta) / 2);
 
                     bool ok = true;
                     Vector2 transformPosition = new Vector2(x, y);
@@ -52,8 +55,8 @@ namespace Map
                             ok = false;
                     }
 
-                    Vector2 clone = new Vector2(x + 1, y);
-                    if (Physics2D.Linecast(transformPosition, clone, 1 << LayerMask.NameToLayer("WallColider")))
+                    if (Physics2D.Linecast(transformPosition, transformPosition,
+                        1 << LayerMask.NameToLayer("WallColider")))
                     {
                         Debug.Log("touching collider");
                         ok = false;
@@ -61,13 +64,42 @@ namespace Map
 
                     if (ok)
                     {
-                        PhotonNetwork.Instantiate(mobs[random.Next(mobs.Count)].name, transformPosition, Quaternion.identity);
-                        Debug.Log("Mob spawn in x:"+x+"  y:"+y);
+                        PhotonNetwork.Instantiate(mobs[random.Next(mobs.Count)].name, transformPosition,
+                            Quaternion.identity);
+                        Debug.Log("Mob spawn in x:" + x + "  y:" + y);
                         gameObject.GetComponent<BoxCollider2D>().enabled = false;
                         hasSpawned = true;
                         hasToSpawn--;
                     }
                 }
+            }
+
+            if (!hasSpawned)
+            {
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position);
+                }
+                else
+                {
+                    foreach (GameObject player in PlayerConnect.players)
+                    {
+                        if (player.name == other.name)
+                            continue;
+                        player.transform.position = other.transform.position;
+                    }
+                }
+            }
+        }
+
+        [PunRPC]
+        public void TPPlayer(Vector3 pos)
+        {
+            Debug.LogWarning("tp !");
+            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                GameObject associateGameObjet = GameObject.Find(player.NickName);
+                associateGameObjet.transform.position = pos;
             }
         }
     }

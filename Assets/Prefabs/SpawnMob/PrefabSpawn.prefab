@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8836241450533971125}
   - component: {fileID: 629894851451929767}
   - component: {fileID: 7039310050522005622}
+  - component: {fileID: 7612991104846449847}
   m_Layer: 10
   m_Name: SpawnColliderUp
   m_TagString: Untagged
@@ -52,7 +53,6 @@ MonoBehaviour:
   - {fileID: 4502381389626040717, guid: 7e74b58ca8846fb4ab41c8e8248dc54c, type: 3}
   Spawner: {fileID: 3300289843575771100}
   hasSpawned: 0
-  tilemapCollider2D: {fileID: 0}
 --- !u!61 &7039310050522005622
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79,6 +79,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 33.817703, y: 22.687616}
   m_EdgeRadius: 0.1
+--- !u!114 &7612991104846449847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2643177604709645212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4749594241600419257
 GameObject:
   m_ObjectHideFlags: 0
