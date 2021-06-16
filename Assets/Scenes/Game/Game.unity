@@ -458,15 +458,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b484f678e5eee924f950f9832818cc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableMaps:
+  availableMapsLvl1:
   - {fileID: 3657158547166710651, guid: 0aa428c316f01f4458b968e84825e97c, type: 3}
   - {fileID: 7335986364488977391, guid: 73778f07f0fcafa4696bdaa037848e09, type: 3}
   - {fileID: 4011573725410458779, guid: fbefdfb40bd11aa4c9b264f0f00bf553, type: 3}
   - {fileID: 860356223661606647, guid: bc95c035ad8c4b249b3e32996285c793, type: 3}
   - {fileID: 3578136042587356877, guid: 38e1f7b793d8edc458830647be468588, type: 3}
   - {fileID: 2717340407554400013, guid: 23f1b250b2fb1364f85d9ef8bfd35bc2, type: 3}
-  spawn: {fileID: 110852631115127665, guid: eafb315d01b6e6c4daad4b17389e64e0, type: 3}
+  - {fileID: 852631695390321884, guid: c33b25c94a51f1e4d84e2cd3a167030c, type: 3}
+  - {fileID: 3992108964776485496, guid: 0f816269af4774e4ca3d595a9a365b7b, type: 3}
+  availableMapsLvl2:
+  - {fileID: 4205164682149990515, guid: 23117ac00b522734da4092ad845e4078, type: 3}
+  - {fileID: 1299167885134610853, guid: f25bccac10c15394092209e5a8ad04d1, type: 3}
+  - {fileID: 16177578663901485, guid: 36c10b7c3f0a339439c3628253540ce4, type: 3}
+  - {fileID: 5200943203590184557, guid: cafee410853830a4bb2a19a9844d74be, type: 3}
+  - {fileID: 1220238946375470782, guid: e6b1225cf74ea3b439797c6f9e4ca28b, type: 3}
+  - {fileID: 3315991545876480608, guid: ca1d9feada004c84482c2343e8e54eca, type: 3}
+  - {fileID: 1811309587701740025, guid: ed49b756acfed5b4696f9c1f5995ad91, type: 3}
+  - {fileID: 6134864221969921460, guid: 25d513ab2fe9dec4d95cd1336e5d87ec, type: 3}
+  spawnLvl1: {fileID: 110852631115127665, guid: eafb315d01b6e6c4daad4b17389e64e0,
+    type: 3}
   bossLvl1: {fileID: 110852631115127665, guid: 86b0f83f4f6595d4184267df61b4558a, type: 3}
+  spawnLvl2: {fileID: 2724627429634247254, guid: d1c50033caccb9f4da9fbf7b16838e02,
+    type: 3}
+  bossLvl2: {fileID: 6624104300937544445, guid: d7a5f0e14483ef9458f88f974620422a,
+    type: 3}
   verticalWall: {fileID: 8370391611206959024, guid: c52d73d0c32e5d741ae5411b8ebc2e06,
     type: 3}
   horizontalWall: {fileID: 8370391611206959024, guid: 83f0dedf000da9d4c8385a8cfcd35554,

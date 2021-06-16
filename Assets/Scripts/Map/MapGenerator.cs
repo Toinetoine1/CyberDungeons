@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AI.Map;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using Random = System.Random;
 
@@ -52,6 +53,9 @@ namespace Map
             pool.ResourceCache.Add(spawnLvl1.name, spawnLvl1);
             pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
             
+            pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
+            pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
+            
             if (!PhotonNetwork.IsMasterClient)
                 return;
             wallGenerator = gameObject.AddComponent<WallGenerator>();
@@ -60,6 +64,11 @@ namespace Map
         
         void generate()
         {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+            
+            Debug.LogWarning("GENERATE MAPS");
+
             GameObject child = null;
             //On ajoute sur tous les clients une map vide en (0,0)
             switch (level)
@@ -154,17 +163,34 @@ namespace Map
             
             //On génère les murs
             wallGenerator.CreateWall(positions, verticalWall, horizontalWall, this);
+            gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void TPPlayer()
+        {
+            foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                GameObject.Find(pl.NickName).transform.position = Vector3.zero;
+            }
         }
 
         public void nextLevel()
         {
             level++;
             gameObject.GetComponent<PhotonView>().RPC("DeleteAll", RpcTarget.All);
+            maps.Clear();
+
+            StartCoroutine(GenerateNewMap());
+        }
+
+        private IEnumerator GenerateNewMap()
+        {
+            yield return new WaitForSeconds(4);
             
-            if (!PhotonNetwork.IsMasterClient)
-                return;
-            
+            Debug.LogWarning("KIKIKIKIIIIII");
             generate();
+            
         }
 
         [PunRPC]
@@ -194,6 +220,9 @@ namespace Map
             GameObject walls = GameObject.Find("Walls");
             Destroy(maps);
             Destroy(walls);
+            
+            Instantiate(new GameObject("Maps"));
+            Instantiate(new GameObject("Walls"));
         }
     }
 }

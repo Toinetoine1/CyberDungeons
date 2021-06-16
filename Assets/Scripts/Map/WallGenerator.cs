@@ -10,12 +10,13 @@ namespace AI.Map
         private const int Delta = 12;
 
         private List<Wall> walls;
-        private Vector2[,] array = new Vector2[Delta * 2, Delta * 2];
+        private Vector2[,] array;
 
         public void CreateWall(List<Vector2> positions, GameObject verticalWall, GameObject horizontalWall, MapGenerator mapGenerator)
         {
             walls = new List<Wall>();
-
+            array = new Vector2[Delta * 2, Delta * 2];
+            
             foreach (Vector2 pos in positions)
             {
                 int x = (int) (pos.x / MapGenerator.sizeX) + Delta;
