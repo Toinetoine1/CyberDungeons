@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 5176874033608924239}
   m_Layer: 0
   m_Name: Randomator
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

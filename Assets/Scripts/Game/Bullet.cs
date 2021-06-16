@@ -21,7 +21,7 @@ namespace Game
             {
                 if (Friendly)
                 {
-                    if (detect.collider.CompareTag("Enemy"))
+                    if (detect.collider.CompareTag("Enemy") || detect.collider.CompareTag("Boss"))
                     {
                         GameObject enemy = detect.collider.gameObject;
                         enemy.GetComponent<Health>().takeDamageRPC(Damage);

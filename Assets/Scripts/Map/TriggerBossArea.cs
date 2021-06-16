@@ -13,7 +13,6 @@ namespace Map
         public GameObject boss_lvl2;
         public GameObject boss_lvl3;
         public Transform Spawner;
-        public bool isDead = false;
         public bool hasSpawned;
 
         private void Start()

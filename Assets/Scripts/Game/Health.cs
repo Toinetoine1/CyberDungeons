@@ -10,7 +10,6 @@ namespace Game
         public float health;
         private float maxHealth;
         public HealthBar healthBar;
-        
 
 
         // Start is called before the first frame update
@@ -30,13 +29,22 @@ namespace Game
         {
             if (health <= 0 && gameObject.GetComponent<PhotonView>().IsMine)
             {
-                TriggerEnemyArea.aliveMob--;
-                if (TriggerEnemyArea.aliveMob == 0)
-                {
-                    Map.Map map = Map.Map.FindMapByVector(gameObject.transform.position);
-                    map.DeleteWall();
-                }
                 PhotonNetwork.Destroy(gameObject);
+
+                if (gameObject.CompareTag("Boss"))
+                {
+                    //TODO Peut-etre afficher un écran comme quoi on a tué le boss
+                    MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
+                    mapGenerator.nextLevel();
+                } else if (gameObject.CompareTag("Enemy"))
+                {
+                    TriggerEnemyArea.aliveMob--;
+                    if (TriggerEnemyArea.aliveMob == 0)
+                    {
+                        Map.Map map = Map.Map.FindMapByVector(gameObject.transform.position);
+                        map.DeleteWall();
+                    }   
+                }
             }
         }
 
