@@ -13,7 +13,7 @@ namespace Game
         protected int Damage;
 
         // Update is called once per frame
-        void FixedUpdate()
+        void Update()
         {
             transform.Translate(Time.deltaTime * Speed * BulletDir);
             RaycastHit2D detect = Detection();
@@ -82,6 +82,14 @@ namespace Game
             Speed = speed;
             Damage = damage;
             BulletDir = (targetTransform.position - transform.position).normalized;
+            Friendly = false;
+        }
+
+        public void setupWithVector(Vector2 target)
+        {
+            Speed = 12;
+            Damage = 10;
+            BulletDir = target;
             Friendly = false;
         }
 
