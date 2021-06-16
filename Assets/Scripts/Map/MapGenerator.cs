@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using AI.Map;
 using Photon.Pun;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Map
 
         public const int sizeX = 38;
         public const int sizeY = 27;
-
+        
         [SerializeField] public List<GameObject> availableMaps;
         [SerializeField] public GameObject spawn;
         [SerializeField] public GameObject bossLvl1;
@@ -45,8 +46,11 @@ namespace Map
         
         void generate()
         {
+            GameObject parent =GameObject.Find("Maps");
+            GameObject child;
             //On ajoute sur tous les clients une map vide en (0,0)
-            PhotonNetwork.Instantiate(spawn.name, Vector2.zero, Quaternion.identity);
+            child = PhotonNetwork.Instantiate(spawn.name, Vector2.zero, Quaternion.identity);
+            child.transform.parent = parent.transform;
             maps.Add(new Map(true, Vector2.zero, verticalWall, horizontalWall));
             
             //Positions de toutes les tilesmap
@@ -94,14 +98,16 @@ namespace Map
                 }
                 
                 //On ajoute notre tilesmap sur tous les clients
-                PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
+                child = PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
+                child.transform.parent = parent.transform;
                 maps.Add(new Map(false, position, verticalWall, horizontalWall));
             }
             
             //On spawn la salle du boss
             Vector2 bossPos = availablePositions[_random.Next(availablePositions.Count)];
             positions.Add(bossPos);
-            PhotonNetwork.Instantiate(bossLvl1.name, bossPos, Quaternion.identity);
+            child = PhotonNetwork.Instantiate(bossLvl1.name, bossPos, Quaternion.identity);
+            child.transform.parent = parent.transform;
             maps.Add(new Map(false, bossPos, verticalWall, horizontalWall));
             
             //On génère les murs

@@ -14,6 +14,7 @@ namespace Map
         public GameObject boss_lvl3;
         public Transform Spawner;
         public bool isDead = false;
+        public bool hasSpawned;
 
         private void Start()
         {
@@ -31,7 +32,7 @@ namespace Map
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
                 Vector3 position = Spawner.position;
                 Map map = Map.FindMapByVector(position);
@@ -44,6 +45,8 @@ namespace Map
 
                 PhotonNetwork.Instantiate(boss_lvl1.name, position, Quaternion.identity);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                Debug.LogWarning("spawn a boss !");
+                hasSpawned = true;
             }
 
             if (PhotonNetwork.MasterClient.NickName != other.name)
