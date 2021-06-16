@@ -14,23 +14,26 @@ namespace Map
 
         private GameObject verticalWall;
         private GameObject horizontalWall;
+        private MapGenerator _mapGenerator;
         
-        public Map(bool spawn, Vector2 pos, GameObject verticalWall, GameObject horizontalWall)
+        public Map(bool spawn, Vector2 pos, GameObject verticalWall, GameObject horizontalWall,
+            MapGenerator mapGenerator)
         {
             this.verticalWall = verticalWall;
             this.horizontalWall= horizontalWall;
             this.spawn = spawn;
             this.pos = pos;
+            _mapGenerator = mapGenerator;
         }
 
         public void SpawnWall()
         {
             if(!spawn)
             {
-                bottom = new Wall(horizontalWall, new Vector2(pos.x, pos.y - MapGenerator.sizeY / 2), false);
-                top = new Wall(horizontalWall, new Vector2(pos.x, pos.y + MapGenerator.sizeY / 2), false);
-                left = new Wall(verticalWall, new Vector2(pos.x - MapGenerator.sizeX / 2, pos.y), false);
-                right = new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), false);
+                bottom = new Wall(horizontalWall, new Vector2(pos.x, pos.y - MapGenerator.sizeY / 2), false,_mapGenerator);
+                top = new Wall(horizontalWall, new Vector2(pos.x, pos.y + MapGenerator.sizeY / 2), false, _mapGenerator);
+                left = new Wall(verticalWall, new Vector2(pos.x - MapGenerator.sizeX / 2, pos.y), false, _mapGenerator);
+                right = new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), false, _mapGenerator);
             }
         }
 

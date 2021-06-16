@@ -12,7 +12,7 @@ namespace AI.Map
         private List<Wall> walls;
         private Vector2[,] array = new Vector2[Delta * 2, Delta * 2];
 
-        public void CreateWall(List<Vector2> positions, GameObject verticalWall, GameObject horizontalWall)
+        public void CreateWall(List<Vector2> positions, GameObject verticalWall, GameObject horizontalWall, MapGenerator mapGenerator)
         {
             walls = new List<Wall>();
 
@@ -23,6 +23,7 @@ namespace AI.Map
                 //Debug.Log("PUT  y: " + y + "   x:" + x);
                 array[y, x] = pos;
             }
+
             array[Delta, Delta] = Vector2.down;
 
             PrintArray();
@@ -39,25 +40,28 @@ namespace AI.Map
                 if (array[y - 1 + Delta, x + Delta] == Vector2.zero)
                 {
                     //Debug.Log("Need wall on the bottom in: x:" + x + "  y:" + y);
-                    walls.Add(new Wall(horizontalWall, new Vector2(pos.x, pos.y - MapGenerator.sizeY / 2), true));
-                } 
+                    walls.Add(new Wall(horizontalWall, new Vector2(pos.x, pos.y - MapGenerator.sizeY / 2), true, mapGenerator));
+                }
+
                 if (array[y + 1 + Delta, x + Delta] == Vector2.zero)
                 {
                     //Debug.Log("Need wall on the top in: x:" + x + "  y:" + y);
-                    walls.Add(new Wall(horizontalWall, new Vector2(pos.x, pos.y + MapGenerator.sizeY / 2), true));
-                } 
+                    walls.Add(new Wall(horizontalWall, new Vector2(pos.x, pos.y + MapGenerator.sizeY / 2), true, mapGenerator));
+                }
+
                 if (array[y + Delta, x - 1 + Delta] == Vector2.zero)
                 {
                     //Debug.Log("Need wall on the left in: x:" + x + "  y:" + y);
-                    walls.Add(new Wall(verticalWall, new Vector2(pos.x - MapGenerator.sizeX / 2, pos.y), true));
+                    walls.Add(new Wall(verticalWall, new Vector2(pos.x - MapGenerator.sizeX / 2, pos.y), true, mapGenerator));
                 }
+
                 if (array[y + Delta, x + 1 + Delta] == Vector2.zero)
                 {
                     // Debug.Log("Need wall on the right in: x:" + x + "  y:" + y);
-                    walls.Add(new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), true));
+                    walls.Add(new Wall(verticalWall, new Vector2(pos.x + MapGenerator.sizeX / 2, pos.y), true, mapGenerator));
                 }
             }
-            
+
             AstarPath.active.Scan();
         }
 

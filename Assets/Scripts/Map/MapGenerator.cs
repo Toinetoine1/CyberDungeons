@@ -48,11 +48,10 @@ namespace Map
         void generate()
         {
             GameObject child;
-            string childName;
             //On ajoute sur tous les clients une map vide en (0,0)
             child = PhotonNetwork.Instantiate(spawn.name, Vector2.zero, Quaternion.identity);
             gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
-            maps.Add(new Map(true, Vector2.zero, verticalWall, horizontalWall));
+            maps.Add(new Map(true, Vector2.zero, verticalWall, horizontalWall, this));
             
             //Positions de toutes les tilesmap
             List<Vector2> positions = new List<Vector2>();
@@ -102,7 +101,7 @@ namespace Map
                 child = PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
                 gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
                 
-                maps.Add(new Map(false, position, verticalWall, horizontalWall));
+                maps.Add(new Map(false, position, verticalWall, horizontalWall, this));
             }
             
             //On spawn la salle du boss
@@ -112,10 +111,10 @@ namespace Map
             child = PhotonNetwork.Instantiate(bossLvl1.name, bossPos, Quaternion.identity);
             gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
             
-            maps.Add(new Map(false, bossPos, verticalWall, horizontalWall));
+            maps.Add(new Map(false, bossPos, verticalWall, horizontalWall, this));
             
             //On génère les murs
-            wallGenerator.CreateWall(positions, verticalWall, horizontalWall);
+            wallGenerator.CreateWall(positions, verticalWall, horizontalWall, this);
         }
 
         [PunRPC]
@@ -125,6 +124,16 @@ namespace Map
             GameObject parent = GameObject.Find("Maps");
             GameObject child = GameObject.Find(gameObject);
             child.name = "Map" + _random.Next(0, 99999);
+            child.transform.parent = parent.transform;
+        }
+        
+        [PunRPC]
+        public void ChangeWallParent(string gameObject)
+        {
+            Debug.LogWarning("change parent of: "+gameObject);
+            GameObject parent = GameObject.Find("Walls");
+            GameObject child = GameObject.Find(gameObject);
+            child.name = "Wall" + _random.Next(0, 99999);
             child.transform.parent = parent.transform;
         }
     }
