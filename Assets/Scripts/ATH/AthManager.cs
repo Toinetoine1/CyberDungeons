@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class AthManager : MonoBehaviour
 {
-    private GameObject _inventory;
+    public GameObject _inventory;
     public Text NbrOfBullet;
     public Text WeaponName;
     public Image ImageWeapon;
@@ -15,6 +15,7 @@ public class AthManager : MonoBehaviour
     void Start()
     {
         _inventory = FindObjectOfType<Inventory>().currentWeapon;
+        Debug.Log(_inventory.name);
         WeaponName.text = _inventory.name;
         NbrOfBullet.text = _inventory.GetComponent<Weapon>().currAmmo + " / " +
                            _inventory.GetComponent<Weapon>().maxAmmo;
@@ -23,30 +24,52 @@ public class AthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject newWeapon = FindObjectOfType<Inventory>().currentWeapon;
-        if (newWeapon != _inventory)
+        _inventory = FindObjectOfType<Inventory>().currentWeapon;
+        if (_inventory != null)
         {
-            _inventory = newWeapon;
-            SetImageWeapon();
             SetWeaponName();
             SetNbrOfBullet();
+            SetImageWeapon();
         }
-        SetNbrOfBullet();
+
+
     }
 
     public void SetWeaponName()
     {
-        WeaponName.text = _inventory.name;
+        if (_inventory != null)
+        {
+            WeaponName.text = _inventory.name;
+        }
+        else
+        {
+            Debug.Log("Inventory est vide ??");
+        }
     }
 
     public void SetNbrOfBullet()
     {
-        NbrOfBullet.text = _inventory.GetComponent<Weapon>().currAmmo + " / " +
-                           _inventory.GetComponent<Weapon>().maxAmmo;
+        if (_inventory != null)
+        {
+            NbrOfBullet.text = _inventory.GetComponent<Weapon>().currAmmo + " / " +
+                               _inventory.GetComponent<Weapon>().maxAmmo;
+        }
+        else
+        {
+            Debug.Log("Inventory est vide ??");
+        }
+        
     }
 
     public void SetImageWeapon()
     {
-        ImageWeapon.sprite = _inventory.GetComponent<SpriteRenderer>().sprite;
+        if (_inventory != null)
+        {
+            ImageWeapon.sprite = _inventory.GetComponent<SpriteRenderer>().sprite;
+        }
+        else
+        {
+            Debug.Log("Inventory est vide ??");
+        }
     }
 }
