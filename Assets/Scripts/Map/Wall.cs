@@ -13,8 +13,10 @@ namespace Map
         {
             this.pos = pos;
             this.isStatic = isStatic;
-
+            
+            GameObject parent = GameObject.Find("Walls");
             this.obj = PhotonNetwork.Instantiate(obj.name, pos, Quaternion.identity);
+            this.obj.transform.parent = parent.transform;
             Debug.Log("Spawn wall in x:"+pos.x+"  y:"+pos.y);
         }
 
