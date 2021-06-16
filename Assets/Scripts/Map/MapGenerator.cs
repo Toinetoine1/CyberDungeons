@@ -36,6 +36,7 @@ namespace Map
             pool.ResourceCache.Add(spawn.name, spawn);
             pool.ResourceCache.Add(verticalWall.name, verticalWall);
             pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
+            
             pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
             
             if (!PhotonNetwork.IsMasterClient)
@@ -46,11 +47,11 @@ namespace Map
         
         void generate()
         {
-            GameObject parent =GameObject.Find("Maps");
             GameObject child;
+            string childName;
             //On ajoute sur tous les clients une map vide en (0,0)
             child = PhotonNetwork.Instantiate(spawn.name, Vector2.zero, Quaternion.identity);
-            child.transform.parent = parent.transform;
+            gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
             maps.Add(new Map(true, Vector2.zero, verticalWall, horizontalWall));
             
             //Positions de toutes les tilesmap
@@ -99,19 +100,32 @@ namespace Map
                 
                 //On ajoute notre tilesmap sur tous les clients
                 child = PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
-                child.transform.parent = parent.transform;
+                gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
+                
                 maps.Add(new Map(false, position, verticalWall, horizontalWall));
             }
             
             //On spawn la salle du boss
             Vector2 bossPos = availablePositions[_random.Next(availablePositions.Count)];
             positions.Add(bossPos);
+            
             child = PhotonNetwork.Instantiate(bossLvl1.name, bossPos, Quaternion.identity);
-            child.transform.parent = parent.transform;
+            gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
+            
             maps.Add(new Map(false, bossPos, verticalWall, horizontalWall));
             
             //On génère les murs
             wallGenerator.CreateWall(positions, verticalWall, horizontalWall);
+        }
+
+        [PunRPC]
+        public void ChangeMapParent(string gameObject)
+        {
+            Debug.LogWarning("change parent of: "+gameObject);
+            GameObject parent = GameObject.Find("Maps");
+            GameObject child = GameObject.Find(gameObject);
+            child.name = "Map" + _random.Next(0, 99999);
+            child.transform.parent = parent.transform;
         }
     }
 }
