@@ -3669,6 +3669,7 @@ GameObject:
   - component: {fileID: 1278076173193925025}
   - component: {fileID: 2305781161165743612}
   - component: {fileID: 1533030301993247167}
+  - component: {fileID: 4881020105535952086}
   m_Layer: 8
   m_Name: WallCollider
   m_TagString: WallCollider
@@ -6991,7 +6992,7 @@ Tilemap:
   - m_RefCount: 346
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.74768615, g: 0.3651347, b: 0.43875527, a: 1}
+    m_Data: {r: 0.7474801, g: 0.32104284, b: 0.45933372, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7122,6 +7123,22 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &4881020105535952086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678190164983404349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 0
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &6850284583150338924
 GameObject:
   m_ObjectHideFlags: 0

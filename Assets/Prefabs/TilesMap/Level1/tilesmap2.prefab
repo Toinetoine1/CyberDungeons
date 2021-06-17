@@ -7044,6 +7044,7 @@ GameObject:
   - component: {fileID: 7335986364473077084}
   - component: {fileID: 2118234912867351166}
   - component: {fileID: 7744524306405659611}
+  - component: {fileID: 7570327482888165741}
   m_Layer: 8
   m_Name: WallCollider
   m_TagString: WallCollider
@@ -8410,7 +8411,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 29
-      m_TileSpriteIndex: 17
+      m_TileSpriteIndex: 25
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -8932,7 +8933,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10313,9 +10314,8 @@ Tilemap:
   - m_RefCount: 94
     m_Data: {fileID: 2444895477348423634, guid: 1cf20117b99fc1e4785ab2916a8b4457,
       type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 8336968069346813476, guid: 5c962ddf35c47644a833744546e3eeb6,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 3924358084735338523, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
@@ -10359,7 +10359,7 @@ Tilemap:
     m_Data: {fileID: -1386148941063352556, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -8322739188689117546, guid: 5c962ddf35c47644a833744546e3eeb6,
+    m_Data: {fileID: 8336968069346813476, guid: 5c962ddf35c47644a833744546e3eeb6,
       type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 4061622959577788826, guid: b512c8dfa81ddca49869d6168d1d6464,
@@ -10381,8 +10381,9 @@ Tilemap:
   - m_RefCount: 3
     m_Data: {fileID: 4284469207426645750, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -8322739188689117546, guid: 5c962ddf35c47644a833744546e3eeb6,
+      type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 4123549633908872773, guid: 5c962ddf35c47644a833744546e3eeb6,
       type: 3}
@@ -10550,6 +10551,22 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &7570327482888165741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335986364473077058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 0
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &7335986364488977391
 GameObject:
   m_ObjectHideFlags: 0
