@@ -33,7 +33,8 @@ namespace Game
 
                 if (gameObject.CompareTag("Boss"))
                 {
-                    //TODO Peut-etre afficher un écran comme quoi on a tué le boss
+                    FindObjectOfType<AudioManager>().Play("Level2");
+                    FindObjectOfType<AudioManager>().Stop("Bosslvl1");
                     MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
                     mapGenerator.nextLevel();
                     

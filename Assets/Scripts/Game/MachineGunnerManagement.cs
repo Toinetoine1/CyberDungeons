@@ -21,6 +21,7 @@ public class MachineGunnerManagement : EnnemyWeapon
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
         isShooting = false;
+        _photonView = PhotonView.Get(this);
     }
 
     // Update is called once per frame
@@ -40,17 +41,18 @@ public class MachineGunnerManagement : EnnemyWeapon
 
         if (currNbBullet != 0 && isShooting && currTimeBetweenBullet <= 0 && currInterval <= 0)
         {
-            //_photonView.RPC("fireABullet", RpcTarget.All);
-            fireABullet();
-            currTimeBetweenBullet = timeBetweenBullet;
-            currNbBullet -= 1;
-            isShooting = currNbBullet != 0;
-            if (!isShooting)
+            if (_photonView.IsMine)
             {
-                currInterval = firingInterval;
+                fireABullet();
+                currTimeBetweenBullet = timeBetweenBullet;
+                currNbBullet -= 1;
+                isShooting = currNbBullet != 0;
+                if (!isShooting)
+                {
+                    currInterval = firingInterval;
+                }
             }
         }
-
     }
 }
 

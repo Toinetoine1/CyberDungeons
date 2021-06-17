@@ -19,20 +19,27 @@ namespace Map
         {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
 
-            if (boss_lvl1 != null)
-                pool.ResourceCache.Add(boss_lvl1.name, boss_lvl1);
-
-            if (boss_lvl2 != null)
-                pool.ResourceCache.Add(boss_lvl2.name, boss_lvl2);
-
-            if (boss_lvl3 != null)
-                pool.ResourceCache.Add(boss_lvl3.name, boss_lvl3);
+            if (MapGenerator.level == 1)
+            {
+                if (boss_lvl1 != null)
+                    pool.ResourceCache.Add(boss_lvl1.name, boss_lvl1);   
+            } else if (MapGenerator.level == 2)
+            {
+                if (boss_lvl2 != null)
+                    pool.ResourceCache.Add(boss_lvl2.name, boss_lvl2);   
+            } else if (MapGenerator.level == 3)
+            {
+                if (boss_lvl3 != null)
+                    pool.ResourceCache.Add(boss_lvl3.name, boss_lvl3);    
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
+                FindObjectOfType<AudioManager>().Play("Bosslvl1");
+                FindObjectOfType<AudioManager>().Stop("Level1");
                 Vector3 position = Spawner.position;
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();

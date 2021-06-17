@@ -21,6 +21,7 @@ public class SniperManagement : EnnemyWeapon
         isAiming = false;
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.enabled = false;
+        _photonView = PhotonView.Get(this);
     }
     
     // Update is called once per frame
@@ -32,9 +33,11 @@ public class SniperManagement : EnnemyWeapon
             currAimtime -= Time.deltaTime;
             if (currAimtime <= 0)
             {
-                //_photonView.RPC("fireABullet", RpcTarget.All);
-                fireABullet();
-                currAimtime = aimtime;
+                if (_photonView.IsMine)
+                {
+                    fireABullet();
+                    currAimtime = aimtime;
+                }
             }
         }
         else

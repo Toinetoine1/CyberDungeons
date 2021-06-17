@@ -36,13 +36,15 @@ public class EnnemyWeapon : MonoBehaviour
         
         if (currInterval <= 0 && target != null &&!Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider")))
         {
-            _photonView.RPC("fireABullet", RpcTarget.All);
-            currInterval = firingInterval;
+            if (_photonView.IsMine)
+            {
+                fireABullet();
+                currInterval = firingInterval;
+            }
         }
     }
     
 
-    [PunRPC]
     protected void fireABullet()
     {
         GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
