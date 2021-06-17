@@ -109,10 +109,7 @@ namespace AI
                     SniperManagement sniperManagement = ennemyWeapon as SniperManagement;
                     sniperManagement.isAiming = true;
                 }
-                else
-                {
-                    ennemyWeapon.fire();
-                }
+                
                 Animator.SetBool("Standing", true);
 
                 if (Vector2.Distance(transform.position, target.transform.position) <= lineOfSite)

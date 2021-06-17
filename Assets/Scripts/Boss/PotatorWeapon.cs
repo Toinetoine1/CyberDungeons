@@ -54,13 +54,16 @@ public class PotatorWeapon : MonoBehaviour
             
             Vector3 bulletVector = new Vector2(bulDirX,bulDirY);
             Vector2 bulletDir = (bulletVector - transform.position).normalized;
-            
-            fireABullet(bulletDir);
 
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("fireABullet", RpcTarget.All, bulletDir);
+            
+            
             angle -= angleStep;
         }
     }
 
+    [PunRPC]
     private void fireABullet(Vector2 target)
     {
         GameObject bullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
