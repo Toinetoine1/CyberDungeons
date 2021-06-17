@@ -33,6 +33,8 @@ namespace Map
         {
             if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
+                FindObjectOfType<AudioManager>().Play("Bosslvl1");
+                FindObjectOfType<AudioManager>().Stop("Level1");
                 Vector3 position = Spawner.position;
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
