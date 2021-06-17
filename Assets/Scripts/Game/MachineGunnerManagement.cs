@@ -21,6 +21,7 @@ public class MachineGunnerManagement : EnnemyWeapon
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
         isShooting = false;
+        _photonView = PhotonView.Get(this);
     }
 
     // Update is called once per frame

@@ -22,6 +22,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         Damage = Random.Range(1, 2)*10;
         Speed = Random.Range(10f, 20f);
         switchTime = 8;
+        _photonView = PhotonView.Get(this);
     }
 
     // Update is called once per frame

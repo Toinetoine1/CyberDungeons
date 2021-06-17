@@ -21,6 +21,7 @@ public class SniperManagement : EnnemyWeapon
         isAiming = false;
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.enabled = false;
+        _photonView = PhotonView.Get(this);
     }
     
     // Update is called once per frame
