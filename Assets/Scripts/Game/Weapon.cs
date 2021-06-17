@@ -50,7 +50,33 @@ namespace Game
                     Input.mousePosition.y, -cam.transform.position.z)) - transform.root.position).normalized;
                 test.GetComponent<Bullet>().Setup(speed,Damage,BulletDir);
                 currAmmo -= 1;
-                FindObjectOfType<AudioManager>().Play("PistolAudio");
+                switch (maxAmmo)
+                {
+                    case 8 :
+                        FindObjectOfType<AudioManager>().Play("PistolAudio");
+                        break;
+                    case 30 :
+                        FindObjectOfType<AudioManager>().Play("AssaultRifleSound");
+                        break;
+                    case 45 :
+                        FindObjectOfType<AudioManager>().Play("TheBiggerGunSound");
+                        break;
+                    case 25 :
+                        FindObjectOfType<AudioManager>().Play("AssaultRifleSound");
+                        break;
+                    case 5 :
+                        FindObjectOfType<AudioManager>().Play("AssaultRifleSound");
+                        break;
+                    case 6 :
+                        FindObjectOfType<AudioManager>().Play("TheBiggerGunSound");
+                        break;
+                    case 15 :
+                        FindObjectOfType<AudioManager>().Play("TheBiggerGunSound");
+                        break;
+                    case 20 :
+                        FindObjectOfType<AudioManager>().Play("AssaultRifleSound");
+                        break;
+                }
             }
             else if (!reloading)
                 Reload();
