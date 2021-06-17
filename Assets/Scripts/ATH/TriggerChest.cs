@@ -6,7 +6,7 @@ using Random = System.Random;
 
 public class TriggerChest : MonoBehaviour
 {
-    private bool HasTriggered;
+    public bool HasTriggered;
 
     public List<GameObject> WeaponList;
     

@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetMouseButtonDown(2))
         {
             nextWeapon();
+            FindObjectOfType<AudioManager>().Play("SwapSound");
             if (currentWeapon != null)
             {
                 Debug.Log(currentWeapon.name);
