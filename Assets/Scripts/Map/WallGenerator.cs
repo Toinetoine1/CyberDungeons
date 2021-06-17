@@ -28,9 +28,74 @@ namespace AI.Map
             }
 
             array[Delta, Delta] = Vector2.down;
+            
+            //On spawn la salle du boss
+            List<Vector2> avBoss = new List<Vector2>();
+
+            for (var i = 0; i < availablePositions.Count; i++)
+            {
+                Vector2 pos = availablePositions[i];
+                int x = (int) (pos.x / MapGenerator.sizeX);
+                int y = (int) (pos.y / MapGenerator.sizeY);
+
+                if (array[y + 1 + Delta, x + Delta] == Vector2.zero &&
+                    array[y + Delta, x + 1 + Delta] == Vector2.zero && array[y + Delta, x - 1 + Delta] == Vector2.zero)
+                {
+                    //Top
+                    avBoss.Add(pos);
+                }
+                else if (array[y - 1 + Delta, x + Delta] == Vector2.zero &&
+                         array[y + Delta, x + 1 + Delta] == Vector2.zero &&
+                         array[y + Delta, x - 1 + Delta] == Vector2.zero)
+                {
+                    //Bottom
+                    avBoss.Add(pos);
+                }
+                else if (array[y - 1 + Delta, x + Delta] == Vector2.zero &&
+                         array[y + 1 + Delta, x + Delta] == Vector2.zero &&
+                         array[y + Delta, x + 1 + Delta] == Vector2.zero)
+                {
+                    //Right
+                    avBoss.Add(pos);
+                }
+                else if (array[y + Delta, x - 1 + Delta] == Vector2.zero &&
+                         array[y + 1 + Delta, x + Delta] == Vector2.zero &&
+                         array[y - 1 + Delta, x + Delta] == Vector2.zero)
+                {
+                    //Left
+                    avBoss.Add(pos);
+                }
+            }
+
+            Vector2 bossPos = avBoss[0];
+            for (int i = 1; i < avBoss.Count; i++)
+            {
+                if (Vector2.Distance(Vector2.zero, avBoss[i]) > Vector2.Distance(Vector2.zero, bossPos))
+                {
+                    bossPos = avBoss[i];
+                }
+            }
+
+            positions.Add(bossPos);
+            GameObject child = null;
+
+            switch (mapGenerator.level)
+            {
+                case 1:
+                    child = PhotonNetwork.Instantiate(mapGenerator.bossLvl1.name, bossPos, Quaternion.identity);
+                    break;
+                case 2:
+                    child = PhotonNetwork.Instantiate(mapGenerator.bossLvl2.name, bossPos, Quaternion.identity);
+                    break;
+            }
+
+            mapGenerator.gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
+            MapGenerator.maps.Add(new global::Map.Map(false, bossPos, verticalWall, horizontalWall, mapGenerator));
+            array[(int) (bossPos.y / MapGenerator.sizeY) + Delta, (int) (bossPos.x / MapGenerator.sizeX + Delta)] = bossPos;
 
             PrintArray();
 
+            //On spawn les murs
             foreach (Vector2 pos in positions)
             {
                 if (pos == Vector2.zero && pos.x != 0 && pos.y != 0)
@@ -68,62 +133,6 @@ namespace AI.Map
                         mapGenerator));
                 }
             }
-
-            List<Vector2> avBoss = new List<Vector2>();
-            
-            for (var i = 0; i < availablePositions.Count; i++)
-            {
-                Vector2 pos = availablePositions[i];
-                int x = (int) (pos.x / MapGenerator.sizeX);
-                int y = (int) (pos.y / MapGenerator.sizeY);
-
-                if (array[y + 1 + Delta, x + Delta] == Vector2.zero && array[y + Delta, x + 1 + Delta] == Vector2.zero && array[y + Delta, x - 1 + Delta] == Vector2.zero)
-                {
-                    //Top
-                    avBoss.Add(pos);
-                }
-                else if (array[y - 1 + Delta, x + Delta] == Vector2.zero && array[y + Delta, x + 1 + Delta] == Vector2.zero && array[y + Delta, x - 1 + Delta] == Vector2.zero)
-                {
-                    //Bottom
-                    avBoss.Add(pos);
-                }
-                else if (array[y - 1 + Delta, x + Delta] == Vector2.zero && array[y + 1 + Delta, x + Delta] == Vector2.zero && array[y + Delta, x + 1 + Delta] == Vector2.zero)
-                {
-                    //Right
-                    avBoss.Add(pos);
-                }
-                else if (array[y + Delta, x - 1 + Delta] == Vector2.zero && array[y + 1 + Delta, x + Delta] == Vector2.zero && array[y - 1 + Delta, x + Delta] == Vector2.zero)
-                {
-                    //Left
-                    avBoss.Add(pos);
-                }
-            }
-
-            Vector2 bossPos = avBoss[0];
-            for (int i = 1; i < avBoss.Count; i++)
-            {
-                if (Vector2.Distance(Vector2.zero, avBoss[i]) > Vector2.Distance(Vector2.zero, bossPos))
-                {
-                    bossPos = avBoss[i];
-                }
-            }
-
-            //On spawn la salle du boss
-            positions.Add(bossPos);
-            GameObject child = null;
-
-            switch (mapGenerator.level)
-            {
-                case 1:
-                    child = PhotonNetwork.Instantiate(mapGenerator.bossLvl1.name, bossPos, Quaternion.identity);
-                    break;
-                case 2:
-                    child = PhotonNetwork.Instantiate(mapGenerator.bossLvl2.name, bossPos, Quaternion.identity);
-                    break;
-            }
-            mapGenerator.gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
-            MapGenerator.maps.Add(new global::Map.Map(false, bossPos, verticalWall, horizontalWall, mapGenerator));
-            
 
             AstarPath.active.Scan();
         }
