@@ -31,7 +31,7 @@ namespace Map
         [SerializeField] public GameObject horizontalWall;
 
         [SerializeField] public GameObject loadingScreen;
-        
+
         private Random _random = new Random();
 
         private List<GameObject> players;
@@ -163,7 +163,7 @@ namespace Map
                 foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
                 {
                     GameObject.Find(pl.NickName).transform.position = Vector3.zero;
-                }   
+                }
             }
             else
             {
@@ -176,6 +176,12 @@ namespace Map
 
         public void nextLevel()
         {
+            gameObject.GetComponent<PhotonView>().RPC("LoadScreenLevel", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void LoadScreenLevel()
+        {
             players.Clear();
             foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
             {
@@ -183,13 +189,20 @@ namespace Map
                 players.Add(obj);
                 obj.SetActive(false);
             }
-            
+
             loadingScreen.SetActive(true);
-
+            
             level++;
-            gameObject.GetComponent<PhotonView>().RPC("DeleteAll", RpcTarget.All);
-            maps.Clear();
 
+            GameObject mapsObj = GameObject.Find("Maps");
+            GameObject wallsObj = GameObject.Find("Walls");
+            Destroy(mapsObj);
+            Destroy(wallsObj);
+
+            Instantiate(new GameObject("Maps"));
+            Instantiate(new GameObject("Walls"));
+            
+            maps.Clear();
             StartCoroutine(GenerateNewMap());
         }
 
@@ -202,7 +215,7 @@ namespace Map
             {
                 pl.SetActive(true);
             }
-            
+
             loadingScreen.SetActive(false);
         }
 
@@ -226,16 +239,5 @@ namespace Map
             child.transform.parent = parent.transform;
         }
 
-        [PunRPC]
-        public void DeleteAll()
-        {
-            GameObject maps = GameObject.Find("Maps");
-            GameObject walls = GameObject.Find("Walls");
-            Destroy(maps);
-            Destroy(walls);
-
-            Instantiate(new GameObject("Maps"));
-            Instantiate(new GameObject("Walls"));
-        }
     }
 }
