@@ -13,7 +13,7 @@ namespace Map
         public static List<Map> maps = new List<Map>();
         
         private WallGenerator wallGenerator;
-        private int level;
+        public int level;
 
         public const int sizeX = 38;
         public const int sizeY = 27;
@@ -143,26 +143,9 @@ namespace Map
                 
                 maps.Add(new Map(false, position, verticalWall, horizontalWall, this));
             }
-            
-            //On spawn la salle du boss
-            Vector2 bossPos = availablePositions[_random.Next(availablePositions.Count)];
-            positions.Add(bossPos);
 
-            switch (level)
-            {
-                case 1:
-                    child = PhotonNetwork.Instantiate(bossLvl1.name, bossPos, Quaternion.identity);
-                    break;
-                case 2:
-                    child = PhotonNetwork.Instantiate(bossLvl2.name, bossPos, Quaternion.identity);
-                    break;
-            }
-            gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
-            
-            maps.Add(new Map(false, bossPos, verticalWall, horizontalWall, this));
-            
             //On génère les murs
-            wallGenerator.CreateWall(positions, verticalWall, horizontalWall, this);
+            wallGenerator.CreateWall(positions, verticalWall, horizontalWall, this, availablePositions);
             gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.All);
         }
 
