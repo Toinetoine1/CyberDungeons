@@ -20,6 +20,7 @@ public class TriggerChest : MonoBehaviour
     {
         if (!HasTriggered)
         {
+            FindObjectOfType<AudioManager>().Play("ChestSound");
             List<GameObject> WeaponListToUse = FindObjectOfType<Inventory>().WeaponListToUse;
             if (WeaponList.Count != WeaponListToUse.Count)
             {

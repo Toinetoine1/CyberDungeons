@@ -808,7 +808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b484f678e5eee924f950f9832818cc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 0
   availableMapsLvl1:
   - {fileID: 3657158547166710651, guid: 0aa428c316f01f4458b968e84825e97c, type: 3}
   - {fileID: 7335986364488977391, guid: 73778f07f0fcafa4696bdaa037848e09, type: 3}
@@ -1240,7 +1239,7 @@ PrefabInstance:
     - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
         type: 3}
@@ -1434,6 +1433,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
         type: 3}
+      propertyPath: sounds.Array.data[17].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 55c5898e1c80d504ca750b2dd971fda7, type: 3}
+    - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
+        type: 3}
+      propertyPath: sounds.Array.data[17].name
+      value: ChestSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
+        type: 3}
       propertyPath: sounds.Array.data[1].pitch
       value: 1
       objectReference: {fileID: 0}
@@ -1519,6 +1528,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
         type: 3}
+      propertyPath: sounds.Array.data[17].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
+        type: 3}
       propertyPath: sounds.Array.data[1].volume
       value: 1
       objectReference: {fileID: 0}
@@ -1595,6 +1609,11 @@ PrefabInstance:
     - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
         type: 3}
       propertyPath: sounds.Array.data[16].volume
+      value: 0.745
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689354779848770931, guid: 190606f1e37ec754a995443ab1842218,
+        type: 3}
+      propertyPath: sounds.Array.data[17].volume
       value: 0.745
       objectReference: {fileID: 0}
     - target: {fileID: 8689354779848770932, guid: 190606f1e37ec754a995443ab1842218,
