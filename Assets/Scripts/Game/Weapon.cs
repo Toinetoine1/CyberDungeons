@@ -43,7 +43,7 @@ namespace Game
 
         public void fire(Camera cam, Transform transform)
         {
-            if (currAmmo > 0)
+            if (currAmmo > 0 && !reloading)
             {
                 GameObject test = PhotonNetwork.Instantiate(pfBullet.name, transform.position, Quaternion.identity);
                 Vector2 BulletDir = (cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,

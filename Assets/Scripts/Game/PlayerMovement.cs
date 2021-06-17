@@ -91,10 +91,13 @@ public class PlayerMovement : MonoBehaviour
             direction += Vector2.down;
         
         if (Input.GetKeyDown(KeyBinding.KeyCodes["FIRE"]))
-        {
             _WeaponManagement.fire();
-        }
 
+        if (Input.GetKeyDown(KeyBinding.KeyCodes["RELOAD"]))
+            _WeaponManagement.reloadOnPress();
+            
+        
+        
         if (Input.GetKey(KeyBinding.KeyCodes["DODGE"]) && slideCooldown <= 0)
         {
             mouvementState = State.Rolling;
