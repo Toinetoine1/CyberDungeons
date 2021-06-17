@@ -13,7 +13,7 @@ namespace Map
         public static List<Map> maps = new List<Map>();
 
         private WallGenerator wallGenerator;
-        public int level;
+        public static int level;
 
         public const int sizeX = 38;
         public const int sizeY = 27;
@@ -121,6 +121,9 @@ namespace Map
                     {
                         case 1:
                             prefabGameObject = chestLvl1;
+                            break;
+                        case 2:
+                            prefabGameObject = chestLvl2;
                             break;
                     }
                 }

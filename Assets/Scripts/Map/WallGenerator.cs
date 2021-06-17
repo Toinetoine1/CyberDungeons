@@ -79,7 +79,7 @@ namespace AI.Map
             positions.Add(bossPos);
             GameObject child = null;
 
-            switch (mapGenerator.level)
+            switch (MapGenerator.level)
             {
                 case 1:
                     child = PhotonNetwork.Instantiate(mapGenerator.bossLvl1.name, bossPos, Quaternion.identity);
