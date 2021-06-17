@@ -9,6 +9,8 @@ namespace Photon
 {
     public class NetworkConnection : MonoBehaviourPunCallbacks
     {
+        public static bool connected = false;
+        
         [SerializeField] private Text username;
         private string gameVersion = "1";
 
@@ -26,7 +28,10 @@ namespace Photon
             Debug.Log("Connected to server !");
 
             if (!PhotonNetwork.InLobby)
+            {
                 PhotonNetwork.JoinLobby();
+                connected = true;
+            }
         }
 
         public override void OnDisconnected(DisconnectCause cause)
