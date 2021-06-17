@@ -11,62 +11,67 @@ namespace Map
     public class MapGenerator : MonoBehaviour
     {
         public static List<Map> maps = new List<Map>();
-        
+
         private WallGenerator wallGenerator;
         public int level;
 
         public const int sizeX = 38;
         public const int sizeY = 27;
-        
+
         [SerializeField] public List<GameObject> availableMapsLvl1;
         [SerializeField] public List<GameObject> availableMapsLvl2;
-        
+
         [SerializeField] public GameObject spawnLvl1;
         [SerializeField] public GameObject bossLvl1;
-        
+
         [SerializeField] public GameObject spawnLvl2;
         [SerializeField] public GameObject bossLvl2;
-        
-        [SerializeField]
-        public GameObject verticalWall;
-        [SerializeField]
-        public GameObject horizontalWall;
-        
+
+        [SerializeField] public GameObject verticalWall;
+        [SerializeField] public GameObject horizontalWall;
+
+        [SerializeField] public GameObject loadingScreen;
+
         private Random _random = new Random();
+
+        private List<GameObject> players;
 
         void Start()
         {
             level = 1;
-            
+            players = new List<GameObject>();
+
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
             foreach (GameObject prefab in availableMapsLvl1)
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
+
             foreach (GameObject prefab in availableMapsLvl2)
             {
                 pool.ResourceCache.Add(prefab.name, prefab);
             }
+
             pool.ResourceCache.Add(verticalWall.name, verticalWall);
             pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
-            
+
             pool.ResourceCache.Add(spawnLvl1.name, spawnLvl1);
             pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
-            
+
             pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
             pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
-            
+
             if (!PhotonNetwork.IsMasterClient)
                 return;
             wallGenerator = gameObject.AddComponent<WallGenerator>();
             generate();
         }
-        
+
         void generate()
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
-            
+
             Debug.LogWarning("GENERATE MAPS");
 
             GameObject child = null;
@@ -80,23 +85,24 @@ namespace Map
                     child = PhotonNetwork.Instantiate(spawnLvl2.name, Vector2.zero, Quaternion.identity);
                     break;
             }
+
             gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
 
             maps.Add(new Map(true, Vector2.zero, verticalWall, horizontalWall, this));
-            
+
             //Positions de toutes les tilesmap
             List<Vector2> positions = new List<Vector2>();
             positions.Add(Vector2.zero);
-            
+
             //Positions disponibles pour générer la prochaine map
             List<Vector2> availablePositions = new List<Vector2>();
-            
+
             //On ajoute toutes les positions adjacentes
             availablePositions.Add(new Vector2(sizeX, 0));
             availablePositions.Add(new Vector2(-sizeX, 0));
             availablePositions.Add(new Vector2(0, sizeY));
             availablePositions.Add(new Vector2(0, -sizeY));
-            
+
             //Nombre de tilesmap a placer
             int numberOfMap = new Random().Next(6, 12);
             for (int i = 0; i < numberOfMap; i++)
@@ -112,35 +118,35 @@ namespace Map
                         prefabGameObject = availableMapsLvl2[_random.Next(availableMapsLvl2.Count)];
                         break;
                 }
-                
+
                 //On choisit aléatoirement une position
                 Vector2 position = availablePositions[_random.Next(availablePositions.Count)];
-                
+
                 positions.Add(position);
                 availablePositions.Remove(position);
-                
+
                 //On crée et ajoute si possible les positions adjacentes
                 List<Vector2> newVectors = new List<Vector2>();
                 newVectors.Add(new Vector2(position.x + sizeX, position.y));
                 newVectors.Add(new Vector2(position.x - sizeX, position.y));
                 newVectors.Add(new Vector2(position.x, position.y + sizeY));
                 newVectors.Add(new Vector2(position.x, position.y - sizeY));
-                
+
                 foreach (Vector2 newVector in newVectors)
                 {
                     if (!positions.Contains(newVector) && !availablePositions.Contains(newVector))
                     {
                         if (newVector.x == 0 && newVector.y == 0)
                             continue;
-                        
+
                         availablePositions.Add(newVector);
                     }
                 }
-                
+
                 //On ajoute notre tilesmap sur tous les clients
                 child = PhotonNetwork.Instantiate(prefabGameObject.name, position, Quaternion.identity);
                 gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);
-                
+
                 maps.Add(new Map(false, position, verticalWall, horizontalWall, this));
             }
 
@@ -152,60 +158,86 @@ namespace Map
         [PunRPC]
         public void TPPlayer()
         {
-            foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+            if (level == 1)
             {
-                GameObject.Find(pl.NickName).transform.position = Vector3.zero;
+                foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+                {
+                    GameObject.Find(pl.NickName).transform.position = Vector3.zero;
+                }
+            }
+            else
+            {
+                foreach (GameObject obj in players)
+                {
+                    obj.transform.position = Vector3.zero;
+                }
             }
         }
 
         public void nextLevel()
         {
-            level++;
-            gameObject.GetComponent<PhotonView>().RPC("DeleteAll", RpcTarget.All);
-            maps.Clear();
+            gameObject.GetComponent<PhotonView>().RPC("LoadScreenLevel", RpcTarget.All);
+        }
 
+        [PunRPC]
+        public void LoadScreenLevel()
+        {
+            players.Clear();
+            foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                GameObject obj = GameObject.Find(pl.NickName);
+                players.Add(obj);
+                obj.SetActive(false);
+            }
+
+            loadingScreen.SetActive(true);
+            
+            level++;
+
+            GameObject mapsObj = GameObject.Find("Maps");
+            GameObject wallsObj = GameObject.Find("Walls");
+            Destroy(mapsObj);
+            Destroy(wallsObj);
+
+            Instantiate(new GameObject("Maps"));
+            Instantiate(new GameObject("Walls"));
+            
+            maps.Clear();
             StartCoroutine(GenerateNewMap());
         }
 
         private IEnumerator GenerateNewMap()
         {
             yield return new WaitForSeconds(4);
-            
-            Debug.LogWarning("KIKIKIKIIIIII");
+
             generate();
-            
+            foreach (GameObject pl in players)
+            {
+                pl.SetActive(true);
+            }
+
+            loadingScreen.SetActive(false);
         }
 
         [PunRPC]
         public void ChangeMapParent(string gameObject)
         {
-            Debug.LogWarning("change parent of: "+gameObject);
+            Debug.LogWarning("change parent of: " + gameObject);
             GameObject parent = GameObject.Find("Maps");
             GameObject child = GameObject.Find(gameObject);
             child.name = "Map" + _random.Next(0, 99999);
             child.transform.parent = parent.transform;
         }
-        
+
         [PunRPC]
         public void ChangeWallParent(string gameObject)
         {
-            Debug.LogWarning("change parent of: "+gameObject);
+            Debug.LogWarning("change parent of: " + gameObject);
             GameObject parent = GameObject.Find("Walls");
             GameObject child = GameObject.Find(gameObject);
             child.name = "Wall" + _random.Next(0, 99999);
             child.transform.parent = parent.transform;
         }
 
-        [PunRPC]
-        public void DeleteAll()
-        {
-            GameObject maps = GameObject.Find("Maps");
-            GameObject walls = GameObject.Find("Walls");
-            Destroy(maps);
-            Destroy(walls);
-            
-            Instantiate(new GameObject("Maps"));
-            Instantiate(new GameObject("Walls"));
-        }
     }
 }

@@ -42,7 +42,6 @@ namespace Map
 
                 if (PhotonNetwork.MasterClient.NickName == other.name)
                 {
-                    Debug.Log("TEST 123456789");
                     gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
                 }
 
@@ -64,7 +63,6 @@ namespace Map
                     if (Physics2D.Linecast(transformPosition, transformPosition,
                         1 << LayerMask.NameToLayer("WallColider")))
                     {
-                        Debug.Log("touching collider");
                         ok = false;
                     }
 
@@ -82,7 +80,6 @@ namespace Map
 
             if (PhotonNetwork.MasterClient.NickName != other.name)
             {
-                Debug.Log("JESPERE CA MARCHE");
                 GameObject obj = GameObject.Find(PhotonNetwork.MasterClient.NickName);
                 obj.transform.position = other.transform.position;
             }
