@@ -27,7 +27,8 @@ namespace Map
 
         [SerializeField] public GameObject spawnLvl2;
         [SerializeField] public GameObject bossLvl2;
-
+        [SerializeField] public GameObject chestLvl2;
+        
         [SerializeField] public GameObject verticalWall;
         [SerializeField] public GameObject horizontalWall;
 
@@ -62,6 +63,7 @@ namespace Map
 
             pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
             pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
+            pool.ResourceCache.Add(chestLvl2.name, chestLvl2);
 
             if (!PhotonNetwork.IsMasterClient)
                 return;

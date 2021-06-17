@@ -836,6 +836,8 @@ MonoBehaviour:
     type: 3}
   bossLvl2: {fileID: 6624104300937544445, guid: d7a5f0e14483ef9458f88f974620422a,
     type: 3}
+  chestLvl2: {fileID: 8750950496971364108, guid: 30ade3f4d96ede44fafcfc589172e35f,
+    type: 3}
   verticalWall: {fileID: 8370391611206959024, guid: c52d73d0c32e5d741ae5411b8ebc2e06,
     type: 3}
   horizontalWall: {fileID: 8370391611206959024, guid: 83f0dedf000da9d4c8385a8cfcd35554,
