@@ -20,7 +20,6 @@ public class Inventory : MonoBehaviour
         onHandWeapon = 0;
         currentWeapon = WeaponList[0];
         addWeapon(currentWeapon);
-        addWeapon(WeaponList[1]);
     }
 
     private void Start()
@@ -44,11 +43,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public int IndexOfWeaponToDisappear(GameObject weapon)
+    public int IndexOfWeaponToDisappear()
     {
         for (int i = 0; i < WeaponList.Count; i++)
         {
-            if (WeaponList[i] == currentWeapon)
+            if (WeaponList[i].name == currentWeapon.name)
             {
                 return i;
             }
@@ -58,10 +57,11 @@ public class Inventory : MonoBehaviour
 
     private void setCurrentWeapon()
     {
-        int indexToChange = IndexOfWeaponToDisappear(currentWeapon);
+        int indexToChange = IndexOfWeaponToDisappear();
+        Debug.Log(indexToChange);
         WeaponList[indexToChange].SetActive(false);
         currentWeapon = WeaponListToUse[onHandWeapon];
-        indexToChange = IndexOfWeaponToDisappear(currentWeapon);
+        indexToChange = IndexOfWeaponToDisappear();
         if (indexToChange == -1)
         {
             Debug.Log("petit soucis d'index");

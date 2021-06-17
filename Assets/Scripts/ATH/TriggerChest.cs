@@ -29,10 +29,29 @@ public class TriggerChest : MonoBehaviour
                     newWeapon = ChooseWeapon(WeaponListToUse);
                 }
 
-                FindObjectOfType<Inventory>().addWeapon(newWeapon);
+                int index = IndexOfWeapon(newWeapon);
+                if (index == -1)
+                {
+                    Debug.Log(index + " oulala ");
+                }
+                else
+                {
+                    FindObjectOfType<Inventory>().addWeapon(FindObjectOfType<Inventory>().WeaponList[index]); 
+                } 
             }
             HasTriggered = true;
         }
+    }
+    public int IndexOfWeapon(GameObject weapon)
+    {
+        for (int i = 0; i < WeaponList.Count; i++)
+        {
+            if (WeaponList[i].name == weapon.name)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private int GenerateRandom()
@@ -49,7 +68,7 @@ public class TriggerChest : MonoBehaviour
         int length = WeaponListToUse.Count;
         for (int i = 0; i < length; i++)
         {
-            if (WeaponListToUse[i] == newWeapon)
+            if (WeaponListToUse[i].name == newWeapon.name)
             {
                 return null;
             }
