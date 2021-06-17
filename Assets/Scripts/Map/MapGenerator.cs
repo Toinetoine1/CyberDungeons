@@ -23,6 +23,7 @@ namespace Map
 
         [SerializeField] public GameObject spawnLvl1;
         [SerializeField] public GameObject bossLvl1;
+        [SerializeField] public GameObject chestLvl1;
 
         [SerializeField] public GameObject spawnLvl2;
         [SerializeField] public GameObject bossLvl2;
@@ -57,6 +58,7 @@ namespace Map
 
             pool.ResourceCache.Add(spawnLvl1.name, spawnLvl1);
             pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
+            pool.ResourceCache.Add(chestLvl1.name, chestLvl1);
 
             pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
             pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
@@ -104,19 +106,33 @@ namespace Map
             availablePositions.Add(new Vector2(0, -sizeY));
 
             //Nombre de tilesmap a placer
-            int numberOfMap = new Random().Next(6, 12);
+            Random random = new Random();
+            int numberOfMap = random.Next(6, 12);
+            int chestIn = random.Next(6, 12);
             for (int i = 0; i < numberOfMap; i++)
             {
                 //On choisit aléatoirement une tilesmap
                 GameObject prefabGameObject = null;
-                switch (level)
+                if (i + 6 == chestIn)
                 {
-                    case 1:
-                        prefabGameObject = availableMapsLvl1[_random.Next(availableMapsLvl1.Count)];
-                        break;
-                    case 2:
-                        prefabGameObject = availableMapsLvl2[_random.Next(availableMapsLvl2.Count)];
-                        break;
+                    switch (level)
+                    {
+                        case 1:
+                            prefabGameObject = chestLvl1;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (level)
+                    {
+                        case 1:
+                            prefabGameObject = availableMapsLvl1[_random.Next(availableMapsLvl1.Count)];
+                            break;
+                        case 2:
+                            prefabGameObject = availableMapsLvl2[_random.Next(availableMapsLvl2.Count)];
+                            break;
+                    }   
                 }
 
                 //On choisit aléatoirement une position

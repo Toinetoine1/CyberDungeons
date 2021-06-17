@@ -830,6 +830,8 @@ MonoBehaviour:
   spawnLvl1: {fileID: 110852631115127665, guid: eafb315d01b6e6c4daad4b17389e64e0,
     type: 3}
   bossLvl1: {fileID: 110852631115127665, guid: 86b0f83f4f6595d4184267df61b4558a, type: 3}
+  chestLvl1: {fileID: 6850284583150338924, guid: 994223ecd675f114aa13d1ac18b07056,
+    type: 3}
   spawnLvl2: {fileID: 2724627429634247254, guid: d1c50033caccb9f4da9fbf7b16838e02,
     type: 3}
   bossLvl2: {fileID: 6624104300937544445, guid: d7a5f0e14483ef9458f88f974620422a,
