@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6635295371499817675}
   - component: {fileID: 1378448213121331274}
-  - component: {fileID: 4568074610465089638}
+  - component: {fileID: 1960465253415207580}
   m_Layer: 0
   m_Name: ChestCollider
   m_TagString: Untagged
@@ -58,7 +58,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.842274, y: 6.9648476}
   m_EdgeRadius: 0
---- !u!114 &4568074610465089638
+--- !u!114 &1960465253415207580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,10 +89,10 @@ GameObject:
   m_Component:
   - component: {fileID: 825915776971449742}
   - component: {fileID: 7138090790162295031}
-  - component: {fileID: -2426139635348164307}
-  - component: {fileID: -2223516420909382741}
+  - component: {fileID: -7811053314915773379}
+  - component: {fileID: 6687307898872184572}
   m_Layer: 0
-  m_Name: ChestLevel1
+  m_Name: ChestLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2172117222047939931}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.38, y: -6.58, z: -0.90234375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -152,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: a23f31bc171cb184bb63303fde94d522, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 585e713f9706b49478562b684ca16030, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &-2426139635348164307
+--- !u!50 &-7811053314915773379
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &-2223516420909382741
+--- !u!61 &6687307898872184572
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,16 +197,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014969766, y: 0.115469456}
+  m_Offset: {x: 0.098477215, y: 0.09970093}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.01, y: 3.15}
+    oldSize: {x: 3, y: 3.13}
     newSize: {x: 3.01, y: 3.15}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2596765, y: 1.9240179}
+  m_Size: {x: 2.0874188, y: 1.7416525}
   m_EdgeRadius: 0
