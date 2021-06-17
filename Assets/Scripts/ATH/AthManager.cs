@@ -31,8 +31,8 @@ public class AthManager : MonoBehaviour
             SetNbrOfBullet();
             SetImageWeapon();
         }
-
-
+        
+        
     }
 
     public void SetWeaponName()
