@@ -46,10 +46,9 @@ public class RandomatorWeapon : MachineGunnerManagement
         if (target != null)
         {
             RaycastHit2D raycastHit = Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider"));
-        
-        
-            if (raycastHit.collider == null)
-                isShooting = true;
+
+
+            isShooting = raycastHit.collider == null;
         
         
             if (isShooting && currNbBullet == 0)
@@ -63,13 +62,16 @@ public class RandomatorWeapon : MachineGunnerManagement
 
                 if (currNbBullet != 0 && currTimeBetweenBullet <= 0 && currInterval <= 0)
                 {
-                    _photonView.RPC("fireABullet", RpcTarget.All);
-                    currTimeBetweenBullet = timeBetweenBullet;
-                    currNbBullet -= 1;
-                    isShooting = currNbBullet != 0;
-                    if (!isShooting)
+                    if (_photonView.IsMine)
                     {
-                        currInterval = firingInterval;
+                        fireABullet();
+                        currTimeBetweenBullet = timeBetweenBullet;
+                        currNbBullet -= 1;
+                        isShooting = currNbBullet != 0;
+                        if (!isShooting)
+                        {
+                            currInterval = firingInterval;
+                        }
                     }
                 }
             }
@@ -77,14 +79,16 @@ public class RandomatorWeapon : MachineGunnerManagement
             {
                 if (currInterval <= 0)
                 {
-                    _photonView.RPC("fireABullet", RpcTarget.All);
-                    currInterval = firingInterval;
+                    if (_photonView.IsMine)
+                    {
+                        fireABullet();
+                        currInterval = firingInterval;
+                    }
                 }
             }
         }
     }
 
-    [PunRPC]
     private new void fireABullet()
     {
         GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);

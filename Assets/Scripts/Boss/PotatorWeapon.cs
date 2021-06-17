@@ -28,7 +28,7 @@ public class PotatorWeapon : MonoBehaviour
             pool.ResourceCache.Add(Bullet.name, Bullet);
     }
 
-    private void Update()
+    void Update()
     {
         if (currInterval > 0)
         {
@@ -37,8 +37,11 @@ public class PotatorWeapon : MonoBehaviour
         
         if (currInterval <= 0 && target != null && !Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider")))
         {
-            Fire();
-            currInterval = fireInterval;
+            if (PhotonView.Get(this).IsMine)
+            {
+                Fire();
+                currInterval = fireInterval;
+            }
         }
     }
 
@@ -55,15 +58,12 @@ public class PotatorWeapon : MonoBehaviour
             Vector3 bulletVector = new Vector2(bulDirX,bulDirY);
             Vector2 bulletDir = (bulletVector - transform.position).normalized;
 
-            PhotonView photonView = PhotonView.Get(this);
-            photonView.RPC("fireABullet", RpcTarget.All, bulletDir);
-            
+            fireABullet(bulletDir);
             
             angle -= angleStep;
         }
     }
-
-    [PunRPC]
+    
     private void fireABullet(Vector2 target)
     {
         GameObject bullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
