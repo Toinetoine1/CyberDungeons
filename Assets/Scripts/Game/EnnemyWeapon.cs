@@ -15,12 +15,15 @@ public class EnnemyWeapon : MonoBehaviour
     
     public Transform target;
 
+    protected PhotonView _photonView;
+
 
     private void Start()
     {
         DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
+        _photonView = PhotonView.Get(this);
     }
 
     private void Update()
@@ -29,16 +32,18 @@ public class EnnemyWeapon : MonoBehaviour
         {
             currInterval -= Time.deltaTime;
         }
-    }
 
-    public void fire()
-    {
-        if (currInterval <= 0)
+        
+        if (currInterval <= 0 && target != null &&!Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider")))
         {
-            fireABullet();
-            currInterval = firingInterval;
+            if (_photonView.IsMine)
+            {
+                fireABullet();
+                currInterval = firingInterval;
+            }
         }
     }
+    
 
     protected void fireABullet()
     {
@@ -49,6 +54,5 @@ public class EnnemyWeapon : MonoBehaviour
             newBullet.GetComponent<Bullet>().EnemiSetup(target);
     }
 
-    ///TODO script pour le sniper
-    /// TODO script pour les bosses
+
 }

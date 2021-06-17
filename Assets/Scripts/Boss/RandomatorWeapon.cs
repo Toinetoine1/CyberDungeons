@@ -22,6 +22,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         Damage = Random.Range(1, 2)*10;
         Speed = Random.Range(10f, 20f);
         switchTime = 8;
+        _photonView = PhotonView.Get(this);
     }
 
     // Update is called once per frame
@@ -36,45 +37,55 @@ public class RandomatorWeapon : MachineGunnerManagement
                 switchTime = 8;
             }
         }
-
-        RaycastHit2D raycastHit = Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider"));
-        
-        
-        if (raycastHit.collider == null)
-            isShooting = true;
-        
-        
-        if (isShooting && currNbBullet == 0)
-            currNbBullet = nbBullet;
         
         if (currInterval > 0)
         {
             currInterval -= Time.deltaTime;
         }
 
-        if (typeOfFire)
-        {
-            if (currTimeBetweenBullet > 0)
-                currTimeBetweenBullet -= Time.deltaTime;
 
-            if (currNbBullet != 0 && currTimeBetweenBullet <= 0 && currInterval <= 0)
+        if (target != null)
+        {
+            RaycastHit2D raycastHit = Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider"));
+
+
+            isShooting = raycastHit.collider == null;
+        
+        
+            if (isShooting && currNbBullet == 0)
+                currNbBullet = nbBullet;
+            
+
+            if (typeOfFire)
             {
-                fireABullet();
-                currTimeBetweenBullet = timeBetweenBullet;
-                currNbBullet -= 1;
-                isShooting = currNbBullet != 0;
-                if (!isShooting)
+                if (currTimeBetweenBullet > 0)
+                    currTimeBetweenBullet -= Time.deltaTime;
+
+                if (currNbBullet != 0 && currTimeBetweenBullet <= 0 && currInterval <= 0)
                 {
-                    currInterval = firingInterval;
+                    if (_photonView.IsMine)
+                    {
+                        fireABullet();
+                        currTimeBetweenBullet = timeBetweenBullet;
+                        currNbBullet -= 1;
+                        isShooting = currNbBullet != 0;
+                        if (!isShooting)
+                        {
+                            currInterval = firingInterval;
+                        }
+                    }
                 }
             }
-        }
-        else if (raycastHit.collider == null)
-        {
-            if (currInterval <= 0)
+            else if (raycastHit.collider == null)
             {
-                fireABullet();
-                currInterval = firingInterval;
+                if (currInterval <= 0)
+                {
+                    if (_photonView.IsMine)
+                    {
+                        fireABullet();
+                        currInterval = firingInterval;
+                    }
+                }
             }
         }
     }

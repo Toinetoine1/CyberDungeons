@@ -2,44 +2,91 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game;
+using Photon.Realtime;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class Inventory : MonoBehaviour
 {
+    public List<GameObject> WeaponListToUse;
     public List<GameObject> WeaponList;
-    private int onHandWeapon;
     public GameObject currentWeapon;
+    private int onHandWeapon;
 
-    private void Awake()
+    void Awake()
     {
-        WeaponList = new List<GameObject>();
-        addWeapon(GameObject.Find("The Gun"));
+        WeaponListToUse = new List<GameObject>();
+        WeaponList[0].SetActive(true);
         onHandWeapon = 0;
-        currentWeapon = WeaponList[onHandWeapon];
+        currentWeapon = WeaponList[0];
+        addWeapon(currentWeapon);
     }
 
-    private void setCurrentWeapon(int index)
+    private void Start()
     {
-        if (index < 0 || index > WeaponList.Count - 1)
-            return;
-        onHandWeapon = index;
-        currentWeapon = WeaponList[onHandWeapon];
+        Debug.Log(currentWeapon.name);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(2))
+        {
+            nextWeapon();
+            if (currentWeapon != null)
+            {
+                Debug.Log(currentWeapon.name);
+            }
+            else
+            {
+                Debug.Log("currentWeapon est vide ??");
+            }
+        }
+    }
+
+    public int IndexOfWeaponToDisappear()
+    {
+        for (int i = 0; i < WeaponList.Count; i++)
+        {
+            if (WeaponList[i].name == currentWeapon.name)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void setCurrentWeapon()
+    {
+        int indexToChange = IndexOfWeaponToDisappear();
+        Debug.Log(indexToChange);
+        WeaponList[indexToChange].SetActive(false);
+        currentWeapon = WeaponListToUse[onHandWeapon];
+        indexToChange = IndexOfWeaponToDisappear();
+        if (indexToChange == -1)
+        {
+            Debug.Log("petit soucis d'index");
+        }
+        else
+        {
+            Debug.Log(indexToChange);
+            WeaponList[indexToChange].SetActive(true);
+        }
     }
 
     public void nextWeapon()
     {
-        onHandWeapon = (onHandWeapon + 1) % WeaponList.Count;
-        setCurrentWeapon(onHandWeapon);
+        onHandWeapon = (onHandWeapon + 1) % WeaponListToUse.Count;
+        setCurrentWeapon();
     }
     
     public void previousWeapon()
     {
-        onHandWeapon = (onHandWeapon - 1) % WeaponList.Count;
-        setCurrentWeapon(onHandWeapon);
+        onHandWeapon = (onHandWeapon - 1) % WeaponListToUse.Count;
+        setCurrentWeapon();
     }
 
     public void addWeapon(GameObject Weapon)
     {
-        WeaponList.Add(Weapon);
+        WeaponListToUse.Add(Weapon);
     }
 }
