@@ -9947,6 +9947,7 @@ GameObject:
   - component: {fileID: 110852631114005954}
   - component: {fileID: 8728539252414524128}
   - component: {fileID: 1098148823609459525}
+  - component: {fileID: 4488200411396117630}
   m_Layer: 8
   m_Name: WallCollider
   m_TagString: WallCollider
@@ -13048,6 +13049,22 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &4488200411396117630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110852631114005980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 0
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &110852631115127665
 GameObject:
   m_ObjectHideFlags: 0

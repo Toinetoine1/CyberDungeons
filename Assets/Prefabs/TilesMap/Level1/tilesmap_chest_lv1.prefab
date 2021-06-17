@@ -3669,6 +3669,7 @@ GameObject:
   - component: {fileID: 1278076173193925025}
   - component: {fileID: 2305781161165743612}
   - component: {fileID: 1533030301993247167}
+  - component: {fileID: 4881020105535952086}
   m_Layer: 8
   m_Name: WallCollider
   m_TagString: WallCollider
@@ -5283,6 +5284,15 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: 0, y: -7, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 29
+      m_TileSpriteIndex: 25
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 1
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741827
   - first: {x: -18, y: -5, z: 0}
     second:
       serializedVersion: 2
@@ -6873,7 +6883,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 34
     m_Data: {fileID: 11400000, guid: 6ec57ed699ac2f748ab2c1e5f68b5b99, type: 2}
-  - m_RefCount: 0
+  - m_RefCount: 1
     m_Data: {fileID: 0}
   - m_RefCount: 130
     m_Data: {fileID: 11400000, guid: 8589ad0601a1fe242b8f58aa6aa834a4, type: 2}
@@ -6942,7 +6952,7 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: 4284469207426645750, guid: b512c8dfa81ddca49869d6168d1d6464,
       type: 3}
-  - m_RefCount: 0
+  - m_RefCount: 1
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 4123549633908872773, guid: 5c962ddf35c47644a833744546e3eeb6,
@@ -6960,7 +6970,7 @@ Tilemap:
     m_Data: {fileID: 5591839274624108002, guid: 5c962ddf35c47644a833744546e3eeb6,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 346
+  - m_RefCount: 347
     m_Data:
       e00: 1
       e01: 0
@@ -6981,8 +6991,8 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 346
     m_Data: {r: 1, g: 1, b: 1, a: 1}
-  - m_RefCount: 0
-    m_Data: {r: 7.1631317, g: 7.1631317, b: 7.1631317, a: 7.1631317}
+  - m_RefCount: 1
+    m_Data: {r: 0.7474801, g: 0.32104284, b: 0.45933372, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7113,6 +7123,22 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &4881020105535952086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678190164983404349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7cb724808c322458aa4d15f5035fa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 0
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &6850284583150338924
 GameObject:
   m_ObjectHideFlags: 0

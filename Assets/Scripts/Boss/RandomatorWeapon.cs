@@ -36,6 +36,11 @@ public class RandomatorWeapon : MachineGunnerManagement
                 switchTime = 8;
             }
         }
+        
+        if (currInterval > 0)
+        {
+            currInterval -= Time.deltaTime;
+        }
 
 
         if (target != null)
@@ -49,11 +54,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         
             if (isShooting && currNbBullet == 0)
                 currNbBullet = nbBullet;
-        
-            if (currInterval > 0)
-            {
-                currInterval -= Time.deltaTime;
-            }
+            
 
             if (typeOfFire)
             {
@@ -62,7 +63,7 @@ public class RandomatorWeapon : MachineGunnerManagement
 
                 if (currNbBullet != 0 && currTimeBetweenBullet <= 0 && currInterval <= 0)
                 {
-                    fireABullet();
+                    _photonView.RPC("fireABullet", RpcTarget.All);
                     currTimeBetweenBullet = timeBetweenBullet;
                     currNbBullet -= 1;
                     isShooting = currNbBullet != 0;
@@ -76,13 +77,14 @@ public class RandomatorWeapon : MachineGunnerManagement
             {
                 if (currInterval <= 0)
                 {
-                    fireABullet();
+                    _photonView.RPC("fireABullet", RpcTarget.All);
                     currInterval = firingInterval;
                 }
             }
         }
     }
 
+    [PunRPC]
     private new void fireABullet()
     {
         GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
