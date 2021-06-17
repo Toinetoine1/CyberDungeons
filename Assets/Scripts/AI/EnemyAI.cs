@@ -11,20 +11,20 @@ namespace AI
 {
     public class EnemyAI : MonoBehaviourPunCallbacks
     {
-        private GameObject target, pl1, pl2;
+        protected GameObject target, pl1, pl2;
 
         public float speed = 2f;
         public float nextWaypointDistance = 1f;
         public float lineOfSite = 5;
         public float distToShot = 5;
 
-        private Path path;
-        private int currentWaypoint;
+        protected Path path;
+        protected int currentWaypoint;
 
-        private Seeker seeker;
-        private Rigidbody2D rb;
+        protected Seeker seeker;
+        protected Rigidbody2D rb;
         
-        private Animator Animator;
+        protected Animator Animator;
         
         private EnnemyWeapon ennemyWeapon;
 
@@ -41,7 +41,7 @@ namespace AI
             InvokeRepeating("UpdatePath", 0f, .5f);
         }
         
-        private void SetMovementAnim(Vector2 dir)
+        protected void SetMovementAnim(Vector2 dir)
         {
             Animator.SetBool("Standing", false);
             Animator.SetFloat("xDir", dir.x);
@@ -68,7 +68,7 @@ namespace AI
                 seeker.StartPath(rb.position, target.transform.position, OnPathComplete);
         }
 
-        private void OnPathComplete(Path p)
+        protected void OnPathComplete(Path p)
         {
             if (!p.error)
             {
@@ -149,7 +149,7 @@ namespace AI
             }
         }
 
-        private void UpdateTarget(Action<GameObject> callback)
+        protected void UpdateTarget(Action<GameObject> callback)
         {
             GameObject oldTarget = target;
             

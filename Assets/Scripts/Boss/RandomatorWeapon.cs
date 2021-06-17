@@ -36,6 +36,11 @@ public class RandomatorWeapon : MachineGunnerManagement
                 switchTime = 8;
             }
         }
+        
+        if (currInterval > 0)
+        {
+            currInterval -= Time.deltaTime;
+        }
 
 
         if (target != null)
@@ -49,11 +54,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         
             if (isShooting && currNbBullet == 0)
                 currNbBullet = nbBullet;
-        
-            if (currInterval > 0)
-            {
-                currInterval -= Time.deltaTime;
-            }
+            
 
             if (typeOfFire)
             {

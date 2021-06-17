@@ -49,6 +49,5 @@ public class EnnemyWeapon : MonoBehaviour
             newBullet.GetComponent<Bullet>().EnemiSetup(target);
     }
 
-    ///TODO script pour le sniper
-    /// TODO script pour les bosses
+
 }
