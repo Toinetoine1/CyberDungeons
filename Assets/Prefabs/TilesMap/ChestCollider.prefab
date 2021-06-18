@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2979642665822806973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8845133323581213135}
+  - component: {fileID: 3887819516592485198}
+  - component: {fileID: 1851115507408546658}
+  m_Layer: 0
+  m_Name: ChestCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8845133323581213135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979642665822806973}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3887819516592485198
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979642665822806973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.102140665, y: 0.16341972}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.842274, y: 6.9648476}
+  m_EdgeRadius: 0
+--- !u!114 &1851115507408546658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979642665822806973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbd9cdb91ccea984d9adaa3d955dc194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasTriggered: 0
+  WeaponList:
+  - {fileID: 1755348413303364497, guid: 67eb15d35cbfbac4ebdb2c32823c6739, type: 3}
+  - {fileID: 3094720903845728278, guid: 6d8a27058fa762d42a140bf28994125c, type: 3}
+  - {fileID: 3400739461192033069, guid: ecf8e226df6c0764b9e82218635da8a3, type: 3}
+  - {fileID: 3874906229486826293, guid: 653fb3aa4f445af4098c2a4e0da96df9, type: 3}
+  - {fileID: 2781290519710392893, guid: 8d74f4ce0337d7040ad62c8f17b4c360, type: 3}
+  - {fileID: 3611349585992222633, guid: f594cd7840430ca4f8b201fef6696849, type: 3}
+  - {fileID: 736762254953518590, guid: 545b6e4ac564fc7418f20070306c6fe9, type: 3}
+  - {fileID: 4632917497819984083, guid: 68e2a936d3b5df947b58d5c252b0c635, type: 3}
+  HereToDisplay: {fileID: 0}

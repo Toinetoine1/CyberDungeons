@@ -35,6 +35,7 @@ namespace Game
                 timeRemaining -= Time.deltaTime;
                 if (timeRemaining <= 0)
                 {
+                    FindObjectOfType<AudioManager>().Play("Reload");
                     reloading = false;
                     currAmmo = maxAmmo;
                 }

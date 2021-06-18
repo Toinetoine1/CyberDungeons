@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 using Random = System.Random;
+using UnityEngine.UI;
 
 public class TriggerChest : MonoBehaviour
 {
     public bool HasTriggered;
 
     public List<GameObject> WeaponList;
+    
     
     void Start()
     {
@@ -37,10 +39,10 @@ public class TriggerChest : MonoBehaviour
                 }
                 else
                 {
-                    FindObjectOfType<Inventory>().addWeapon(FindObjectOfType<Inventory>().WeaponList[index]); 
-                } 
+                    FindObjectOfType<Inventory>().addWeapon(FindObjectOfType<Inventory>().WeaponList[index]);
+                }
             }
-            HasTriggered = true;
+            HasTriggered = true; 
         }
     }
     public int IndexOfWeapon(GameObject weapon)
@@ -76,5 +78,5 @@ public class TriggerChest : MonoBehaviour
         }
         return newWeapon;
     }
-    
+
 }
