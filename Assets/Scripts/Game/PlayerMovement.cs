@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator Animator;
     private KeyBinding KeyBinding;
     private WeaponManagement _WeaponManagement;
+    private Rigidbody2D _rigidbody2D;
 
     public State mouvementState;
 
@@ -23,11 +24,17 @@ public class PlayerMovement : MonoBehaviour
         KeyBinding = GetComponent<KeyBinding>();
         Animator = GetComponent<Animator>();
         _WeaponManagement = GetComponent<WeaponManagement>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_rigidbody2D.velocity != Vector2.zero)
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+        }
+        
         if (gameObject.GetComponent<PhotonView>().IsMine)
         {
             if (mouvementState == State.Walking)
