@@ -24,8 +24,6 @@ namespace AI
         private Seeker seeker;
         private Rigidbody2D rb;
         
-        private Animator Animator;
-        
         private RocketeerManagement _rocketeerManagement;
 
 
@@ -34,19 +32,12 @@ namespace AI
         {
             //seeker = GetComponent<Seeker>();
             rb = GetComponent<Rigidbody2D>();
-            Animator = GetComponent<Animator>();
             _rocketeerManagement = GetComponent<RocketeerManagement>();
 
             StartCoroutine(ExecuteAfterTime(0.5f));
             InvokeRepeating("UpdatePath", 0f, .5f);
         }
         
-        protected void SetMovementAnim(Vector2 dir)
-        {
-            Animator.SetBool("Standing", false);
-            Animator.SetFloat("xDir", dir.x);
-            Animator.SetFloat("yDir", dir.y);
-        }
         
         IEnumerator ExecuteAfterTime(float time)
         {
@@ -91,8 +82,11 @@ namespace AI
             
             if (target == null)
                 return;
-            
-            _rocketeerManagement.target = target.transform;
+
+            if (_rocketeerManagement.currDashInterval <= 0)
+            {
+                _rocketeerManagement.target = target.transform;
+            }
             
             if (Vector2.Distance(transform.position, target.transform.position) <= distToShot &&
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
