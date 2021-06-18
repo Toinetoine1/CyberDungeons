@@ -11,6 +11,7 @@ public class PotatorWeapon : MonoBehaviour
     public GameObject Bullet;
 
     public Transform target;
+    private PotatorRoll _potatorRoll;
 
     public int amountOfBullet;
     
@@ -26,6 +27,7 @@ public class PotatorWeapon : MonoBehaviour
         DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
+        _potatorRoll = GetComponent<PotatorRoll>();
     }
 
     void Update()
@@ -35,7 +37,8 @@ public class PotatorWeapon : MonoBehaviour
             currInterval -= Time.deltaTime;
         }
         
-        if (currInterval <= 0 && target != null && !Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider")))
+        if (currInterval <= 0 &&
+            target != null && !Physics2D.Linecast(transform.position, target.position, 1 << LayerMask.NameToLayer("WallColider")) && _potatorRoll._state == PotatorRoll.State.Normal)
         {
             if (PhotonView.Get(this).IsMine)
             {
