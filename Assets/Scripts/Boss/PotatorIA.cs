@@ -12,13 +12,15 @@ public class PotatorIA : EnemyAI
 {
 
     private PotatorWeapon _potatorWeapon;
+    private PotatorRoll _potatorRoll;
     
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
-        _potatorWeapon = GetComponent<PotatorWeapon>();    
+        _potatorWeapon = GetComponent<PotatorWeapon>();
+        _potatorRoll = GetComponent<PotatorRoll>();
 
         StartCoroutine(ExecuteAfterTime(0.5f));
         InvokeRepeating("UpdatePath", 0f, .5f);
@@ -41,6 +43,7 @@ public class PotatorIA : EnemyAI
                 return;
 
             _potatorWeapon.target = target.transform;
+            _potatorRoll.target = target.transform;
 
             if (Vector2.Distance(transform.position, target.transform.position) <= distToShot &&
                 !Physics2D.Linecast(transform.position, target.transform.position, 1 << LayerMask.NameToLayer("WallColider")))
