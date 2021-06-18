@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game;
+using Map;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,54 +9,44 @@ using UnityEngine.UI;
 public class TxtforWeaponDrop : MonoBehaviour
 {
     public GameObject HereToDisplay;
+    private float timeRemaining;
     private bool done;
-    private float timeTowait;
-    private bool[] arrayForDisplay;
-    private int i;
-    
+
     void Start()
     {
-        HereToDisplay.SetActive(false);
         done = false;
-        timeTowait = 5;
-        arrayForDisplay = new[] {false, false, false};
-        i = 0;
+        timeRemaining = 5;
     }
     // Update is called once per frame
     void Update()
     {
-        int NbrOfWeapon = FindObjectOfType<Inventory>().WeaponListToUse.Count;
-        if (NbrOfWeapon == 3  && arrayForDisplay[1] == false || NbrOfWeapon == 4 && arrayForDisplay[2] == false)
-        {
-            done = false;
-            i++;
-        }
-        bool HasToDisplay = FindObjectOfType<TriggerChest>().HasTriggered;
-        if (HasToDisplay && !done)
+        if (FindObjectOfType<TriggerChest>().HasTriggered && !done)
         {
             Display();
-            if (timeTowait > 0)
+            done = true;
+        }
+        if (done)
+        {
+            if (timeRemaining > 0)
             {
-                timeTowait -= Time.deltaTime;
+                timeRemaining -= Time.deltaTime;
             }
-            if (timeTowait <= 0)
+
+            if (timeRemaining <= 0 )
             {
-                UnDisplay();
-                done = true;
-                arrayForDisplay[i] = true;
+                HereToDisplay.SetActive(false);
             }
         }
+        if (FindObjectOfType<Health>().gameObject.CompareTag("Boss"))
+        {
+            done = false;
+            timeRemaining = 5;
+        }
     }
-
     void Display()
     {
         HereToDisplay.SetActive(true);
         int NewWeapon = FindObjectOfType<Inventory>().WeaponListToUse.Count - 1;
         HereToDisplay.GetComponent<Text>().text = "New Weapon !" + FindObjectOfType<Inventory>().WeaponListToUse[NewWeapon].name;
-    }
-
-    void UnDisplay()
-    {
-        HereToDisplay.SetActive(false);
     }
 }
