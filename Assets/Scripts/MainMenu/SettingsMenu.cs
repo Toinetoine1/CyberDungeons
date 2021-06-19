@@ -66,4 +66,9 @@ public class SettingsMenu : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
+    public void OpenWebsite()
+    {
+        Application.OpenURL("www.cyberdungeons.fr");
+    }
+
 }
