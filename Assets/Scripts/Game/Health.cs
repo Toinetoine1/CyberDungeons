@@ -33,8 +33,6 @@ namespace Game
         {
             if (health <= 0 && gameObject.GetComponent<PhotonView>().IsMine)
             {
-                PhotonNetwork.Destroy(gameObject);
-
                 if (gameObject.CompareTag("Boss"))
                 {
                     FindObjectOfType<AudioManager>().Play("Level2");
@@ -79,6 +77,8 @@ namespace Game
                         photonView.RPC("OnPlayerDeath", RpcTarget.All);
                     }
                 }
+                
+                PhotonNetwork.Destroy(gameObject);
             }
         }
 
