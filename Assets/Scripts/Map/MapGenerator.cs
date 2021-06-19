@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using AI;
 using AI.Map;
 using Photon.Pun;
 using Photon.Realtime;
@@ -43,27 +44,30 @@ namespace Map
             level = 1;
             players = new List<GameObject>();
 
-            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-            foreach (GameObject prefab in availableMapsLvl1)
+            if (!PlayerConnect.hasAlreadyPlayed)
             {
-                pool.ResourceCache.Add(prefab.name, prefab);
+                DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
+                foreach (GameObject prefab in availableMapsLvl1)
+                {
+                    pool.ResourceCache.Add(prefab.name, prefab);
+                }
+
+                foreach (GameObject prefab in availableMapsLvl2)
+                {
+                    pool.ResourceCache.Add(prefab.name, prefab);
+                }
+
+                pool.ResourceCache.Add(verticalWall.name, verticalWall);
+                pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
+
+                pool.ResourceCache.Add(spawnLvl1.name, spawnLvl1);
+                pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
+                pool.ResourceCache.Add(chestLvl1.name, chestLvl1);
+
+                pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
+                pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
+                pool.ResourceCache.Add(chestLvl2.name, chestLvl2);   
             }
-
-            foreach (GameObject prefab in availableMapsLvl2)
-            {
-                pool.ResourceCache.Add(prefab.name, prefab);
-            }
-
-            pool.ResourceCache.Add(verticalWall.name, verticalWall);
-            pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
-
-            pool.ResourceCache.Add(spawnLvl1.name, spawnLvl1);
-            pool.ResourceCache.Add(bossLvl1.name, bossLvl1);
-            pool.ResourceCache.Add(chestLvl1.name, chestLvl1);
-
-            pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
-            pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
-            pool.ResourceCache.Add(chestLvl2.name, chestLvl2);
 
             if (!PhotonNetwork.IsMasterClient)
                 return;

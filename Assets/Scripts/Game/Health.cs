@@ -1,11 +1,15 @@
-﻿using Map;
+﻿using AI;
+using Map;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 namespace Game
 {
     public class Health : MonoBehaviour
     {
+        public static int alivePlayer;
+        
         public bool randomHealth;
         public float health;
         private float maxHealth;
@@ -52,16 +56,46 @@ namespace Game
                     {
                         PhotonNetwork.LoadLevel(0);
                         PhotonNetwork.LeaveRoom();
+                        PlayerConnect.hasAlreadyPlayed = true;
                     }
                     else
                     {
-                        string playerName = gameObject.name;
+                        PhotonView photonView = gameObject.GetComponent<PhotonView>();
+                        if (alivePlayer == 2)
+                        {
+                            foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+                            {
+                                if(pl.NickName == gameObject.name)
+                                    continue;
+                                GameObject otherPlayerName = GameObject.Find(pl.NickName);
+                                otherPlayerName.GetComponentInChildren<Camera>().enabled = true;
+                            }
+                        }
+                        else
+                        {
+                            photonView.RPC("LeaveGame", RpcTarget.All);
+                        }
                         
+                        photonView.RPC("OnPlayerDeath", RpcTarget.All);
                     }
                 }
             }
         }
 
+        [PunRPC]
+        public void LeaveGame()
+        {
+            PlayerConnect.hasAlreadyPlayed = true;
+            PhotonNetwork.LoadLevel(0);
+            PhotonNetwork.LeaveRoom();
+        }
+        
+        [PunRPC]
+        public void OnPlayerDeath()
+        {
+            alivePlayer--;
+        }
+        
         public void takeDamageRPC(int Damage)
         {
             PhotonView photonView = PhotonView.Get(gameObject);

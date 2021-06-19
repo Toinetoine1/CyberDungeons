@@ -21,16 +21,20 @@ namespace Map
 
             if (MapGenerator.level == 1)
             {
-                if (boss_lvl1 != null)
-                    pool.ResourceCache.Add(boss_lvl1.name, boss_lvl1);   
-            } else if (MapGenerator.level == 2)
+                if (boss_lvl1 != null && !pool.ResourceCache.ContainsKey(boss_lvl1.name))
+                {
+                    pool.ResourceCache.Add(boss_lvl1.name, boss_lvl1);
+                }
+            }
+            else if (MapGenerator.level == 2)
             {
-                if (boss_lvl2 != null)
-                    pool.ResourceCache.Add(boss_lvl2.name, boss_lvl2);   
-            } else if (MapGenerator.level == 3)
+                if (boss_lvl2 != null && !pool.ResourceCache.ContainsKey(boss_lvl2.name))
+                    pool.ResourceCache.Add(boss_lvl2.name, boss_lvl2);
+            }
+            else if (MapGenerator.level == 3)
             {
-                if (boss_lvl3 != null)
-                    pool.ResourceCache.Add(boss_lvl3.name, boss_lvl3);    
+                if (boss_lvl3 != null && !pool.ResourceCache.ContainsKey(boss_lvl3.name))
+                    pool.ResourceCache.Add(boss_lvl3.name, boss_lvl3);
             }
         }
 
@@ -46,7 +50,8 @@ namespace Map
 
                 if (PhotonNetwork.MasterClient.NickName == other.name)
                 {
-                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
+                    gameObject.GetComponent<PhotonView>()
+                        .RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
                 }
 
                 PhotonNetwork.Instantiate(boss_lvl1.name, position, Quaternion.identity);
