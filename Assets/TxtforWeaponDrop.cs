@@ -10,22 +10,24 @@ public class TxtforWeaponDrop : MonoBehaviour
 {
     public GameObject HereToDisplay;
     private float timeRemaining;
-    private bool done;
+    private bool[] arrayForDisplay;
+    private int i;
 
     void Start()
     {
-        done = false;
+        i = 0;
+        arrayForDisplay = new[] {false, false, false};
         timeRemaining = 5;
     }
     // Update is called once per frame
     void Update()
     {
-        if (FindObjectOfType<TriggerChest>().HasTriggered && !done)
+        if (FindObjectOfType<TriggerChest>().HasTriggered && !arrayForDisplay[i])
         {
             Display();
-            done = true;
+            arrayForDisplay[i] = true;
         }
-        if (done)
+        if (arrayForDisplay[i])
         {
             if (timeRemaining > 0)
             {
@@ -37,9 +39,14 @@ public class TxtforWeaponDrop : MonoBehaviour
                 HereToDisplay.SetActive(false);
             }
         }
-        if (FindObjectOfType<Health>().gameObject.CompareTag("Boss"))
+        if (MapGenerator.level == 2 && !arrayForDisplay[1])
         {
-            done = false;
+            i = 1;
+            timeRemaining = 5;
+        }
+        if (MapGenerator.level == 3 && !arrayForDisplay[2])
+        {
+            i = 2;
             timeRemaining = 5;
         }
     }
