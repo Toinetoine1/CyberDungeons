@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         {
             mouvementState = State.Walking;
             Animator.SetBool("Dodge", false);
-            slideCooldown = 1f;
+            slideCooldown = 0.75f;
         }
     }
 

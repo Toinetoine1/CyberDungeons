@@ -18,7 +18,7 @@ namespace Map
 
         public static int aliveMob;
 
-        private void Start()
+        private void Awake()
         {
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
 
