@@ -42,7 +42,8 @@ namespace Map
 
                 if (PhotonNetwork.MasterClient.NickName == other.name)
                 {
-                    gameObject.GetComponent<PhotonView>().RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
+                    gameObject.GetComponent<PhotonView>()
+                        .RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
                 }
 
                 while (hasToSpawn != 0)
@@ -81,7 +82,8 @@ namespace Map
             if (PhotonNetwork.MasterClient.NickName != other.name)
             {
                 GameObject obj = GameObject.Find(PhotonNetwork.MasterClient.NickName);
-                obj.transform.position = other.transform.position;
+                if (obj != null)
+                    obj.transform.position = other.transform.position;
             }
         }
 
@@ -93,7 +95,9 @@ namespace Map
                 if (pl.NickName == name)
                     continue;
 
-                GameObject.Find(pl.NickName).transform.position = pos;
+                GameObject find = GameObject.Find(pl.NickName);
+                if (find != null)
+                    find.transform.position = pos;
             }
         }
     }
