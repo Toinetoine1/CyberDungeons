@@ -10,6 +10,7 @@ public class Solo : MonoBehaviourPunCallbacks
 {
     public Text text;
     
+    
     public void StartSoloGame()
     {
         if (!NetworkConnection.connected)

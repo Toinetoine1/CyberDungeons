@@ -46,6 +46,18 @@ namespace Game
                         Map.Map map = Map.Map.FindMapByVector(gameObject.transform.position);
                         map.DeleteWall();
                     }   
+                } else if (gameObject.CompareTag("Player"))
+                {
+                    if (PhotonNetwork.CurrentRoom.Players.Values.Count == 1)
+                    {
+                        PhotonNetwork.LoadLevel(0);
+                        PhotonNetwork.LeaveRoom();
+                    }
+                    else
+                    {
+                        string playerName = gameObject.name;
+                        
+                    }
                 }
             }
         }
