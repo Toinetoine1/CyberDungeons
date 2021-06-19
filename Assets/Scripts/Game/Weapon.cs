@@ -40,6 +40,11 @@ namespace Game
                     currAmmo = maxAmmo;
                 }
             }
+
+            if (currAmmo == 0 && !reloading)
+            {
+                Reload();
+            }
         }
 
         public void fire(Camera cam, Transform transform)
