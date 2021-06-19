@@ -68,9 +68,7 @@ namespace Game
                                 if(pl.NickName == gameObject.name)
                                     continue;
                                 GameObject otherPlayerName = GameObject.Find(pl.NickName);
-                                Debug.Log(otherPlayerName);
-                                Debug.LogError(otherPlayerName.name);
-                                otherPlayerName.GetComponentInChildren<Camera>().enabled = true;
+                                otherPlayerName.transform.GetChild(1).gameObject.SetActive(true);
                             }
                         }
                         else

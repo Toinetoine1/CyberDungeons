@@ -57,6 +57,8 @@ namespace Map
                     Vector2 transformPosition = new Vector2(x, y);
                     foreach (GameObject player in PlayerConnect.players)
                     {
+                        if (player == null)
+                            continue;
                         if (Vector3.Distance(player.transform.position, transformPosition) < distanceToSpawn)
                             ok = false;
                     }
