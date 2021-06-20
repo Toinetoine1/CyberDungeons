@@ -18,7 +18,10 @@ public class WeaponManagement : MonoBehaviour
     public void reloadOnPress()
     {
         Weapon currWeapon = _inventory.currentWeapon.GetComponent<Weapon>();
-        currWeapon.Reload();
+        if (currWeapon.currAmmo != currWeapon.maxAmmo)
+        {
+            currWeapon.Reload();
+        }
     }
 
 }
