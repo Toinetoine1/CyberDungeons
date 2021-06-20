@@ -54,7 +54,21 @@ namespace Map
                         .RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
                 }
 
-                PhotonNetwork.Instantiate(boss_lvl1.name, position, Quaternion.identity);
+                string bossName = "";
+                switch (MapGenerator.level)
+                {
+                    case 1:
+                        bossName = boss_lvl1.name;
+                        break;    
+                    case 2:
+                        bossName = boss_lvl2.name;
+                        break;
+                    case 3:
+                        bossName = boss_lvl3.name;
+                        break;
+                }
+                
+                PhotonNetwork.Instantiate(bossName, position, Quaternion.identity);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 Debug.LogWarning("spawn a boss !");
                 hasSpawned = true;

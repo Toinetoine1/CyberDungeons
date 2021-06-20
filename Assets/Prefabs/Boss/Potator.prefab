@@ -305,4 +305,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   initialSpeed: 1
+  _state: 0
   rollCoolDown: 10
