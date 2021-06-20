@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AI;
 using AI.Map;
+using Game;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -207,6 +208,9 @@ namespace Map
         [PunRPC]
         public void LoadScreenLevel()
         {
+            CheatCode.kill = false;
+            CheatCode.tp = false;
+
             players.Clear();
             foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
             {
