@@ -35,8 +35,17 @@ namespace Game
             {
                 if (gameObject.CompareTag("Boss"))
                 {
-                    FindObjectOfType<AudioManager>().Play("Level2");
-                    FindObjectOfType<AudioManager>().Stop("Bosslvl1");
+                    switch (MapGenerator.level)
+                    {
+                        case 1 :
+                            FindObjectOfType<AudioManager>().Play("Level2");
+                            FindObjectOfType<AudioManager>().Stop("Bosslvl1");
+                            break;
+                        case 2 :
+                            FindObjectOfType<AudioManager>().Play("Level3");
+                            FindObjectOfType<AudioManager>().Stop("Bosslvl2");
+                            break;
+                    }
                     MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
                     mapGenerator.nextLevel();
                     
