@@ -3418,7 +3418,6 @@ GameObject:
   - component: {fileID: 1798782703273082694}
   - component: {fileID: 9222965203013780867}
   - component: {fileID: 3588354360917128055}
-  - component: {fileID: 696544674706424795}
   m_Layer: 8
   m_Name: WallCollider
   m_TagString: WallCollider
@@ -7378,28 +7377,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!66 &696544674706424795
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6476824472052259022}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths: []
-  m_CompositePaths:
-    m_Paths: []
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
 --- !u!1 &8122554443600091053
 GameObject:
   m_ObjectHideFlags: 0

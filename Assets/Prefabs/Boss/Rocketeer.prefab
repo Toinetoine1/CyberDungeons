@@ -18,9 +18,9 @@ GameObject:
   - component: {fileID: 8409711354306908388}
   - component: {fileID: 488655523101772364}
   - component: {fileID: -379651789213059507}
-  - component: {fileID: 1720526103084809297}
   - component: {fileID: 7823755437968205468}
   - component: {fileID: 5302545027767637691}
+  - component: {fileID: 5454181702449865706}
   m_Layer: 0
   m_Name: Rocketeer
   m_TagString: Boss
@@ -233,32 +233,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!61 &1720526103084809297
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4628389310431844363}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.039691925, y: 0.007940292}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.6, y: 3.24}
-    newSize: {x: 3.6, y: 3.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.504486, y: 2.1762428}
-  m_EdgeRadius: 0
 --- !u!50 &7823755437968205468
 Rigidbody2D:
   serializedVersion: 4
@@ -292,6 +266,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622171dee700ecf4baf8f95f511b4576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &5454181702449865706
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628389310431844363}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00715065, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.4996815
 --- !u!1 &6061939769391136681
 GameObject:
   m_ObjectHideFlags: 0
