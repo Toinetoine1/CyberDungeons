@@ -62,6 +62,11 @@ namespace Map
                 {
                     pool.ResourceCache.Add(prefab.name, prefab);
                 }
+                
+                foreach (GameObject prefab in availableMapsLvl3)
+                {
+                    pool.ResourceCache.Add(prefab.name, prefab);
+                }
 
                 pool.ResourceCache.Add(verticalWall.name, verticalWall);
                 pool.ResourceCache.Add(horizontalWall.name, horizontalWall);
