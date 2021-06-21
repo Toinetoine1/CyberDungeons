@@ -35,6 +35,13 @@ namespace Game
             {
                 if (gameObject.CompareTag("Boss"))
                 {
+                    if (MapGenerator.level == 3)
+                    {
+                        PhotonView photonView = gameObject.GetComponent<PhotonView>();
+                        photonView.RPC("LeaveGame", RpcTarget.All);
+                        return;
+                    }
+                    
                     switch (MapGenerator.level)
                     {
                         case 1 :
