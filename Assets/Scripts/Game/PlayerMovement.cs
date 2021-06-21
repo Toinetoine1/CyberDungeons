@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
     private void SetWeaponCoord(Vector2 dir)
     {
         GameObject currWeapon = _WeaponManagement._inventory.currentWeapon;
+        
         float currWeaponX = _WeaponManagement._inventory.currWeaponX;
         float currWeaponY = _WeaponManagement._inventory.currWeaponY;
         float currWeaponScaleX = _WeaponManagement._inventory.currWeaponScaleX;

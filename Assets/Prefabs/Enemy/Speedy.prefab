@@ -210,6 +210,7 @@ MonoBehaviour:
   nextWaypointDistance: 1
   lineOfSite: 3.17
   distToShot: 7.1
+  currWeapon: {fileID: 1905121489250106440}
 --- !u!50 &967500356641961668
 Rigidbody2D:
   serializedVersion: 4
@@ -282,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PositionModel:
-    SynchronizeEnabled: 0
+    SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
     InterpolateOption: 2
@@ -407,6 +408,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67eb15d35cbfbac4ebdb2c32823c6739, type: 3}
+--- !u!1 &1905121489250106440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1755348413303364497, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
+    type: 3}
+  m_PrefabInstance: {fileID: 156528616158078937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &957281736984829356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1109270173740317301, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
