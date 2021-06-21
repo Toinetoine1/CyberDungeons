@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Game;
 using Map;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,40 +21,43 @@ public class TxtforWeaponDrop : MonoBehaviour
         timeRemaining = 5;
     }
     // Update is called once per frame
-    void Update()   
+    void Update()
     {
-        bool yeet = FindObjectOfType<TriggerChest>().HasTriggered;
-        if (yeet != null)
+        if (PhotonNetwork.IsMasterClient)
         {
-            if (yeet && !arrayForDisplay[i])
+            bool yeet = FindObjectOfType<TriggerChest>().HasTriggered;
+            if (yeet != null)
             {
-                Display();
-                arrayForDisplay[i] = true;
-            }
-
-            if (arrayForDisplay[i])
-            {
-                if (timeRemaining > 0)
+                if (yeet && !arrayForDisplay[i])
                 {
-                    timeRemaining -= Time.deltaTime;
+                    Display();
+                    arrayForDisplay[i] = true;
                 }
 
-                if (timeRemaining <= 0)
+                if (arrayForDisplay[i])
                 {
-                    HereToDisplay.SetActive(false);
+                    if (timeRemaining > 0)
+                    {
+                        timeRemaining -= Time.deltaTime;
+                    }
+
+                    if (timeRemaining <= 0)
+                    {
+                        HereToDisplay.SetActive(false);
+                    }
                 }
-            }
 
-            if (MapGenerator.level == 2 && !arrayForDisplay[1])
-            {
-                i = 1;
-                timeRemaining = 5;
-            }
+                if (MapGenerator.level == 2 && !arrayForDisplay[1])
+                {
+                    i = 1;
+                    timeRemaining = 5;
+                }
 
-            if (MapGenerator.level == 3 && !arrayForDisplay[2])
-            {
-                i = 2;
-                timeRemaining = 5;
+                if (MapGenerator.level == 3 && !arrayForDisplay[2])
+                {
+                    i = 2;
+                    timeRemaining = 5;
+                }
             }
         }
     }

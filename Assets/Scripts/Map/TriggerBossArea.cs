@@ -42,8 +42,6 @@ namespace Map
         {
             if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
-                FindObjectOfType<AudioManager>().Play("Bosslvl1");
-                FindObjectOfType<AudioManager>().Stop("Level1");
                 Vector3 position = Spawner.position;
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
@@ -59,12 +57,18 @@ namespace Map
                 {
                     case 1:
                         bossName = boss_lvl1.name;
+                        FindObjectOfType<AudioManager>().Play("Bosslvl1");
+                        FindObjectOfType<AudioManager>().Stop("Level1");
                         break;    
                     case 2:
                         bossName = boss_lvl2.name;
+                        FindObjectOfType<AudioManager>().Play("Bosslvl2");
+                        FindObjectOfType<AudioManager>().Stop("Level2");
                         break;
                     case 3:
                         bossName = boss_lvl3.name;
+                        FindObjectOfType<AudioManager>().Play("Bosslvl3");
+                        FindObjectOfType<AudioManager>().Stop("Level3");
                         break;
                 }
                 
