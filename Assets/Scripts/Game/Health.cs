@@ -37,6 +37,11 @@ namespace Game
                 {
                     FindObjectOfType<AudioManager>().Play("Level2");
                     FindObjectOfType<AudioManager>().Stop("Bosslvl1");
+                    GameObject[] test = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (var player in test)
+                    {
+                        player.GetComponent<Health>().giveMaxHealth();
+                    }
                     MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
                     mapGenerator.nextLevel();
                     
@@ -111,6 +116,11 @@ namespace Game
         public float getHealthPercentage()
         {
             return health / maxHealth;
+        }
+
+        private void giveMaxHealth()
+        {
+            health = maxHealth;
         }
     }
 }
