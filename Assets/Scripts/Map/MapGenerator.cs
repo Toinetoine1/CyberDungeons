@@ -31,11 +31,11 @@ namespace Map
         [SerializeField] public GameObject spawnLvl2;
         [SerializeField] public GameObject bossLvl2;
         [SerializeField] public GameObject chestLvl2;
-        
+
         [SerializeField] public GameObject spawnLvl3;
         [SerializeField] public GameObject bossLvl3;
         [SerializeField] public GameObject chestLvl3;
-        
+
         [SerializeField] public GameObject verticalWall;
         [SerializeField] public GameObject horizontalWall;
 
@@ -72,11 +72,11 @@ namespace Map
 
                 pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
                 pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
-                pool.ResourceCache.Add(chestLvl2.name, chestLvl2);   
-                
+                pool.ResourceCache.Add(chestLvl2.name, chestLvl2);
+
                 pool.ResourceCache.Add(spawnLvl3.name, spawnLvl3);
                 pool.ResourceCache.Add(bossLvl3.name, bossLvl3);
-                pool.ResourceCache.Add(chestLvl3.name, chestLvl3);   
+                pool.ResourceCache.Add(chestLvl3.name, chestLvl3);
             }
 
             if (!PhotonNetwork.IsMasterClient)
@@ -160,7 +160,7 @@ namespace Map
                         case 3:
                             prefabGameObject = availableMapsLvl3[_random.Next(availableMapsLvl3.Count)];
                             break;
-                    }   
+                    }
                 }
 
                 //On choisit aléatoirement une position
@@ -233,12 +233,15 @@ namespace Map
             foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
             {
                 GameObject obj = GameObject.Find(pl.NickName);
-                players.Add(obj);
-                obj.SetActive(false);
+                if (obj != null)
+                {
+                    players.Add(obj);
+                    obj.SetActive(false);
+                }
             }
 
             loadingScreen.SetActive(true);
-            
+
             level++;
 
             GameObject mapsObj = GameObject.Find("Maps");
@@ -248,7 +251,7 @@ namespace Map
 
             Instantiate(new GameObject("Maps"));
             Instantiate(new GameObject("Walls"));
-            
+
             maps.Clear();
             StartCoroutine(GenerateNewMap());
         }
@@ -285,6 +288,5 @@ namespace Map
             child.name = "Wall" + _random.Next(0, 99999);
             child.transform.parent = parent.transform;
         }
-
     }
 }
