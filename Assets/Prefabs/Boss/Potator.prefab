@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 5761893289832040511}
   - component: {fileID: 6771251111341575808}
   - component: {fileID: 6277511303166571612}
+  - component: {fileID: 2780875251414154720}
   m_Layer: 0
   m_Name: Potator
   m_TagString: Boss
@@ -307,3 +308,15 @@ MonoBehaviour:
   initialSpeed: 1
   _state: 0
   rollCoolDown: 10
+--- !u!114 &2780875251414154720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213625067949143268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51051c565d2ad4e42bdd6da068bdcbf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

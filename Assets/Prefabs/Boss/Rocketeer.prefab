@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -379651789213059507}
   - component: {fileID: 1720526103084809297}
   - component: {fileID: 7823755437968205468}
+  - component: {fileID: 5302545027767637691}
   m_Layer: 0
   m_Name: Rocketeer
   m_TagString: Boss
@@ -279,6 +280,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5302545027767637691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628389310431844363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622171dee700ecf4baf8f95f511b4576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6061939769391136681
 GameObject:
   m_ObjectHideFlags: 0
