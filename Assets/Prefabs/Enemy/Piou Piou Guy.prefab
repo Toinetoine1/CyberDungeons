@@ -204,6 +204,7 @@ MonoBehaviour:
   nextWaypointDistance: 1
   lineOfSite: 8.28
   distToShot: 10.17
+  currWeapon: {fileID: 9163839898276843921}
 --- !u!114 &4595395663981754924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +407,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d8a27058fa762d42a140bf28994125c, type: 3}
+--- !u!1 &9163839898276843921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3094720903845728278, guid: 6d8a27058fa762d42a140bf28994125c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6187619977900884359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2202801207702747008 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5426621570565600775, guid: 6d8a27058fa762d42a140bf28994125c,

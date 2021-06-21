@@ -28,6 +28,13 @@ namespace AI
         
         private EnnemyWeapon ennemyWeapon;
 
+        public GameObject currWeapon;
+        
+        private float currWeaponX;
+        private float currWeaponY;
+        private float currWeaponScaleX;
+        private float currWeaponScaleY;
+
 
         // Start is called before the first frame update
         void Start()
@@ -39,6 +46,15 @@ namespace AI
 
             StartCoroutine(ExecuteAfterTime(0.5f));
             InvokeRepeating("UpdatePath", 0f, .5f);
+
+            if (currWeapon != null)
+            {
+                currWeaponX = currWeapon.transform.localPosition.x;
+                currWeaponY = currWeapon.transform.localPosition.y;
+                currWeaponScaleX = currWeapon.transform.localScale.x;
+                currWeaponScaleY = currWeapon.transform.localScale.y;
+            }
+            
         }
         
         protected void SetMovementAnim(Vector2 dir)
@@ -46,6 +62,22 @@ namespace AI
             Animator.SetBool("Standing", false);
             Animator.SetFloat("xDir", dir.x);
             Animator.SetFloat("yDir", dir.y);
+        }
+
+        protected void SetWeaponCoord(Vector2 dir)
+        {
+            Debug.Log("test :" + dir.x);
+            if (dir.x >= 0)
+            {
+                currWeapon.transform.localPosition = new Vector3(currWeaponX, currWeaponY);
+                currWeapon.transform.localScale = new Vector3(currWeaponScaleX, currWeaponScaleY);
+            }
+            else
+            {
+                currWeapon.transform.localPosition = new Vector3(-currWeaponX, currWeaponY);
+                currWeapon.transform.localScale = new Vector3(-currWeaponScaleX, currWeaponScaleY);
+
+            }
         }
         
         IEnumerator ExecuteAfterTime(float time)
@@ -133,8 +165,16 @@ namespace AI
                 
                 Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                     speed * Time.deltaTime);
-            
+                
+                Debug.Log("test 1 :" + (nextPos - (Vector2)transform.position).normalized);
+                
                 SetMovementAnim((nextPos - (Vector2)transform.position).normalized);
+
+                if (currWeapon != null)
+                {
+                    SetWeaponCoord((nextPos - (Vector2)transform.position).normalized);
+                }
+                
                 transform.position = nextPos;
                 
                 float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
