@@ -39,25 +39,26 @@ namespace Game
                     {
                         PhotonView photonView = gameObject.GetComponent<PhotonView>();
                         photonView.RPC("LeaveGame", RpcTarget.All);
-                        return;
                     }
-                    
-                    switch (MapGenerator.level)
+                    else
                     {
-                        case 1 :
-                            FindObjectOfType<AudioManager>().Play("Level2");
-                            FindObjectOfType<AudioManager>().Stop("Bosslvl1");
-                            break;
-                        case 2 :
-                            FindObjectOfType<AudioManager>().Play("Level3");
-                            FindObjectOfType<AudioManager>().Stop("Bosslvl2");
-                            break;
+                        switch (MapGenerator.level)
+                        {
+                            case 1 :
+                                FindObjectOfType<AudioManager>().Play("Level2");
+                                FindObjectOfType<AudioManager>().Stop("Bosslvl1");
+                                break;
+                            case 2 :
+                                FindObjectOfType<AudioManager>().Play("Level3");
+                                FindObjectOfType<AudioManager>().Stop("Bosslvl2");
+                                break;
+                        }
+
+                        PhotonView.Get(this).RPC("GiveMaxHealthRPC", RpcTarget.All);
+                        MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
+                        mapGenerator.nextLevel();   
                     }
 
-                    PhotonView.Get(this).RPC("GiveMaxHealthRPC", RpcTarget.All);
-                    MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
-                    mapGenerator.nextLevel();
-                    
                 } else if (gameObject.CompareTag("Enemy"))
                 {
                     TriggerEnemyArea.aliveMob--;
