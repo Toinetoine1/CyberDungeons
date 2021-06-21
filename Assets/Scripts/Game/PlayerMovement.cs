@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.Translate(Time.deltaTime * speed * direction);
         SetMovementAnim(direction, Camera);
-        SetWeaponCoord(direction);
+        SetWeaponCoord(direction, Camera);
         if (slideCooldown > 0)
         {
             slideCooldown -= Time.deltaTime;
@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         Animator.SetFloat("xDirMouse", BulletDir.x);
     }
 
-    private void SetWeaponCoord(Vector2 dir)
+    private void SetWeaponCoord(Vector2 dir, Camera camera)
     {
         GameObject currWeapon = _WeaponManagement._inventory.currentWeapon;
         
@@ -134,8 +134,20 @@ public class PlayerMovement : MonoBehaviour
         float currWeaponScaleX = _WeaponManagement._inventory.currWeaponScaleX;
         float currWeaponScaleY = _WeaponManagement._inventory.currWeaponScaleX;
         
+        Vector2 MouseDir = (camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
+            Input.mousePosition.y, -camera.transform.position.z)) - transform.root.position).normalized;
         
-        if (dir.x >= 0)
+        if (dir.x > 0)
+        {
+            currWeapon.transform.localPosition = new Vector3(currWeaponX, currWeaponY);
+            currWeapon.transform.localScale = new Vector3(currWeaponScaleX, currWeaponScaleY);
+        }
+        else if (dir.x < 0)
+        {
+            currWeapon.transform.localPosition = new Vector3(-currWeaponX, currWeaponY);
+            currWeapon.transform.localScale = new Vector3(-currWeaponScaleX, currWeaponScaleY);
+        }
+        else if (MouseDir.x > 0)
         {
             currWeapon.transform.localPosition = new Vector3(currWeaponX, currWeaponY);
             currWeapon.transform.localScale = new Vector3(currWeaponScaleX, currWeaponScaleY);
