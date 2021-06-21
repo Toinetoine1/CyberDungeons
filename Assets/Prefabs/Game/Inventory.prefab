@@ -62,6 +62,10 @@ MonoBehaviour:
   - {fileID: 5571936639010967277}
   - {fileID: 8546321937911139078}
   currentWeapon: {fileID: 0}
+  currWeaponX: 0
+  currWeaponY: 0
+  currWeaponScaleX: 0
+  currWeaponScaleY: 0
 --- !u!1001 &1820641738954904190
 PrefabInstance:
   m_ObjectHideFlags: 0

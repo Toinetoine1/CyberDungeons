@@ -1,59 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using Photon.Pun;
 
-public class SniperManagement : EnnemyWeapon
+namespace Game
 {
-    public bool isAiming;
-
-    public float aimtime;
-    private float currAimtime;
-
-    private LineRenderer _lineRenderer;
-
-    void Start()
+    public class SniperManagement : EnnemyWeapon
     {
-        DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-        if (!pool.ResourceCache.ContainsKey(Bullet.name))
-            pool.ResourceCache.Add(Bullet.name, Bullet);
-        isAiming = false;
-        _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.enabled = false;
-        _photonView = PhotonView.Get(this);
-    }
+        public bool isAiming;
     
-    // Update is called once per frame
-    void Update()
-    {
-        if (isAiming)
+        public float aimtime;
+        private float currAimtime;
+    
+        private LineRenderer _lineRenderer;
+    
+        void Start()
         {
-            DrawLine();
-            currAimtime -= Time.deltaTime;
-            if (currAimtime <= 0)
+            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
+            if (!pool.ResourceCache.ContainsKey(Bullet.name))
+                pool.ResourceCache.Add(Bullet.name, Bullet);
+            isAiming = false;
+            _lineRenderer = GetComponent<LineRenderer>();
+            _lineRenderer.enabled = false;
+            _photonView = PhotonView.Get(this);
+        }
+        
+        // Update is called once per frame
+        void Update()
+        {
+            if (isAiming)
             {
-                if (_photonView.IsMine)
+                DrawLine();
+                currAimtime -= Time.deltaTime;
+                if (currAimtime <= 0)
                 {
-                    fireABullet();
-                    currAimtime = aimtime;
+                    if (_photonView.IsMine)
+                    {
+                        fireABullet();
+                        currAimtime = aimtime;
+                    }
                 }
             }
+            else
+            {
+                _lineRenderer.enabled = false;
+                currAimtime = aimtime;
+            }
         }
-        else
+    
+        private void DrawLine()
         {
-            _lineRenderer.enabled = false;
-            currAimtime = aimtime;
-        }
-    }
-
-    private void DrawLine()
-    {
-        if (transform != null && target != null)
-        {
-            _lineRenderer.enabled = true;
-            _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, target.position);   
+            if (transform != null && target != null)
+            {
+                _lineRenderer.enabled = true;
+                _lineRenderer.SetPosition(0, transform.position);
+                _lineRenderer.SetPosition(1, target.position);   
+            }
         }
     }
 }
+
