@@ -891,6 +891,13 @@ MonoBehaviour:
   - {fileID: 3315991545876480608, guid: ca1d9feada004c84482c2343e8e54eca, type: 3}
   - {fileID: 1811309587701740025, guid: ed49b756acfed5b4696f9c1f5995ad91, type: 3}
   - {fileID: 6134864221969921460, guid: 25d513ab2fe9dec4d95cd1336e5d87ec, type: 3}
+  availableMapsLvl3:
+  - {fileID: 7549268893514769013, guid: bdd34b0bb9b9f3f479d6f86ce1273b5c, type: 3}
+  - {fileID: 7549268893514769013, guid: 61649efa5681e84488e1e92730edea66, type: 3}
+  - {fileID: 7549268893514769013, guid: 2e8c950f49f91624482158966187df58, type: 3}
+  - {fileID: 7549268893514769013, guid: 29ea3c2d979604e47a1081219045943c, type: 3}
+  - {fileID: 7549268893514769013, guid: 87ee028ad74119e48b9b3ab26033075a, type: 3}
+  - {fileID: 7549268893514769013, guid: b613b5704b812944698b49a31ff261f9, type: 3}
   spawnLvl1: {fileID: 110852631115127665, guid: eafb315d01b6e6c4daad4b17389e64e0,
     type: 3}
   bossLvl1: {fileID: 110852631115127665, guid: 86b0f83f4f6595d4184267df61b4558a, type: 3}
@@ -901,6 +908,12 @@ MonoBehaviour:
   bossLvl2: {fileID: 6624104300937544445, guid: d7a5f0e14483ef9458f88f974620422a,
     type: 3}
   chestLvl2: {fileID: 8750950496971364108, guid: 30ade3f4d96ede44fafcfc589172e35f,
+    type: 3}
+  spawnLvl3: {fileID: 8972432342206374423, guid: f12e47a5799eef244ac4e56ebfd54090,
+    type: 3}
+  bossLvl3: {fileID: 2586707715389749698, guid: f979b4b7169ad6445962ad57f02eca6a,
+    type: 3}
+  chestLvl3: {fileID: 2586707715389749698, guid: 519d921ffd6254e4590f3874d28e5211,
     type: 3}
   verticalWall: {fileID: 8370391611206959024, guid: c52d73d0c32e5d741ae5411b8ebc2e06,
     type: 3}

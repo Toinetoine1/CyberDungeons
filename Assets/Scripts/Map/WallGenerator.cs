@@ -87,6 +87,9 @@ namespace AI.Map
                 case 2:
                     child = PhotonNetwork.Instantiate(mapGenerator.bossLvl2.name, bossPos, Quaternion.identity);
                     break;
+                case 3:
+                    child = PhotonNetwork.Instantiate(mapGenerator.bossLvl3.name, bossPos, Quaternion.identity);
+                    break;
             }
 
             mapGenerator.gameObject.GetComponent<PhotonView>().RPC("ChangeMapParent", RpcTarget.All, child.name);

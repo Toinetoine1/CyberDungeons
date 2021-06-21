@@ -22,6 +22,7 @@ namespace Map
 
         [SerializeField] public List<GameObject> availableMapsLvl1;
         [SerializeField] public List<GameObject> availableMapsLvl2;
+        [SerializeField] public List<GameObject> availableMapsLvl3;
 
         [SerializeField] public GameObject spawnLvl1;
         [SerializeField] public GameObject bossLvl1;
@@ -30,6 +31,10 @@ namespace Map
         [SerializeField] public GameObject spawnLvl2;
         [SerializeField] public GameObject bossLvl2;
         [SerializeField] public GameObject chestLvl2;
+        
+        [SerializeField] public GameObject spawnLvl3;
+        [SerializeField] public GameObject bossLvl3;
+        [SerializeField] public GameObject chestLvl3;
         
         [SerializeField] public GameObject verticalWall;
         [SerializeField] public GameObject horizontalWall;
@@ -68,6 +73,10 @@ namespace Map
                 pool.ResourceCache.Add(spawnLvl2.name, spawnLvl2);
                 pool.ResourceCache.Add(bossLvl2.name, bossLvl2);
                 pool.ResourceCache.Add(chestLvl2.name, chestLvl2);   
+                
+                pool.ResourceCache.Add(spawnLvl3.name, spawnLvl3);
+                pool.ResourceCache.Add(bossLvl3.name, bossLvl3);
+                pool.ResourceCache.Add(chestLvl3.name, chestLvl3);   
             }
 
             if (!PhotonNetwork.IsMasterClient)
@@ -92,6 +101,9 @@ namespace Map
                     break;
                 case 2:
                     child = PhotonNetwork.Instantiate(spawnLvl2.name, Vector2.zero, Quaternion.identity);
+                    break;
+                case 3:
+                    child = PhotonNetwork.Instantiate(spawnLvl3.name, Vector2.zero, Quaternion.identity);
                     break;
             }
 
@@ -130,6 +142,9 @@ namespace Map
                         case 2:
                             prefabGameObject = chestLvl2;
                             break;
+                        case 3:
+                            prefabGameObject = chestLvl3;
+                            break;
                     }
                 }
                 else
@@ -141,6 +156,9 @@ namespace Map
                             break;
                         case 2:
                             prefabGameObject = availableMapsLvl2[_random.Next(availableMapsLvl2.Count)];
+                            break;
+                        case 3:
+                            prefabGameObject = availableMapsLvl3[_random.Next(availableMapsLvl3.Count)];
                             break;
                     }   
                 }

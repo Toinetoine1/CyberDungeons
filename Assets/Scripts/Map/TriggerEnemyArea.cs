@@ -35,7 +35,26 @@ namespace Map
             {
                 Vector3 position = Spawner.position;
                 Random random = new Random();
-                int hasToSpawn = random.Next(2, 6);
+                int a = 0;
+                int b = 0;
+
+                switch (MapGenerator.level)
+                {
+                    case 1:
+                        a = 2;
+                        b = 5;
+                        break;
+                    case 2:
+                        a = 3;
+                        b = 6;
+                        break;
+                    case 3:
+                        a = 4;
+                        b = 7;
+                        break;
+                }
+                
+                int hasToSpawn = random.Next(a, b);
                 aliveMob = hasToSpawn;
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
