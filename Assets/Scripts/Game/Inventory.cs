@@ -72,8 +72,8 @@ public class Inventory : MonoBehaviour
         Debug.Log(indexToChange);
         WeaponList[indexToChange].SetActive(false);
         currentWeapon = WeaponListToUse[onHandWeapon];
-        currWeaponX = currentWeapon.transform.position.x;
-        currWeaponY = currentWeapon.transform.position.y;
+        currWeaponX = currentWeapon.transform.localPosition.x;
+        currWeaponY = currentWeapon.transform.localPosition.y;
         currWeaponScaleX = currentWeapon.transform.localScale.x;
         currWeaponScaleY = currentWeapon.transform.localScale.y;
         indexToChange = IndexOfWeaponToDisappear();
