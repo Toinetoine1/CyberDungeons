@@ -26,7 +26,7 @@ namespace AI
             {
                 foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
                 {
-                    GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(-4, 0, 0), Quaternion.identity);
+                    GameObject obj = PhotonNetwork.Instantiate("Player", new Vector3(1, -6, 0), Quaternion.identity);
                     string oldName = obj.name;
                     obj.name = pl.NickName;
                     obj.GetComponent<PhotonView>().TransferOwnership(pl);
