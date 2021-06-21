@@ -19,7 +19,6 @@ namespace AI
         public float distToShot = 5;
 
         private Path path;
-        private int currentWaypoint;
 
         private Seeker seeker;
         private Rigidbody2D rb;
@@ -64,7 +63,7 @@ namespace AI
             if (!p.error)
             {
                 path = p;
-                currentWaypoint = 0;
+                //currentWaypoint = 0;
             }
         }
 

@@ -204,6 +204,7 @@ MonoBehaviour:
   nextWaypointDistance: 1.2
   lineOfSite: 7.36
   distToShot: 12.09
+  currWeapon: {fileID: 3275846723068960390}
 --- !u!114 &-2575698876434084383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +335,7 @@ PrefabInstance:
     - target: {fileID: 1109270173740317301, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1109270173740317301, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
         type: 3}
@@ -349,7 +350,7 @@ PrefabInstance:
     - target: {fileID: 1109270173740317301, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.474
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1109270173740317301, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
         type: 3}
@@ -403,6 +404,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67eb15d35cbfbac4ebdb2c32823c6739, type: 3}
+--- !u!1 &3275846723068960390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1755348413303364497, guid: 67eb15d35cbfbac4ebdb2c32823c6739,
+    type: 3}
+  m_PrefabInstance: {fileID: 3830985663773738263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4201452120066703202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1109270173740317301, guid: 67eb15d35cbfbac4ebdb2c32823c6739,

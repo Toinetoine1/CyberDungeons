@@ -11,6 +11,12 @@ public class Inventory : MonoBehaviour
     public List<GameObject> WeaponListToUse;
     public List<GameObject> WeaponList;
     public GameObject currentWeapon;
+    
+    public float currWeaponX;
+    public float currWeaponY;
+    public float currWeaponScaleX;
+    public float currWeaponScaleY;
+    
     private int onHandWeapon;
 
     void Awake()
@@ -19,6 +25,10 @@ public class Inventory : MonoBehaviour
         WeaponList[0].SetActive(true);
         onHandWeapon = 0;
         currentWeapon = WeaponList[0];
+        currWeaponX = currentWeapon.transform.localPosition.x;
+        currWeaponY = currentWeapon.transform.localPosition.y;
+        currWeaponScaleX = currentWeapon.transform.localScale.x;
+        currWeaponScaleY = currentWeapon.transform.localScale.y;
         addWeapon(currentWeapon);
     }
 
@@ -62,6 +72,10 @@ public class Inventory : MonoBehaviour
         Debug.Log(indexToChange);
         WeaponList[indexToChange].SetActive(false);
         currentWeapon = WeaponListToUse[onHandWeapon];
+        currWeaponX = currentWeapon.transform.position.x;
+        currWeaponY = currentWeapon.transform.position.y;
+        currWeaponScaleX = currentWeapon.transform.localScale.x;
+        currWeaponScaleY = currentWeapon.transform.localScale.y;
         indexToChange = IndexOfWeaponToDisappear();
         if (indexToChange == -1)
         {

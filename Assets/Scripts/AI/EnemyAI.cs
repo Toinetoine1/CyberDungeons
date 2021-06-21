@@ -39,6 +39,7 @@ namespace AI
 
             StartCoroutine(ExecuteAfterTime(0.5f));
             InvokeRepeating("UpdatePath", 0f, .5f);
+
         }
         
         protected void SetMovementAnim(Vector2 dir)
@@ -47,6 +48,7 @@ namespace AI
             Animator.SetFloat("xDir", dir.x);
             Animator.SetFloat("yDir", dir.y);
         }
+        
         
         IEnumerator ExecuteAfterTime(float time)
         {
@@ -133,10 +135,8 @@ namespace AI
                 
                 Vector2 nextPos = Vector2.MoveTowards(transform.position, path.vectorPath[currentWaypoint],
                     speed * Time.deltaTime);
-            
                 SetMovementAnim((nextPos - (Vector2)transform.position).normalized);
                 transform.position = nextPos;
-                
                 float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
                 if (distance < nextWaypointDistance)
