@@ -46,6 +46,8 @@ namespace Game
                             FindObjectOfType<AudioManager>().Stop("Bosslvl2");
                             break;
                     }
+
+                    PhotonView.Get(this).RPC("GiveMaxHealthRPC", RpcTarget.All);
                     MapGenerator mapGenerator = FindObjectOfType<MapGenerator>();
                     mapGenerator.nextLevel();
                     
@@ -120,6 +122,22 @@ namespace Game
         public float getHealthPercentage()
         {
             return health / maxHealth;
+        }
+
+
+        [PunRPC]
+        private void GiveMaxHealthRPC()
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                player.GetComponent<Health>().GiveMaxHealth();
+            }
+        }
+        
+        private void GiveMaxHealth()
+        {
+            health = maxHealth;
         }
     }
 }
