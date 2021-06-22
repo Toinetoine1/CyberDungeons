@@ -15,6 +15,15 @@ namespace Map
             this.isStatic = isStatic;
             
             this.obj = PhotonNetwork.Instantiate(obj.name, pos, Quaternion.identity);
+            if (mapGenerator == null)
+            {
+                return;
+            }
+            if (mapGenerator.gameObject == null)
+            {
+                return;
+            }
+            
             mapGenerator.gameObject.GetComponent<PhotonView>().RPC("ChangeWallParent", RpcTarget.All, this.obj.name);
             Debug.Log("Spawn wall in x:"+pos.x+"  y:"+pos.y);
         }
