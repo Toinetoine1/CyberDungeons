@@ -41,7 +41,7 @@ public class TriggerChest : MonoBehaviour
                 }
                 else
                 {
-                    GameObject[] players = GameObject.FindGameObjectsWithTag("player");
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                     foreach (GameObject pl in players)
                     {
                         Inventory test = pl.transform.Find("Inventory").GetComponent<Inventory>();
