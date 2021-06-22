@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviourPunCallbacks
     {
         public static int alivePlayer;
         
@@ -71,7 +71,6 @@ namespace Game
                 {
                     if (PhotonNetwork.CurrentRoom.Players.Values.Count == 1)
                     {
-                        PhotonNetwork.LoadLevel(0);
                         PhotonNetwork.LeaveRoom();
                     }
                     else
@@ -103,8 +102,14 @@ namespace Game
         [PunRPC]
         public void LeaveGame()
         {
-            PhotonNetwork.LoadLevel(0);
             PhotonNetwork.LeaveRoom();
+        }
+        
+        public override void OnLeftRoom()
+        {
+            PhotonNetwork.LoadLevel(0);
+ 
+            base.OnLeftRoom();
         }
         
         [PunRPC]
