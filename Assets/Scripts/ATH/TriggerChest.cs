@@ -41,10 +41,10 @@ public class TriggerChest : MonoBehaviour
                 }
                 else
                 {
-                    foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("player");
+                    foreach (GameObject pl in players)
                     {
-                        GameObject player = GameObject.Find(pl.NickName);
-                        Inventory test = player.transform.Find("Inventory").GetComponent<Inventory>();
+                        Inventory test = pl.transform.Find("Inventory").GetComponent<Inventory>();
                         test.addWeapon(test.WeaponList[index]);
                     }
                 }

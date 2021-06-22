@@ -19,10 +19,14 @@ public class RandomatorWeapon : MachineGunnerManagement
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
         _photonView = PhotonView.Get(this);
+        switchTime = 8;
 
         if (_photonView.IsMine)
         {
-            _photonView.RPC("RandomatorSetup", RpcTarget.All);
+            float Interval = Random.Range(0.75f,1.5f);
+            int damage = Random.Range(1, 2)*10;
+            float speed = Random.Range(10f, 20f);
+            _photonView.RPC("RandomatorSetup", RpcTarget.All, Interval, damage, speed);
         }
     }
 
@@ -98,12 +102,11 @@ public class RandomatorWeapon : MachineGunnerManagement
     }
 
     [PunRPC]
-    private void RandomatorSetup()
+    private void RandomatorSetup(float firingInterval, int Damage, float Speed)
     {
-        firingInterval = Random.Range(0.75f,1.5f);
-        Damage = Random.Range(1, 2)*10;
-        Speed = Random.Range(10f, 20f);
-        switchTime = 8;
+        this.firingInterval = firingInterval;
+        this.Damage = Damage;
+        this.Speed = Speed;
     }
 
 

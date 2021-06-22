@@ -67,7 +67,6 @@ public class RocketeerManagement : MonoBehaviour
             {
                 if (Detected)
                 {
-                    currTimeUntilNormal -= Time.deltaTime;
                     if (currTimeUntilNormal <= 0)
                     {
                         _rigidbody2D.velocity = Vector2.zero;
@@ -75,6 +74,10 @@ public class RocketeerManagement : MonoBehaviour
                 }
 
                 currTimeUntilNormal -= Time.deltaTime;
+                if (currTimeUntilNormal <= 0)
+                {
+                    _rigidbody2D.velocity = Vector2.zero;
+                }
 
                 Vector2 test = _rigidbody2D.velocity;
                 float speed = test.magnitude;
@@ -84,7 +87,6 @@ public class RocketeerManagement : MonoBehaviour
                     isMoving = false;
                     currDashInterval = dashInterval;
                     _rigidbody2D.velocity = Vector2.zero;
-                
                 }
             }
         }
