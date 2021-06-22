@@ -31,13 +31,14 @@ namespace Map
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            //On vérifie si les ennemis n'ont pas déjâ spawn et on éxécute uniquement avec le master client
             if (!hasSpawned && PhotonNetwork.IsMasterClient)
             {
                 Vector3 position = Spawner.position;
                 Random random = new Random();
                 int a = 0;
                 int b = 0;
-
+                
                 switch (MapGenerator.level)
                 {
                     case 1:
@@ -56,15 +57,19 @@ namespace Map
                 
                 int hasToSpawn = random.Next(a, b);
                 aliveMob = hasToSpawn;
+                
+                //On fait apparaître les murs
                 Map map = Map.FindMapByVector(position);
                 map.SpawnWall();
 
+                //On téléporte les joueurs comme expliqué avant
                 if (PhotonNetwork.MasterClient.NickName == other.name)
                 {
                     gameObject.GetComponent<PhotonView>()
                         .RPC("TPPlayer", RpcTarget.Others, other.transform.position, other.name);
                 }
 
+                //Tant que tout les monstres n'ont pas spawn, on cherche une position
                 while (hasToSpawn != 0)
                 {
                     float x = position.x +
@@ -74,6 +79,8 @@ namespace Map
 
                     bool ok = true;
                     Vector2 transformPosition = new Vector2(x, y);
+                    
+                    //On vérifie si la distance est assez loin des joueurs
                     foreach (GameObject player in PlayerConnect.players)
                     {
                         if (player == null)
@@ -82,12 +89,14 @@ namespace Map
                             ok = false;
                     }
 
+                    //On regarde si l'ennemi n'est pas dans un mur
                     if (Physics2D.Linecast(transformPosition, transformPosition,
                         1 << LayerMask.NameToLayer("WallColider")))
                     {
                         ok = false;
                     }
 
+                    //On fait apparaître l'ennemi s'il les conditions sont remplis
                     if (ok)
                     {
                         PhotonNetwork.Instantiate(mobs[random.Next(mobs.Count)].name, transformPosition,
