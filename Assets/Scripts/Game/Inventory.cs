@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game;
-using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -101,12 +100,6 @@ public class Inventory : MonoBehaviour
         setCurrentWeapon();
     }
 
-    public void addWeaponRpc(GameObject Weapon)
-    {
-        PhotonView.Get(this).RPC("addWeapon", RpcTarget.All, Weapon);
-    }
-    
-    [PunRPC]
     public void addWeapon(GameObject Weapon)
     {
         WeaponListToUse.Add(Weapon);
