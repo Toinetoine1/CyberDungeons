@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class RocketeerManagement : MonoBehaviour
@@ -46,7 +47,7 @@ public class RocketeerManagement : MonoBehaviour
         }
         
 
-        if (currDashInterval > 0 && !isMoving)
+        if (currDashInterval > 0 && !isMoving && PhotonView.Get(this).IsMine)
             currDashInterval -= Time.deltaTime;
 
         if (currDashInterval <= 0 && target != null)
