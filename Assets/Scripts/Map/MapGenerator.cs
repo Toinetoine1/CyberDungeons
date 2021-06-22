@@ -233,10 +233,13 @@ namespace Map
         {
             CheatCode.kill = false;
             CheatCode.tp = false;
-
             players.Clear();
+            
             foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
             {
+                if (!pl.IsLocal)
+                    return;
+                
                 GameObject obj = GameObject.Find(pl.NickName);
                 if (obj != null)
                 {
