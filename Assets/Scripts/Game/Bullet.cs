@@ -65,6 +65,8 @@ namespace Game
         {
             Speed = 12;
             Damage = 10;
+            if (targetTransform == null || transform == null)
+                return;
             BulletDir = (targetTransform.position - transform.position).normalized;
             Friendly = false;
         }
