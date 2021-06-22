@@ -12,13 +12,15 @@ public class PotatorRoll : MonoBehaviour
     private float currSpeed;
 
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
+    
     public State _state;
 
     public float rollCoolDown;
     private float currCoolDown;
 
     private bool Touched;
-    
+
     public enum State
     {
         Normal,
@@ -30,6 +32,7 @@ public class PotatorRoll : MonoBehaviour
     {
         _state = State.Normal;
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
         currSpeed = initialSpeed;
         currCoolDown = rollCoolDown;
     }
@@ -43,11 +46,11 @@ public class PotatorRoll : MonoBehaviour
         {
             if (_state == State.Normal)
             {
+                _animator.SetBool("Running", true);
                 _state = State.Acceleration;
             }
             Roll();
         }
-        Debug.Log("state = " + _state);
 
 
     }
@@ -69,6 +72,7 @@ public class PotatorRoll : MonoBehaviour
             {
                 _state = State.Normal;
                 currCoolDown = rollCoolDown;
+                _animator.SetBool("Running", false);
                 Touched = false;
             }
         }
