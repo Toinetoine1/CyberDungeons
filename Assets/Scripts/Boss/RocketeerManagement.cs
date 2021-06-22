@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using Photon.Pun;
 using UnityEngine;
 
@@ -25,6 +26,9 @@ public class RocketeerManagement : MonoBehaviour
     public bool Detected;
     private bool targetSet;
 
+    private float TimeUntilNormal = 2;
+    private float currTimeUntilNormal;
+
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -36,40 +40,49 @@ public class RocketeerManagement : MonoBehaviour
 
     private void Update()
     {
-        
-        if (currfiringInterval > 0)
-            currfiringInterval -= Time.deltaTime;
 
-        if (currfiringInterval <= 0 && !isMoving)
+        if (PhotonView.Get(this).IsMine)
         {
-            _rocketeerWeapon.Fire();
-            currfiringInterval = firingInTerval;
-        }
-        
+            if (currfiringInterval > 0)
+                currfiringInterval -= Time.deltaTime;
 
-        if (currDashInterval > 0 && !isMoving && PhotonView.Get(this).IsMine)
-            currDashInterval -= Time.deltaTime;
-
-        if (currDashInterval <= 0 && target != null)
-        {
-            Move();
-            currDashInterval = dashInterval;
-        }
-        
-        if (isMoving)
-        {
-            if (Detected)
-                _rigidbody2D.velocity *= 0.99f;
-            
-            Vector2 test = _rigidbody2D.velocity;
-            float speed = test.magnitude;
-            if (speed < 1)
+            if (currfiringInterval <= 0 && !isMoving)
             {
-                Detected = false;
-                isMoving = false;
+                _rocketeerWeapon.Fire();
+                currfiringInterval = firingInTerval;
+            }
+        
+
+            if (currDashInterval > 0 && !isMoving)
+                currDashInterval -= Time.deltaTime;
+
+            if (currDashInterval <= 0 && target != null)
+            {
+                Move();
                 currDashInterval = dashInterval;
-                _rigidbody2D.velocity = Vector2.zero;
+            }
+        
+            if (isMoving)
+            {
+                if (Detected)
+                {
+                    currTimeUntilNormal -= Time.deltaTime;
+                    if (currTimeUntilNormal <= 0)
+                    {
+                        _rigidbody2D.velocity = Vector2.zero;
+                    }
+                }
+
+                Vector2 test = _rigidbody2D.velocity;
+                float speed = test.magnitude;
+                if (speed < 1)
+                {
+                    Detected = false;
+                    isMoving = false;
+                    currDashInterval = dashInterval;
+                    _rigidbody2D.velocity = Vector2.zero;
                 
+                }
             }
         }
     }
@@ -81,10 +94,32 @@ public class RocketeerManagement : MonoBehaviour
             _rigidbody2D.velocity = (target.position - transform.position).normalized * currSpeed; 
             isMoving = true;
         }
+
+        if (detectWall())
+        {
+            Detected = true;
+        }
     }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     Detected = true;
-    // }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if (other.gameObject.CompareTag("Player") && !Detected)
+        {
+            other.GetComponent<Health>().takeDamageRPC(20);
+        }
+        Detected = true;
+        currTimeUntilNormal = TimeUntilNormal;
+    }
+
+    private bool detectWall()
+    {
+        RaycastHit2D test = Physics2D.Raycast(transform.position, _rigidbody2D.velocity.normalized, 10);
+        if (test.collider.CompareTag("WallCollider"))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
