@@ -13410,13 +13410,13 @@ PrefabInstance:
         type: 3}
       propertyPath: boss_lvl2
       value: 
-      objectReference: {fileID: 7213625067949143268, guid: 80d78c00a5dc8c241b97b855096c6dee,
+      objectReference: {fileID: 4628389310431844363, guid: 42c730dff284fe041abcbca6688f768f,
         type: 3}
     - target: {fileID: 3103120158757976929, guid: 8d70394fd1125e541bff7961876fc3c6,
         type: 3}
       propertyPath: boss_lvl3
       value: 
-      objectReference: {fileID: 4628389310431844363, guid: 42c730dff284fe041abcbca6688f768f,
+      objectReference: {fileID: 7213625067949143268, guid: 80d78c00a5dc8c241b97b855096c6dee,
         type: 3}
     - target: {fileID: 7663805823866754344, guid: 8d70394fd1125e541bff7961876fc3c6,
         type: 3}
