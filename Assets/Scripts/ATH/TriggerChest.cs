@@ -18,7 +18,7 @@ public class TriggerChest : MonoBehaviour
     }
     
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (!HasTriggered)
         {
@@ -27,7 +27,7 @@ public class TriggerChest : MonoBehaviour
             if (WeaponList.Count != WeaponListToUse.Count)
             {
                 GameObject newWeapon = ChooseWeapon(WeaponListToUse);
-                while (newWeapon == null)
+                if (newWeapon == null)
                 {
                     newWeapon = ChooseWeapon(WeaponListToUse);
                 }
