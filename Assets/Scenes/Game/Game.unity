@@ -1377,6 +1377,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2828270397255193433, guid: c4e29a5e967c56943b7f3bd485723bb0,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7949870570270391436}
+    - target: {fileID: 2828270397255193433, guid: c4e29a5e967c56943b7f3bd485723bb0,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 2828270397580974701, guid: c4e29a5e967c56943b7f3bd485723bb0,
         type: 3}
       propertyPath: m_AnchorMax.x
