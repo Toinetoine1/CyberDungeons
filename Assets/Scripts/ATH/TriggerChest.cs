@@ -39,7 +39,7 @@ public class TriggerChest : MonoBehaviour
                 }
                 else
                 {
-                    FindObjectOfType<Inventory>().addWeapon(FindObjectOfType<Inventory>().WeaponList[index]);
+                    FindObjectOfType<Inventory>().addWeaponRpc(FindObjectOfType<Inventory>().WeaponList[index]);
                 }
             }
             HasTriggered = true; 
