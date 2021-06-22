@@ -18,6 +18,12 @@ public class Solo : MonoBehaviourPunCallbacks
             text.enabled = true;
             return;
         }
+
+        if (PhotonNetwork.CurrentRoom != null)
+        {
+            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.JoinLobby();
+        }
         
         var rand = new Random();
         PhotonNetwork.JoinOrCreateRoom("SoloRoom"+rand.Next(0, 1000), new RoomOptions() {MaxPlayers = 1}, TypedLobby.Default);

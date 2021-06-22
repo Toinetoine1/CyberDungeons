@@ -9,7 +9,7 @@ namespace Photon
 {
     public class NetworkConnection : MonoBehaviourPunCallbacks
     {
-        public static bool connected = false;
+        public static bool connected;
         
         [SerializeField] private Text username;
         private string gameVersion = "1";
