@@ -1820,7 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6495517801feaef4181344a95d313364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 7b28aac2a8f9ea94ea8f795b1c6d1404, type: 2}
   resolutionDropdown: {fileID: 7949870570270391435}
   graphicDropdown: {fileID: 7949870570270391434}
 --- !u!1001 &8689354778775914575
