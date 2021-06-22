@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
@@ -7,9 +8,13 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviourPunCallbacks
 {
 
-    public static bool GameIsPaused = false;
+    public static bool GameIsPaused;
     public GameObject pauseMenuUI;
 
+    private void Start()
+    {
+        GameIsPaused = false;
+    }
 
     void Update()
     {
