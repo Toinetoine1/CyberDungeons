@@ -237,9 +237,6 @@ namespace Map
             
             foreach (Player pl in PhotonNetwork.CurrentRoom.Players.Values)
             {
-                if (pl.NickName != PhotonNetwork.NickName)
-                    return;
-                
                 GameObject obj = GameObject.Find(pl.NickName);
                 if (obj != null)
                 {
