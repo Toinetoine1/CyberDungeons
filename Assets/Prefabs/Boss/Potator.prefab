@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomHealth: 0
-  health: 750
+  health: 450
   healthBar: {fileID: 0}
 --- !u!212 &7213625067949143293
 SpriteRenderer:

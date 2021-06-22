@@ -10,7 +10,7 @@ public class RocketeerAudio : MonoBehaviour
     }
     void UpdateSound()
     {
-        FindObjectOfType<AudioManager>().Play("TheRandomatorSound"); // comme déja vu, cette méthode permet
+        FindObjectOfType<AudioManager>().Play("RocketeerSound"); // comme déja vu, cette méthode permet
                                                                      // de jouer le son approprié dans la liste des sons de l'AudioManager
     }
 }

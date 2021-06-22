@@ -129,10 +129,10 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject currWeapon = _WeaponManagement._inventory.currentWeapon;
         
-        float currWeaponX = _WeaponManagement._inventory.currWeaponX;
+        float currWeaponX = Mathf.Abs(_WeaponManagement._inventory.currWeaponX);
         float currWeaponY = _WeaponManagement._inventory.currWeaponY;
-        float currWeaponScaleX = _WeaponManagement._inventory.currWeaponScaleX;
-        float currWeaponScaleY = _WeaponManagement._inventory.currWeaponScaleX;
+        float currWeaponScaleX = Mathf.Abs(_WeaponManagement._inventory.currWeaponScaleX);
+        float currWeaponScaleY = Mathf.Abs(_WeaponManagement._inventory.currWeaponScaleX);
         
         Vector2 MouseDir = (camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
             Input.mousePosition.y, -camera.transform.position.z)) - transform.root.position).normalized;

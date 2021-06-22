@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: 7e55b5f8ce395d2478ef19529f31f076
+guid: 68500356babe43e47ac913ec9dccc640
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6287566011140848787
-    second: jackie_right_dodge_quimarchenormalement_0
+      213: 1994339714160248177
+    second: jackie_left_dodge_test_0
   - first:
-      213: -461654055613146720
-    second: jackie_right_dodge_quimarchenormalement_6
+      213: -4051587061362921549
+    second: jackie_left_dodge_test_9
   - first:
-      213: 1692118064025511295
-    second: jackie_right_dodge_quimarchenormalement_1
+      213: -8933409224687181529
+    second: jackie_left_dodge_test_1
   - first:
-      213: -861402930116801048
-    second: jackie_right_dodge_quimarchenormalement_7
+      213: 2359991148975152186
+    second: jackie_left_dodge_test_7
   - first:
-      213: -2048206476466870057
-    second: jackie_right_dodge_quimarchenormalement_2
+      213: 7340578317360492051
+    second: jackie_left_dodge_test_2
   - first:
-      213: -92882132147359918
-    second: jackie_right_dodge_quimarchenormalement_8
+      213: -7862980099399299398
+    second: jackie_left_dodge_test_8
   - first:
-      213: 3301515467744841209
-    second: jackie_right_dodge_quimarchenormalement_6
+      213: 3590887546019760919
+    second: jackie_left_dodge_test_3
   - first:
-      213: -4480293564731377481
-    second: jackie_right_dodge_quimarchenormalement_7
+      213: 8611249283302267764
+    second: jackie_left_dodge_test_9
   - first:
-      213: 6252789876077384775
-    second: jackie_right_dodge_quimarchenormalement_8
+      213: -8460533458589415685
+    second: jackie_left_dodge_test_7
   - first:
-      213: -7884133117554686083
-    second: jackie_right_dodge_quimarchenormalement_7
+      213: -3417980487553898610
+    second: jackie_left_dodge_test_8
   - first:
-      213: -8309621422954002823
-    second: jackie_right_dodge_quimarchenormalement_7
+      213: 4389978293953692715
+    second: jackie_left_dodge_test_9
   - first:
-      213: -8392216604813690919
-    second: jackie_right_dodge_quimarchenormalement_11
+      213: -8730844516047955438
+    second: jackie_left_dodge_test_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -98,7 +98,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 8192
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -110,7 +110,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 8192
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_0
+      name: jackie_left_dodge_test_0
       rect:
         serializedVersion: 2
-        x: 387
-        y: 2791
-        width: 80
-        height: 93
+        x: 253
+        y: 2875
+        width: 81
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39cbed369fbe14750800000000000000
-      internalID: 6287566011140848787
+      spriteID: 175c9ff47615dab10800000000000000
+      internalID: 1994339714160248177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_6
+      name: jackie_left_dodge_test_6
       rect:
         serializedVersion: 2
-        x: 1395
-        y: 2795
-        width: 84
-        height: 75
+        x: 1192
+        y: 2882
+        width: 85
+        height: 78
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a95f061510e799f0800000000000000
-      internalID: -461654055613146720
+      spriteID: 3bfe4eea80fd5c7c0800000000000000
+      internalID: -4051587061362921549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_1
+      name: jackie_left_dodge_test_1
       rect:
         serializedVersion: 2
-        x: 387
-        y: 2272
-        width: 71
-        height: 97
+        x: 261
+        y: 2344
+        width: 73
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f75234cf96c9b7710800000000000000
-      internalID: 1692118064025511295
+      spriteID: 721a25134a7260480800000000000000
+      internalID: -8933409224687181529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_7
+      name: jackie_left_dodge_test_7
       rect:
         serializedVersion: 2
-        x: 1396
-        y: 2268
-        width: 75
-        height: 66
+        x: 1201
+        y: 2342
+        width: 76
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ed48e5599eab04f0800000000000000
-      internalID: -861402930116801048
+      spriteID: a3cdabb327f50c020800000000000000
+      internalID: 2359991148975152186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_2
+      name: jackie_left_dodge_test_2
       rect:
         serializedVersion: 2
-        x: 396
-        y: 1754
-        width: 75
-        height: 93
+        x: 248
+        y: 1813
+        width: 77
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d8a98fbf0f4393e0800000000000000
-      internalID: -2048206476466870057
+      spriteID: 31ee43c6619fed560800000000000000
+      internalID: 7340578317360492051
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_8
+      name: jackie_left_dodge_test_8
       rect:
         serializedVersion: 2
-        x: 1391
-        y: 1745
-        width: 84
-        height: 84
+        x: 1196
+        y: 1806
+        width: 86
+        height: 87
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25f2063613406bef0800000000000000
-      internalID: -92882132147359918
+      spriteID: abec65b624511e290800000000000000
+      internalID: -7862980099399299398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_3
+      name: jackie_left_dodge_test_3
       rect:
         serializedVersion: 2
-        x: 387
-        y: 1241
-        width: 88
-        height: 80
+        x: 244
+        y: 1286
+        width: 90
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +263,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fd836363d651dd20800000000000000
-      internalID: 3301515467744841209
+      spriteID: 71bc1e0a23565d130800000000000000
+      internalID: 3590887546019760919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_9
+      name: jackie_left_dodge_test_9
       rect:
         serializedVersion: 2
-        x: 1395
-        y: 1235
-        width: 67
-        height: 63
+        x: 1210
+        y: 1284
+        width: 68
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,20 +284,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b8b7b09dbcc2d1c0800000000000000
-      internalID: -4480293564731377481
+      spriteID: 47b919b499d418770800000000000000
+      internalID: 8611249283302267764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_4
+      name: jackie_left_dodge_test_4
       rect:
         serializedVersion: 2
-        x: 374
-        y: 740
-        width: 97
-        height: 71
+        x: 248
+        y: 773
+        width: 99
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -305,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74450ca734f56c650800000000000000
-      internalID: 6252789876077384775
+      spriteID: bf6887e25a5269a80800000000000000
+      internalID: -8460533458589415685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_10
+      name: jackie_left_dodge_test_10
       rect:
         serializedVersion: 2
-        x: 1395
-        y: 717
-        width: 75
-        height: 58
+        x: 1201
+        y: 752
+        width: 76
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -326,20 +326,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d77824693bee59290800000000000000
-      internalID: -7884133117554686083
+      spriteID: e8722261bd4e090d0800000000000000
+      internalID: -3417980487553898610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_5
+      name: jackie_left_dodge_test_5
       rect:
         serializedVersion: 2
-        x: 382
-        y: 217
-        width: 93
-        height: 76
+        x: 244
+        y: 237
+        width: 94
+        height: 78
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,20 +347,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 976c9d2975b4eac80800000000000000
-      internalID: -8309621422954002823
+      spriteID: b2409cecff55cec30800000000000000
+      internalID: 4389978293953692715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jackie_right_dodge_quimarchenormalement_11
+      name: jackie_left_dodge_test_11
       rect:
         serializedVersion: 2
-        x: 1395
-        y: 186
-        width: 67
-        height: 84
+        x: 1209
+        y: 208
+        width: 68
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,8 +368,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d7f1f7367bd88b80800000000000000
-      internalID: -8392216604813690919
+      spriteID: 21a5bcfab2fc5d680800000000000000
+      internalID: -8730844516047955438
       vertices: []
       indices: 
       edges: []
@@ -377,7 +377,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 64d1f28f9cecba34aa346fcc87650202
+    spriteID: c8d093579f0fc3a44ba9da8800e7f1ef
     internalID: 0
     vertices: []
     indices: 
