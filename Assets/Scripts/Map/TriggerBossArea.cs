@@ -59,7 +59,7 @@ namespace Map
                         bossName = boss_lvl1.name;
                         FindObjectOfType<AudioManager>().Play("Bosslvl1");
                         FindObjectOfType<AudioManager>().Stop("Level1");
-                        break;    
+                        break;
                     case 2:
                         bossName = boss_lvl2.name;
                         FindObjectOfType<AudioManager>().Play("Bosslvl2");
@@ -71,7 +71,7 @@ namespace Map
                         FindObjectOfType<AudioManager>().Stop("Level3");
                         break;
                 }
-                
+
                 PhotonNetwork.Instantiate(bossName, position, Quaternion.identity);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 Debug.LogWarning("spawn a boss !");
@@ -93,7 +93,10 @@ namespace Map
                 if (pl.NickName == name)
                     continue;
 
-                GameObject.Find(pl.NickName).transform.position = pos;
+
+                GameObject find = GameObject.Find(pl.NickName);
+                if (find != null)
+                    find.transform.position = pos;
             }
         }
     }
