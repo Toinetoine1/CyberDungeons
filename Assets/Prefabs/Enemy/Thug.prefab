@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomHealth: 0
-  health: 100
+  health: 80
   healthBar: {fileID: 0}
 --- !u!114 &-7235926934808293889
 MonoBehaviour:
