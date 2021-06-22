@@ -73,7 +73,6 @@ namespace Game
                     {
                         PhotonNetwork.LoadLevel(0);
                         PhotonNetwork.LeaveRoom();
-                        PlayerConnect.hasAlreadyPlayed = true;
                     }
                     else
                     {
@@ -104,7 +103,6 @@ namespace Game
         [PunRPC]
         public void LeaveGame()
         {
-            PlayerConnect.hasAlreadyPlayed = true;
             PhotonNetwork.LoadLevel(0);
             PhotonNetwork.LeaveRoom();
         }

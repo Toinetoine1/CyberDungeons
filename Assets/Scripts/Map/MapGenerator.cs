@@ -49,10 +49,10 @@ namespace Map
         {
             level = 1;
             players = new List<GameObject>();
+            DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
 
-            if (!PlayerConnect.hasAlreadyPlayed)
+            if (!pool.ResourceCache.ContainsKey(verticalWall.name))
             {
-                DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
                 foreach (GameObject prefab in availableMapsLvl1)
                 {
                     pool.ResourceCache.Add(prefab.name, prefab);

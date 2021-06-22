@@ -8,8 +8,6 @@ namespace AI
 {
     public class PlayerConnect : MonoBehaviourPunCallbacks
     {
-        public static bool hasAlreadyPlayed = false;
-
         [SerializeField] public GameObject PlayerPrefab;
 
         public static List<GameObject> players;
@@ -18,7 +16,7 @@ namespace AI
         {
             players = new List<GameObject>();
             DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
-            if (!hasAlreadyPlayed)
+            if (!pool.ResourceCache.ContainsKey(PlayerPrefab.name))
                 pool.ResourceCache.Add(PlayerPrefab.name, PlayerPrefab);
             Health.alivePlayer = PhotonNetwork.CurrentRoom.Players.Values.Count;
 
