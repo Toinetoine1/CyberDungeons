@@ -4,7 +4,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviourPunCallbacks
 {
 
     public static bool GameIsPaused = false;
@@ -43,8 +43,14 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
         PhotonNetwork.LeaveRoom();
+    }
+    
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene(0);
+ 
+        base.OnLeftRoom();
     }
 
     public void QuitGame()
