@@ -18,11 +18,12 @@ public class RandomatorWeapon : MachineGunnerManagement
         DefaultPool pool = PhotonNetwork.PrefabPool as DefaultPool;
         if (!pool.ResourceCache.ContainsKey(Bullet.name))
             pool.ResourceCache.Add(Bullet.name, Bullet);
-        firingInterval = Random.Range(0.75f,1.5f);
-        Damage = Random.Range(1, 2)*10;
-        Speed = Random.Range(10f, 20f);
-        switchTime = 8;
         _photonView = PhotonView.Get(this);
+
+        if (_photonView.IsMine)
+        {
+            _photonView.RPC("RandomatorSetup", RpcTarget.All);
+        }
     }
 
     // Update is called once per frame
@@ -94,6 +95,15 @@ public class RandomatorWeapon : MachineGunnerManagement
     {
         GameObject newBullet = PhotonNetwork.Instantiate(Bullet.name, transform.position, Quaternion.identity);
         newBullet.GetComponent<Bullet>().RandomatorSetup(target, Damage, Speed);
+    }
+
+    [PunRPC]
+    private void RandomatorSetup()
+    {
+        firingInterval = Random.Range(0.75f,1.5f);
+        Damage = Random.Range(1, 2)*10;
+        Speed = Random.Range(10f, 20f);
+        switchTime = 8;
     }
 
 

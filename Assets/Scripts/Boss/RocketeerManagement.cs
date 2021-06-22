@@ -26,7 +26,7 @@ public class RocketeerManagement : MonoBehaviour
     public bool Detected;
     private bool targetSet;
 
-    private float TimeUntilNormal = 2;
+    private float TimeUntilNormal = 5;
     private float currTimeUntilNormal;
 
     private void Start()
@@ -60,6 +60,7 @@ public class RocketeerManagement : MonoBehaviour
             {
                 Move();
                 currDashInterval = dashInterval;
+                currTimeUntilNormal = TimeUntilNormal;
             }
         
             if (isMoving)
@@ -72,6 +73,8 @@ public class RocketeerManagement : MonoBehaviour
                         _rigidbody2D.velocity = Vector2.zero;
                     }
                 }
+
+                currTimeUntilNormal -= Time.deltaTime;
 
                 Vector2 test = _rigidbody2D.velocity;
                 float speed = test.magnitude;
@@ -94,11 +97,7 @@ public class RocketeerManagement : MonoBehaviour
             _rigidbody2D.velocity = (target.position - transform.position).normalized * currSpeed; 
             isMoving = true;
         }
-
-        if (detectWall())
-        {
-            Detected = true;
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -112,14 +111,5 @@ public class RocketeerManagement : MonoBehaviour
         currTimeUntilNormal = TimeUntilNormal;
     }
 
-    private bool detectWall()
-    {
-        RaycastHit2D test = Physics2D.Raycast(transform.position, _rigidbody2D.velocity.normalized, 10);
-        if (test.collider.CompareTag("WallCollider"))
-        {
-            return true;
-        }
-
-        return false;
-    }
+    
 }
