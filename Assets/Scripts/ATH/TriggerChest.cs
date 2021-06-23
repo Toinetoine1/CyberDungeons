@@ -28,21 +28,21 @@ public class TriggerChest : MonoBehaviour
             List<GameObject> WeaponListToUse = FindObjectOfType<Inventory>().WeaponListToUse;
             if (WeaponList.Count != WeaponListToUse.Count)
             {
-                GameObject newWeapon = ChooseWeapon(WeaponListToUse);
-                if (newWeapon == null)
+                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                foreach (var pl in players)
                 {
-                    newWeapon = ChooseWeapon(WeaponListToUse);
-                }
+                    GameObject newWeapon = ChooseWeapon(WeaponListToUse);
+                    if (newWeapon == null)
+                    {
+                        newWeapon = ChooseWeapon(WeaponListToUse);
+                    }
 
-                int index = IndexOfWeapon(newWeapon);
-                if (index == -1)
-                {
-                    Debug.Log(index + " oulala ");
-                }
-                else
-                {
-                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                    foreach (GameObject pl in players)
+                    int index = IndexOfWeapon(newWeapon);
+                    if (index == -1)
+                    {
+                        Debug.Log(index + " oulala ");
+                    }
+                    else
                     {
                         Inventory test = pl.transform.Find("Inventory").GetComponent<Inventory>();
                         test.addWeapon(test.WeaponList[index]);
