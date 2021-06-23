@@ -21,7 +21,7 @@ public class RandomatorWeapon : MachineGunnerManagement
         _photonView = PhotonView.Get(this);
         switchTime = 8;
 
-        if (_photonView.IsMine)
+        if (PhotonNetwork.IsMasterClient)
         {
             float Interval = Random.Range(0.75f,1.5f);
             int damage = Random.Range(1, 2)*10;
