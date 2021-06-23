@@ -19,7 +19,7 @@ namespace Game
         // Start is called before the first frame update
         void Start()
         {
-            if (randomHealth)
+            if (randomHealth && photonView.IsMine)
                 health = Random.Range(200, 1000);
             
             maxHealth = health;
