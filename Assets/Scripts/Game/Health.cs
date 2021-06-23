@@ -19,8 +19,11 @@ namespace Game
         // Start is called before the first frame update
         void Start()
         {
-            if (randomHealth && photonView.IsMine)
-                health = Random.Range(200, 1000);
+            if (randomHealth && PhotonNetwork.IsMasterClient)
+            {
+                PhotonView photonView = gameObject.GetComponent<PhotonView>();
+                photonView.RPC("ChangeRandomatorHealth", RpcTarget.All, Random.Range(200, 1000));
+            }
             
             maxHealth = health;
             //si vous voulez voir la vie des mob, inserez l'object healthbar dans l'object du mob et inséré cet healthbar dans le script dans unity.
@@ -29,6 +32,13 @@ namespace Game
                 healthBar.setup(this);
             }
         }
+
+        [PunRPC]
+        public void ChangeRandomatorHealth(int health)
+        {
+            this.health = health;
+        }
+        
         void Update()
         {
             if (health <= 0 && gameObject.GetComponent<PhotonView>().IsMine)
